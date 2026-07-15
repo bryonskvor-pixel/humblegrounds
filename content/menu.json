@@ -1,0 +1,61 @@
+{
+  "month": "2026-07",
+  "monthLabel": "JULY 2026",
+  "deliveryDay": "DELIVERY_DAY",
+  "venmo": "VENMO_HANDLE",
+  "coffees": [
+    {
+      "slug": "kochere-yeast-washed",
+      "name": "Kochere Yeast Ferment",
+      "origin": "Kochere, Ethiopia",
+      "station": "Bonde washing station · Iseral Degefa",
+      "elevation": "2100 masl",
+      "variety": "74158 indigenous cultivar",
+      "process": "Washed, 48-hour yeast-inoculated ferment",
+      "processNote": "This one spent two days fermenting with a cultured yeast before washing. That is where the passionfruit comes from, and yes, it is supposed to do that.",
+      "notes": ["white tea", "floral", "lime verbena", "vanilla", "passionfruit"],
+      "roastLevel": 2.5,
+      "price": null,
+      "soldOut": false,
+      "plate": ""
+    },
+    {
+      "slug": "coffee-two",
+      "name": "Second Coffee TBD",
+      "origin": "Origin TBD",
+      "station": "",
+      "elevation": "",
+      "variety": "",
+      "process": "",
+      "processNote": "The second seat in this month's lineup is still on the cupping table.",
+      "notes": ["notes to come"],
+      "roastLevel": 3,
+      "price": null,
+      "soldOut": false,
+      "plate": ""
+    },
+    {
+      "slug": "coffee-three",
+      "name": "Third Coffee TBD",
+      "origin": "Origin TBD",
+      "station": "",
+      "elevation": "",
+      "variety": "",
+      "process": "",
+      "processNote": "Third coffee lands here once the roast profile settles.",
+      "notes": ["notes to come"],
+      "roastLevel": 3,
+      "price": null,
+      "soldOut": false,
+      "plate": ""
+    }
+  ],
+  "coldBrew": {
+    "slug": "cold-brew",
+    "name": "One Batch Cold Brew",
+    "notes": ["cocoa", "soft", "quantity limited"],
+    "price": null,
+    "soldOut": false,
+    "plate": ""
+  }
+}

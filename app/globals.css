@@ -1,0 +1,596 @@
+:root {
+  /* §3.4 color tokens. --paper sampled from the horizontal logo background. */
+  --paper: #f7e7cc;
+  --ink: #2b2620;
+  --cherry: #a63a2e;
+  --celadon: #8fa07a;
+  --roast: #6b4a32;
+  --glow: #e8c878;
+
+  --rule: 1px solid var(--ink);
+}
+
+* {
+  box-sizing: border-box;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  margin: 0;
+  background-color: var(--paper);
+  /* subtle paper tooth, drawn in code so it never fights the plate backgrounds */
+  background-image: radial-gradient(
+      rgba(43, 38, 32, 0.035) 1px,
+      transparent 1px
+    ),
+    radial-gradient(rgba(43, 38, 32, 0.02) 1px, transparent 1px);
+  background-size: 7px 7px, 11px 11px;
+  background-position: 0 0, 3px 5px;
+  color: var(--ink);
+  font-family: var(--font-body), Georgia, serif;
+  font-size: 1.0625rem;
+  line-height: 1.6;
+}
+
+h1,
+h2,
+h3 {
+  font-family: var(--font-display), Georgia, serif;
+  font-weight: 400;
+  color: var(--roast);
+  line-height: 1.15;
+  margin: 0;
+}
+
+a {
+  color: var(--cherry);
+}
+
+button {
+  font: inherit;
+}
+
+/* §5.6 ink-style focus, not default blue */
+:focus-visible {
+  outline: 2px solid var(--ink);
+  outline-offset: 3px;
+}
+
+.wrap {
+  max-width: 68rem;
+  margin: 0 auto;
+  padding: 0 1.25rem;
+}
+
+/* ---------- masthead ---------- */
+
+.masthead {
+  text-align: center;
+  padding: 3rem 1rem 1.5rem;
+}
+
+.masthead-logo {
+  width: min(46rem, 100%);
+  height: auto;
+  display: block;
+  margin: 0 auto;
+}
+
+.sr-only {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  white-space: nowrap;
+  border: 0;
+}
+
+.masthead h1 {
+  font-size: clamp(2.6rem, 8vw, 4.25rem);
+  letter-spacing: 0.01em;
+}
+
+.masthead .subline {
+  margin: 0.75rem 0 0;
+  font-size: 1.125rem;
+}
+
+.masthead .glyph {
+  display: block;
+  margin: 0 auto 1rem;
+  width: 56px;
+  height: 56px;
+  color: var(--roast);
+}
+
+/* ---------- section headings ---------- */
+
+.eyebrow {
+  font-family: var(--font-mono), monospace;
+  font-size: 0.8125rem;
+  letter-spacing: 0.08em;
+  color: var(--ink);
+  margin: 0 0 0.5rem;
+}
+
+.section {
+  padding: 2.5rem 0;
+}
+
+.section > .wrap > h2 {
+  font-size: 1.9rem;
+  margin-bottom: 1.5rem;
+}
+
+/* ---------- plate cards (§5.2) ---------- */
+
+.plate-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(17rem, 1fr));
+  gap: 1.5rem;
+}
+
+.plate-card {
+  position: relative;
+  border: var(--rule);
+  outline: 1px solid var(--ink);
+  outline-offset: 3px;
+  padding: 1.5rem 1.4rem 1.4rem;
+  background: transparent;
+  display: flex;
+  flex-direction: column;
+  gap: 0.6rem;
+  transition: box-shadow 150ms ease, filter 150ms ease;
+}
+
+.plate-card:hover {
+  filter: saturate(1.12);
+  box-shadow: 0 0 0 3px rgba(232, 200, 120, 0.35), 0 0 22px rgba(232, 200, 120, 0.3);
+}
+
+.plate-card.cold-brew {
+  background: rgba(143, 160, 122, 0.13);
+}
+
+.plate-art {
+  aspect-ratio: 4 / 3;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-bottom: var(--rule);
+  margin-bottom: 0.4rem;
+  overflow: hidden;
+}
+
+.plate-art img {
+  max-width: 100%;
+  height: auto;
+  display: block;
+}
+
+.plate-art svg {
+  width: 44%;
+  height: auto;
+  color: var(--roast);
+  opacity: 0.8;
+}
+
+.plate-card h3 {
+  font-size: 1.45rem;
+}
+
+.origin-line {
+  margin: 0;
+  font-size: 0.95rem;
+}
+
+.process-note {
+  margin: 0;
+  font-size: 0.95rem;
+  font-style: italic;
+}
+
+.tasting-notes {
+  font-family: var(--font-mono), monospace;
+  font-size: 0.8125rem;
+  letter-spacing: 0.02em;
+  margin: 0;
+}
+
+.roast-row {
+  display: flex;
+  align-items: center;
+  gap: 0.3rem;
+}
+
+.roast-row .bean {
+  width: 15px;
+  height: 19px;
+}
+
+.roast-label {
+  font-family: var(--font-mono), monospace;
+  font-size: 0.75rem;
+  margin-left: 0.4rem;
+}
+
+.plate-foot {
+  margin-top: auto;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding-top: 0.75rem;
+}
+
+.price {
+  font-family: var(--font-mono), monospace;
+  font-size: 1rem;
+}
+
+.order-btn {
+  font-family: var(--font-mono), monospace;
+  font-size: 0.875rem;
+  letter-spacing: 0.04em;
+  color: var(--paper);
+  background: var(--cherry);
+  border: 1px solid var(--ink);
+  padding: 0.5rem 1rem;
+  cursor: pointer;
+  transition: background 150ms ease;
+}
+
+.order-btn:hover {
+  background: #8f3227;
+}
+
+.order-btn:disabled {
+  background: transparent;
+  color: var(--ink);
+  opacity: 0.5;
+  cursor: not-allowed;
+}
+
+.spoken-for {
+  position: absolute;
+  top: 42%;
+  left: 50%;
+  transform: translate(-50%, -50%) rotate(-16deg);
+  font-family: var(--font-mono), monospace;
+  font-weight: 700;
+  font-size: 1.5rem;
+  letter-spacing: 0.12em;
+  color: var(--cherry);
+  border: 3px double var(--cherry);
+  padding: 0.35rem 1.1rem;
+  pointer-events: none;
+  opacity: 0.85;
+}
+
+/* ---------- how to get it ---------- */
+
+.get-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 1.5rem;
+}
+
+@media (max-width: 40rem) {
+  .get-grid {
+    grid-template-columns: 1fr;
+  }
+}
+
+.get-panel {
+  border: var(--rule);
+  padding: 1.4rem;
+  display: flex;
+  gap: 1rem;
+  align-items: flex-start;
+}
+
+.get-panel svg {
+  flex: 0 0 44px;
+  width: 44px;
+  height: 44px;
+  color: var(--roast);
+}
+
+.get-panel h3 {
+  font-size: 1.2rem;
+  margin-bottom: 0.3rem;
+}
+
+.get-panel p {
+  margin: 0;
+  font-size: 0.98rem;
+}
+
+/* ---------- order slip (§5.3) ---------- */
+
+.slip-backdrop {
+  position: fixed;
+  inset: 0;
+  background: rgba(43, 38, 32, 0.35);
+  z-index: 40;
+}
+
+.order-slip {
+  position: fixed;
+  left: 50%;
+  bottom: 0;
+  transform: translateX(-50%);
+  width: min(30rem, 100%);
+  max-height: 88dvh;
+  overflow-y: auto;
+  background: var(--paper);
+  border: var(--rule);
+  border-bottom: none;
+  box-shadow: 0 -4px 30px rgba(43, 38, 32, 0.25);
+  padding: 1.4rem 1.4rem 1.6rem;
+  z-index: 50;
+  animation: slip-up 260ms cubic-bezier(0.65, 0, 0.35, 1);
+}
+
+@keyframes slip-up {
+  from {
+    transform: translate(-50%, 100%);
+  }
+  to {
+    transform: translate(-50%, 0);
+  }
+}
+
+.order-slip h2 {
+  font-size: 1.4rem;
+  border-bottom: var(--rule);
+  padding-bottom: 0.5rem;
+  margin-bottom: 0.9rem;
+}
+
+.slip-items {
+  font-family: var(--font-mono), monospace;
+  font-size: 0.875rem;
+  margin: 0 0 1rem;
+  padding: 0;
+  list-style: none;
+}
+
+.slip-items li {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  padding: 0.3rem 0;
+  border-bottom: 1px dashed rgba(43, 38, 32, 0.4);
+}
+
+.slip-items .item-name {
+  flex: 1;
+}
+
+.qty-btn,
+.remove-btn {
+  background: none;
+  border: 1px solid var(--ink);
+  width: 1.5rem;
+  height: 1.5rem;
+  line-height: 1;
+  cursor: pointer;
+  font-family: var(--font-mono), monospace;
+}
+
+.order-slip label {
+  display: block;
+  font-family: var(--font-mono), monospace;
+  font-size: 0.8125rem;
+  margin: 0.8rem 0 0.25rem;
+}
+
+.order-slip input[type="text"],
+.order-slip textarea {
+  width: 100%;
+  background: transparent;
+  border: var(--rule);
+  padding: 0.5rem 0.6rem;
+  font: inherit;
+  font-size: 0.95rem;
+  color: var(--ink);
+}
+
+.radio-row {
+  display: flex;
+  gap: 1rem;
+  flex-wrap: wrap;
+}
+
+.radio-row label {
+  display: flex;
+  align-items: center;
+  gap: 0.4rem;
+  margin: 0;
+  font-size: 0.8125rem;
+  cursor: pointer;
+}
+
+.radio-row input {
+  accent-color: var(--cherry);
+}
+
+.slip-actions {
+  display: flex;
+  gap: 0.75rem;
+  margin-top: 1.25rem;
+}
+
+.slip-actions .order-btn {
+  flex: 1;
+  padding: 0.7rem 1rem;
+}
+
+.slip-actions .close-btn {
+  background: none;
+  border: 1px solid var(--ink);
+  padding: 0.7rem 1rem;
+  cursor: pointer;
+  font-family: var(--font-mono), monospace;
+  font-size: 0.875rem;
+  color: var(--ink);
+}
+
+.slip-error {
+  color: var(--cherry);
+  font-size: 0.875rem;
+  margin: 0.75rem 0 0;
+}
+
+.slip-confirm p {
+  margin: 0 0 1rem;
+}
+
+.venmo-link {
+  display: inline-block;
+  font-family: var(--font-mono), monospace;
+  font-size: 0.9rem;
+  color: var(--paper);
+  background: var(--cherry);
+  border: 1px solid var(--ink);
+  padding: 0.6rem 1.2rem;
+  text-decoration: none;
+}
+
+.slip-fab {
+  position: fixed;
+  right: 1.25rem;
+  bottom: 1.25rem;
+  z-index: 30;
+  font-family: var(--font-mono), monospace;
+  font-size: 0.875rem;
+  background: var(--paper);
+  color: var(--ink);
+  border: var(--rule);
+  outline: 1px solid var(--ink);
+  outline-offset: 2px;
+  padding: 0.6rem 1rem;
+  cursor: pointer;
+  box-shadow: 0 2px 12px rgba(43, 38, 32, 0.25);
+}
+
+/* ---------- footer ---------- */
+
+.footer {
+  margin-top: 3rem;
+  border-top: var(--rule);
+  padding: 2.5rem 0 0;
+  text-align: center;
+}
+
+.footer p {
+  margin: 0.25rem 0;
+  font-size: 0.95rem;
+}
+
+.footer .fine {
+  font-family: var(--font-mono), monospace;
+  font-size: 0.8125rem;
+}
+
+.ground-strip {
+  margin-top: 2rem;
+  display: block;
+  width: 100%;
+  height: 46px;
+  color: var(--ink);
+}
+
+/* ---------- opener (§4.4) ---------- */
+
+.opener {
+  position: fixed;
+  inset: 0;
+  z-index: 100;
+  background: var(--paper);
+}
+
+.opener video {
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+  background: var(--paper);
+}
+
+.opener .door {
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  width: 50%;
+  background-size: cover;
+  background-position: center;
+  transition: transform 1.2s cubic-bezier(0.65, 0, 0.35, 1);
+}
+
+.opener .door-left {
+  left: 0;
+  background-position: left center;
+}
+
+.opener .door-right {
+  right: 0;
+  background-position: right center;
+}
+
+.opener.opening .door-left {
+  transform: translateX(-100%);
+}
+
+.opener.opening .door-right {
+  transform: translateX(100%);
+}
+
+.opener .glow-wash {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  background: radial-gradient(circle at center, rgba(232, 200, 120, 0.5), transparent 70%);
+  transition: opacity 1.2s ease;
+}
+
+.opener.opening .glow-wash {
+  opacity: 0;
+}
+
+.opener.fading {
+  transition: opacity 1.2s ease;
+  opacity: 0;
+}
+
+.skip-btn {
+  position: absolute;
+  right: 1.25rem;
+  bottom: 1.25rem;
+  font-family: var(--font-mono), monospace;
+  font-size: 0.875rem;
+  background: none;
+  border: none;
+  color: var(--ink);
+  cursor: pointer;
+  text-decoration: underline;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
+  .opener,
+  .order-slip {
+    animation: none;
+  }
+  .opener .door,
+  .opener .glow-wash {
+    transition: none;
+  }
+}
