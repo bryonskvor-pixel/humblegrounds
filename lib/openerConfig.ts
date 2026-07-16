@@ -7,7 +7,7 @@ export const openerConfig = {
   mode: "open" as "open" | "video-doors" | "video-fade",
   videoSrc: "/assets/opener/opener.mp4",
   videoSrcWebm: "/assets/opener/opener.webm",
-  poster: "/assets/opener/p1-poster.png",
-  doorLeft: "/assets/opener/door-left.png",
-  doorRight: "/assets/opener/door-right.png",
+  poster: "/assets/opener/p1-poster.jpg",
+  doorLeft: "/assets/opener/door-left.jpg",
+  doorRight: "/assets/opener/door-right.jpg",
 };
