@@ -1,0 +1,8 @@
+
+## kochere · 2026-07-16T03:12:31.654Z · flux-2-pro · 4/4 ok
+
+> A single green coffee bean floating vertical at the center, flanked by a delicate sprig of white coffee blossom, a thin slice of lime, and a small stem of lemon verbena with tiny white flowers, arranged like a pressed specimen. Botanical specimen plate composition, subjects levitating weightlessly against bare paper, no ground, no surface, only a faint soft ink-hatched shadow floating below. Vintage botanical illustration style, fine dark ink linework like a crow-quill pen, delicate crosshatching for ground and shadows, soft colored-pencil and muted watercolor wash shading inside the ink outlines, warm aged cream paper background with subtle texture, muted natural palette, centered composition with generous negative space, hand-drawn scientific field-guide aesthetic, no photorealism, no digital gradients, no text.
+
+## cold-brew · 2026-07-16T03:12:51.097Z · flux-2-pro · 4/4 ok
+
+> A glass mason jar filled with dark cold brew coffee, floating gently, condensation droplets drawn in fine ink on the glass, a soft celadon green watercolor tint in the highlights, two coffee beans drifting beside it. Botanical specimen plate composition, subjects levitating weightlessly against bare paper, no ground, no surface, only a faint soft ink-hatched shadow floating below. Vintage botanical illustration style, fine dark ink linework like a crow-quill pen, delicate crosshatching for ground and shadows, soft colored-pencil and muted watercolor wash shading inside the ink outlines, warm aged cream paper background with subtle texture, muted natural palette, centered composition with generous negative space, hand-drawn scientific field-guide aesthetic, no photorealism, no digital gradients, no text.
