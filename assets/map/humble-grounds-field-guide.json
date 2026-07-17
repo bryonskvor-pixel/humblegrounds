@@ -4,22 +4,36 @@
   "metadata": {
     "humble-grounds:notes": "Botanical field-guide map style. Paper land, celadon-wash water, ink coastlines, dashed ink borders, engraved contour relief near the destination. Matches projectcontext.md section 3 tokens.",
     "humble-grounds:journey": {
-      "home": { "name": "Oberlin, Ohio", "lngLat": [-82.2174, 41.293] },
+      "home": {
+        "name": "Oberlin, Ohio",
+        "lngLat": [
+          -82.2174,
+          41.293
+        ]
+      },
       "destinations": [
         {
           "name": "Montana de La Choca, Honduras",
-          "lngLat": [-87.5162, 14.5816],
+          "lngLat": [
+            -87.5162,
+            14.5816
+          ],
           "elevation_m": 1688,
           "region": "Comayagua (IHCAFE region), Parque Nacional Montana de Comayagua"
         }
       ]
     }
   },
-  "center": [-82.2174, 41.293],
+  "center": [
+    -82.2174,
+    41.293
+  ],
   "zoom": 3.2,
   "pitch": 0,
   "bearing": 0,
-  "projection": { "name": "globe" },
+  "projection": {
+    "name": "globe"
+  },
   "glyphs": "mapbox://fonts/mapbox/{fontstack}/{range}.pbf",
   "fog": {
     "color": "#f7e7cc",
@@ -28,7 +42,10 @@
     "horizon-blend": 0.04,
     "star-intensity": 0
   },
-  "terrain": { "source": "mapbox-dem", "exaggeration": 1.35 },
+  "terrain": {
+    "source": "mapbox-dem",
+    "exaggeration": 1.35
+  },
   "sources": {
     "composite": {
       "type": "vector",
@@ -45,7 +62,9 @@
     {
       "id": "paper",
       "type": "background",
-      "paint": { "background-color": "#f7e7cc" }
+      "paint": {
+        "background-color": "#f7e7cc"
+      }
     },
     {
       "id": "national-park-wash",
@@ -53,13 +72,28 @@
       "source": "composite",
       "source-layer": "landuse_overlay",
       "minzoom": 6,
-      "filter": ["==", ["get", "class"], "national_park"],
+      "filter": [
+        "==",
+        [
+          "get",
+          "class"
+        ],
+        "national_park"
+      ],
       "paint": {
         "fill-color": "#8fa07a",
         "fill-opacity": [
-          "interpolate", ["linear"], ["zoom"],
-          6, 0.08,
-          10, 0.16
+          "interpolate",
+          [
+            "linear"
+          ],
+          [
+            "zoom"
+          ],
+          6,
+          0.08,
+          10,
+          0.16
         ]
       }
     },
@@ -81,10 +115,19 @@
         "line-color": "#2b2620",
         "line-opacity": 0.8,
         "line-width": [
-          "interpolate", ["linear"], ["zoom"],
-          1, 0.4,
-          6, 0.8,
-          12, 1.3
+          "interpolate",
+          [
+            "linear"
+          ],
+          [
+            "zoom"
+          ],
+          1,
+          0.4,
+          6,
+          0.8,
+          12,
+          1.3
         ]
       }
     },
@@ -94,14 +137,24 @@
       "source": "composite",
       "source-layer": "waterway",
       "minzoom": 8,
-      "layout": { "line-cap": "round" },
+      "layout": {
+        "line-cap": "round"
+      },
       "paint": {
         "line-color": "#2b2620",
         "line-opacity": 0.35,
         "line-width": [
-          "interpolate", ["linear"], ["zoom"],
-          8, 0.4,
-          14, 1.1
+          "interpolate",
+          [
+            "linear"
+          ],
+          [
+            "zoom"
+          ],
+          8,
+          0.4,
+          14,
+          1.1
         ]
       }
     },
@@ -115,13 +168,27 @@
         "line-color": "#2b2620",
         "line-opacity": [
           "case",
-          [">=", ["get", "index"], 5],
+          [
+            ">=",
+            [
+              "get",
+              "index"
+            ],
+            5
+          ],
           0.28,
           0.13
         ],
         "line-width": [
           "case",
-          [">=", ["get", "index"], 5],
+          [
+            ">=",
+            [
+              "get",
+              "index"
+            ],
+            5
+          ],
           0.8,
           0.5
         ]
@@ -134,8 +201,19 @@
       "source-layer": "road",
       "minzoom": 11,
       "filter": [
-        "match", ["get", "class"],
-        ["motorway", "trunk", "primary", "secondary", "tertiary", "street"],
+        "match",
+        [
+          "get",
+          "class"
+        ],
+        [
+          "motorway",
+          "trunk",
+          "primary",
+          "secondary",
+          "tertiary",
+          "street"
+        ],
         true,
         false
       ],
@@ -143,9 +221,17 @@
         "line-color": "#2b2620",
         "line-opacity": 0.25,
         "line-width": [
-          "interpolate", ["linear"], ["zoom"],
-          11, 0.4,
-          15, 1.2
+          "interpolate",
+          [
+            "linear"
+          ],
+          [
+            "zoom"
+          ],
+          11,
+          0.4,
+          15,
+          1.2
         ]
       }
     },
@@ -157,15 +243,34 @@
       "minzoom": 4,
       "filter": [
         "all",
-        ["==", ["get", "admin_level"], 1],
-        ["==", ["get", "maritime"], "false"]
+        [
+          "==",
+          [
+            "get",
+            "admin_level"
+          ],
+          1
+        ],
+        [
+          "==",
+          [
+            "get",
+            "maritime"
+          ],
+          "false"
+        ]
       ],
-      "layout": { "line-cap": "round" },
+      "layout": {
+        "line-cap": "round"
+      },
       "paint": {
         "line-color": "#2b2620",
         "line-opacity": 0.25,
         "line-width": 0.7,
-        "line-dasharray": [0.1, 2.4]
+        "line-dasharray": [
+          0.1,
+          2.4
+        ]
       }
     },
     {
@@ -175,18 +280,43 @@
       "source-layer": "admin",
       "filter": [
         "all",
-        ["==", ["get", "admin_level"], 0],
-        ["==", ["get", "maritime"], "false"]
+        [
+          "==",
+          [
+            "get",
+            "admin_level"
+          ],
+          0
+        ],
+        [
+          "==",
+          [
+            "get",
+            "maritime"
+          ],
+          "false"
+        ]
       ],
       "paint": {
         "line-color": "#2b2620",
         "line-opacity": 0.55,
         "line-width": [
-          "interpolate", ["linear"], ["zoom"],
-          2, 0.6,
-          8, 1.1
+          "interpolate",
+          [
+            "linear"
+          ],
+          [
+            "zoom"
+          ],
+          2,
+          0.6,
+          8,
+          1.1
         ],
-        "line-dasharray": [3, 2.2]
+        "line-dasharray": [
+          3,
+          2.2
+        ]
       }
     },
     {
@@ -195,18 +325,39 @@
       "source": "composite",
       "source-layer": "natural_label",
       "filter": [
-        "match", ["get", "class"],
-        ["ocean", "sea"],
+        "match",
+        [
+          "get",
+          "class"
+        ],
+        [
+          "ocean",
+          "sea"
+        ],
         true,
         false
       ],
       "layout": {
-        "text-field": ["get", "name_en"],
-        "text-font": ["IM Fell English Italic", "Arial Unicode MS Regular"],
+        "text-field": [
+          "get",
+          "name_en"
+        ],
+        "text-font": [
+          "PT Serif Italic",
+          "Arial Unicode MS Regular"
+        ],
         "text-size": [
-          "interpolate", ["linear"], ["zoom"],
-          1, 12,
-          5, 18
+          "interpolate",
+          [
+            "linear"
+          ],
+          [
+            "zoom"
+          ],
+          1,
+          12,
+          5,
+          18
         ],
         "text-letter-spacing": 0.22,
         "text-max-width": 6
@@ -223,14 +374,26 @@
       "source-layer": "natural_label",
       "minzoom": 9,
       "filter": [
-        "match", ["get", "class"],
-        ["landform"],
+        "match",
+        [
+          "get",
+          "class"
+        ],
+        [
+          "landform"
+        ],
         true,
         false
       ],
       "layout": {
-        "text-field": ["get", "name"],
-        "text-font": ["IM Fell English Italic", "Arial Unicode MS Regular"],
+        "text-field": [
+          "get",
+          "name"
+        ],
+        "text-font": [
+          "PT Serif Italic",
+          "Arial Unicode MS Regular"
+        ],
         "text-size": 13,
         "text-max-width": 8
       },
@@ -249,18 +412,38 @@
       "minzoom": 3,
       "maxzoom": 15,
       "filter": [
-        "match", ["get", "class"],
-        ["settlement"],
+        "match",
+        [
+          "get",
+          "class"
+        ],
+        [
+          "settlement"
+        ],
         true,
         false
       ],
       "layout": {
-        "text-field": ["get", "name_en"],
-        "text-font": ["IM Fell English Regular", "Arial Unicode MS Regular"],
+        "text-field": [
+          "get",
+          "name_en"
+        ],
+        "text-font": [
+          "Source Serif Pro Regular",
+          "Arial Unicode MS Regular"
+        ],
         "text-size": [
-          "interpolate", ["linear"], ["zoom"],
-          3, 11,
-          10, 15
+          "interpolate",
+          [
+            "linear"
+          ],
+          [
+            "zoom"
+          ],
+          3,
+          11,
+          10,
+          15
         ],
         "text-max-width": 7
       },
@@ -278,18 +461,38 @@
       "source-layer": "place_label",
       "maxzoom": 8,
       "filter": [
-        "match", ["get", "class"],
-        ["country"],
+        "match",
+        [
+          "get",
+          "class"
+        ],
+        [
+          "country"
+        ],
         true,
         false
       ],
       "layout": {
-        "text-field": ["get", "name_en"],
-        "text-font": ["IM Fell English Regular", "Arial Unicode MS Regular"],
+        "text-field": [
+          "get",
+          "name_en"
+        ],
+        "text-font": [
+          "Source Serif Pro Regular",
+          "Arial Unicode MS Regular"
+        ],
         "text-size": [
-          "interpolate", ["linear"], ["zoom"],
-          1, 12,
-          6, 20
+          "interpolate",
+          [
+            "linear"
+          ],
+          [
+            "zoom"
+          ],
+          1,
+          12,
+          6,
+          20
         ],
         "text-letter-spacing": 0.12,
         "text-max-width": 6
