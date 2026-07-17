@@ -56,6 +56,9 @@ function CoffeeCard({
         {coffee.plate ? (
           // eslint-disable-next-line @next/next/no-img-element
           <img src={coffee.plate} alt={`Illustrated plate of ${coffee.name}`} />
+        ) : coffee.header ? (
+          // eslint-disable-next-line @next/next/no-img-element
+          <img src={coffee.header} alt="" />
         ) : (
           <BeanGlyph filled={0} />
         )}
