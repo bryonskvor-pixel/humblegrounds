@@ -28,34 +28,50 @@
       }
     },
     {
-      "slug": "coffee-two",
-      "name": "Second Coffee TBD",
-      "origin": "Burundi",
-      "station": "",
-      "elevation": "",
-      "variety": "",
-      "process": "",
-      "processNote": "The Burundi seat in this month's lineup is still on the cupping table.",
-      "notes": ["notes to come"],
-      "roastLevel": 3,
+      "slug": "kayanza-masha-anaerobic",
+      "name": "Kayanza Masha Anaerobic Natural",
+      "origin": "Kayanza, Burundi",
+      "station": "Masha washing station · Gatara commune",
+      "elevation": "1,672 masl",
+      "variety": "Red Bourbon",
+      "process": "Anaerobic natural",
+      "processNote": "Whole cherries sealed in tanks with no oxygen, then dried in the sun with the fruit still on. That is where the fizz and the stone fruit come from. It is supposed to taste like that.",
+      "notes": ["citrus", "stone fruit", "effervescent", "sweet"],
+      "roastLevel": 2.5,
       "price": null,
       "soldOut": false,
-      "plate": ""
+      "plate": "",
+      "journey": {
+        "label": "Masha Station · Kayanza, Burundi",
+        "lngLat": [29.65, -2.96],
+        "zoom": 11.5,
+        "pitch": 60,
+        "bearing": 30,
+        "story": "Masha is a collection station in the hills of Gatara commune, Kayanza, in northern Burundi near the Rwandan border. Thousands of smallholder farmers each bring cherry from a small plot of red bourbon trees. At 1,672 meters, this is some of the highest coffee country in East Africa."
+      }
     },
     {
-      "slug": "coffee-three",
-      "name": "Third Coffee TBD",
-      "origin": "Mexico",
-      "station": "",
-      "elevation": "",
-      "variety": "",
+      "slug": "veracruz-finca-la-laja",
+      "name": "Veracruz Finca La Laja",
+      "origin": "Veracruz, Mexico",
+      "station": "Finca La Laja · Tlaltetela, Huatusco highlands",
+      "elevation": "1,130–1,250 masl",
+      "variety": "Caturra · Garnica",
       "process": "",
-      "processNote": "The Mexico coffee lands here once the roast profile settles.",
+      "processNote": "Shade-grown under the cloud forest canopy on a farm the Sampieri family has worked since 1920.",
       "notes": ["notes to come"],
       "roastLevel": 3,
       "price": null,
       "soldOut": false,
-      "plate": ""
+      "plate": "",
+      "journey": {
+        "label": "Finca La Laja · Veracruz, Mexico",
+        "lngLat": [-96.93, 19.3],
+        "zoom": 11.5,
+        "pitch": 62,
+        "bearing": 230,
+        "story": "La Laja sits in the cloud forests of central Veracruz, in the mountains above Huatusco, watered by small rivers that feed the Río La Antigua. The Sampieri family has grown coffee on these slopes since 1920. On a clear day, Pico de Orizaba stands on the horizon."
+      }
     }
   ],
   "coldBrew": {
