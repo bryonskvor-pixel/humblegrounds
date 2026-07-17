@@ -21,6 +21,8 @@ export type Coffee = {
   price: number | null;
   soldOut: boolean;
   plate: string;
+  header?: string;
+  aboutFarm?: string;
   journey?: Journey;
 };
 
@@ -31,6 +33,8 @@ export type ColdBrew = {
   price: number | null;
   soldOut: boolean;
   plate: string;
+  header?: string;
+  aboutFarm?: string;
 };
 
 export type Menu = {

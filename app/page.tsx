@@ -2,6 +2,8 @@ import menuData from "@/content/menu.json";
 import type { Menu } from "@/lib/types";
 import Ordering from "@/components/Ordering";
 import Opener from "@/components/Opener";
+import Reveal from "@/components/Reveal";
+import AmbientFloat from "@/components/AmbientFloat";
 import { GroundStrip, MapPinGlyph, ParcelGlyph } from "@/components/Glyphs";
 
 // unknown hop: JSON imports type tuple fields ([lng, lat]) as number[]
@@ -13,17 +15,24 @@ export default function Home() {
       <Opener />
 
       <header className="masthead">
-        <h1 className="sr-only">Humble Grounds. So much good in a cup. Small-batch coffee, roasted in Oberlin, Ohio.</h1>
+        <AmbientFloat />
         {/* eslint-disable-next-line @next/next/no-img-element */}
         <img
-          className="masthead-logo"
-          src="/logo-horizontal.jpg"
+          className="masthead-glyph"
+          src="/assets/brand/mark-square.png"
           alt=""
-          width={1400}
-          height={525}
+          width={1200}
+          height={1200}
           fetchPriority="high"
         />
-        <p className="tagline">So Much Good in a Cup</p>
+        <h1>Humble Grounds</h1>
+        <p className="subline">Small-batch coffee &middot; Oberlin, Ohio</p>
+        <p className="tagline">
+          so much <em className="glow-good">good</em> in a cup
+          <span className="tagline-spark" aria-hidden="true">
+            &#10022;
+          </span>
+        </p>
       </header>
 
       <Ordering menu={menu} />
@@ -33,7 +42,7 @@ export default function Home() {
           <p className="eyebrow">GETTING YOUR COFFEE</p>
           <h2>How to get it</h2>
           <div className="get-grid">
-            <div className="get-panel">
+            <Reveal className="get-panel">
               <MapPinGlyph />
               <div>
                 <h3>Local</h3>
@@ -42,25 +51,25 @@ export default function Home() {
                   doorstep: leave a note on the slip if the coffee should go somewhere specific.
                 </p>
               </div>
-            </div>
-            <div className="get-panel">
+            </Reveal>
+            <Reveal className="get-panel" delay={90}>
               <ParcelGlyph />
               <div>
                 <h3>Shipped</h3>
                 <p>Everywhere else, via USPS. Roasted, rested a day, then packed and sent.</p>
               </div>
-            </div>
+            </Reveal>
           </div>
         </div>
       </section>
 
       <footer className="footer">
-        <div className="wrap">
+        <Reveal className="wrap">
           <p>Roasted by Bryon in Oberlin, Ohio.</p>
           <p className="fine">
             Venmo <a href={`https://venmo.com/u/${menu.venmo}`}>@{menu.venmo}</a> · CONTACT_EMAIL
           </p>
-        </div>
+        </Reveal>
         <GroundStrip className="ground-strip" />
       </footer>
     </main>

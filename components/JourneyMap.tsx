@@ -280,8 +280,18 @@ export default function JourneyMap({ coffee, onClose }: { coffee: Coffee; onClos
             {phase === "travel" && <p>Traveling south. The dashed line is roughly 2,100 miles.</p>}
             {phase === "arrived" && (
               <>
+                {coffee.header && (
+                  // eslint-disable-next-line @next/next/no-img-element
+                  <img className="journey-header" src={coffee.header} alt="" />
+                )}
                 <h3>{coffee.name}</h3>
                 {journey.story && <p>{journey.story}</p>}
+                {coffee.aboutFarm && (
+                  <>
+                    <p className="journey-label">ABOUT THE FARM</p>
+                    <p>{coffee.aboutFarm}</p>
+                  </>
+                )}
               </>
             )}
             <div className="journey-actions">

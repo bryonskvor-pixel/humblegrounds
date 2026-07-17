@@ -4,6 +4,8 @@ import { useState } from "react";
 import dynamic from "next/dynamic";
 import type { Coffee, ColdBrew, Menu, OrderItem } from "@/lib/types";
 import { BeanGlyph, JarGlyph } from "./Glyphs";
+import { useCardFx } from "@/lib/useCardFx";
+import { useMagnetic } from "@/lib/useMagnetic";
 
 // mapbox-gl only downloads when someone actually taps "Go there"
 const JourneyMap = dynamic(() => import("./JourneyMap"), { ssr: false });
@@ -28,15 +30,27 @@ function RoastRow({ level }: { level: number }) {
 
 function CoffeeCard({
   coffee,
+  index,
   onOrder,
   onGoThere,
 }: {
   coffee: Coffee;
+  index: number;
   onOrder: (slug: string, name: string) => void;
   onGoThere: (coffee: Coffee) => void;
 }) {
+  const { ref, visible, onPointerMove, onPointerLeave } = useCardFx<HTMLElement>();
+  const goThereRef = useMagnetic<HTMLButtonElement>(10);
+  const orderRef = useMagnetic<HTMLButtonElement>(8);
+
   return (
-    <article className="plate-card">
+    <article
+      ref={ref}
+      className={`plate-card${visible ? " reveal-visible" : ""}`}
+      style={{ transitionDelay: `${Math.min(index, 5) * 70}ms` }}
+      onPointerMove={onPointerMove}
+      onPointerLeave={onPointerLeave}
+    >
       {coffee.soldOut && <span className="spoken-for">SPOKEN FOR</span>}
       <div className="plate-art">
         {coffee.plate ? (
@@ -51,7 +65,7 @@ function CoffeeCard({
         {[coffee.origin, coffee.station, coffee.elevation].filter(Boolean).join(" · ")}
       </p>
       {coffee.journey && (
-        <button className="go-there" onClick={() => onGoThere(coffee)}>
+        <button ref={goThereRef} className="go-there" onClick={() => onGoThere(coffee)}>
           Go there →
         </button>
       )}
@@ -61,6 +75,7 @@ function CoffeeCard({
       <div className="plate-foot">
         <span className="price">{priceLabel(coffee.price)}</span>
         <button
+          ref={orderRef}
           className="order-btn"
           disabled={coffee.soldOut}
           onClick={() => onOrder(coffee.slug, coffee.name)}
@@ -72,24 +87,57 @@ function CoffeeCard({
   );
 }
 
-function ColdBrewCard({ coldBrew, onOrder }: { coldBrew: ColdBrew; onOrder: (slug: string, name: string) => void }) {
+function ColdBrewCard({
+  coldBrew,
+  index,
+  onOrder,
+}: {
+  coldBrew: ColdBrew;
+  index: number;
+  onOrder: (slug: string, name: string) => void;
+}) {
+  const { ref, visible, onPointerMove, onPointerLeave } = useCardFx<HTMLElement>();
+  const orderRef = useMagnetic<HTMLButtonElement>(8);
+
   return (
-    <article className="plate-card cold-brew">
+    <article
+      ref={ref}
+      className={`plate-card cold-brew${visible ? " reveal-visible" : ""}`}
+      style={{ transitionDelay: `${Math.min(index, 5) * 70}ms` }}
+      onPointerMove={onPointerMove}
+      onPointerLeave={onPointerLeave}
+    >
       {coldBrew.soldOut && <span className="spoken-for">SPOKEN FOR</span>}
-      <div className="plate-art">
-        {coldBrew.plate ? (
-          // eslint-disable-next-line @next/next/no-img-element
-          <img src={coldBrew.plate} alt={`Illustrated jar of ${coldBrew.name}`} />
-        ) : (
-          <JarGlyph />
-        )}
-      </div>
+      {coldBrew.header ? (
+        <div className="plate-art">
+          {/* eslint-disable-next-line @next/next/no-img-element */}
+          <img src={coldBrew.header} alt="" />
+        </div>
+      ) : (
+        <div className="plate-art">
+          {coldBrew.plate ? (
+            // eslint-disable-next-line @next/next/no-img-element
+            <img src={coldBrew.plate} alt={`Illustrated jar of ${coldBrew.name}`} />
+          ) : (
+            <JarGlyph />
+          )}
+        </div>
+      )}
       <h3>{coldBrew.name}</h3>
-      <p className="process-note">Brewed once, in one batch. When it is gone it is gone until next time.</p>
       <p className="tasting-notes">{coldBrew.notes.join(" · ")}</p>
+      {coldBrew.aboutFarm
+        ? coldBrew.aboutFarm.split("\n\n").map((para, i) => (
+            <p className="process-note" key={i}>
+              {para}
+            </p>
+          ))
+        : (
+            <p className="process-note">Brewed once, in one batch. When it is gone it is gone until next time.</p>
+          )}
       <div className="plate-foot">
         <span className="price">{priceLabel(coldBrew.price)}</span>
         <button
+          ref={orderRef}
           className="order-btn"
           disabled={coldBrew.soldOut}
           onClick={() => onOrder(coldBrew.slug, coldBrew.name)}
@@ -173,10 +221,16 @@ export default function Ordering({ menu }: { menu: Menu }) {
           </p>
           <h2>This Month</h2>
           <div className="plate-grid">
-            {menu.coffees.map((coffee) => (
-              <CoffeeCard key={coffee.slug} coffee={coffee} onOrder={addItem} onGoThere={setJourneyCoffee} />
+            {menu.coffees.map((coffee, index) => (
+              <CoffeeCard
+                key={coffee.slug}
+                coffee={coffee}
+                index={index}
+                onOrder={addItem}
+                onGoThere={setJourneyCoffee}
+              />
             ))}
-            <ColdBrewCard coldBrew={menu.coldBrew} onOrder={addItem} />
+            <ColdBrewCard coldBrew={menu.coldBrew} index={menu.coffees.length} onOrder={addItem} />
           </div>
         </div>
       </section>

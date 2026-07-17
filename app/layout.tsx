@@ -31,7 +31,13 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en" className={`${display.variable} ${body.variable} ${mono.variable}`}>
-      <body>{children}</body>
+      <body>
+        {/* scroll-reveal degrades to invisible content without JS; force it visible */}
+        <noscript>
+          <style>{`.reveal, .plate-card { opacity: 1 !important; transform: none !important; }`}</style>
+        </noscript>
+        {children}
+      </body>
     </html>
   );
 }

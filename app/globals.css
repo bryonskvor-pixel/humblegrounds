@@ -65,56 +65,142 @@ button {
   padding: 0 1.25rem;
 }
 
+/* ---------- scroll reveal ---------- */
+
+.reveal {
+  opacity: 0;
+  transform: translateY(18px);
+  transition: opacity 650ms cubic-bezier(0.16, 1, 0.3, 1), transform 650ms cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.reveal-visible {
+  opacity: 1;
+  transform: none;
+}
+
 /* ---------- masthead ---------- */
 
 .masthead {
+  position: relative;
+  overflow: hidden;
   text-align: center;
-  padding: 3rem 1rem 1.5rem;
+  padding: 3rem 1rem 2rem;
 }
 
-.masthead-logo {
-  width: min(46rem, 100%);
+.masthead-glyph {
+  position: relative;
+  z-index: 1;
+  width: min(9rem, 32vw);
   height: auto;
   display: block;
-  margin: 0 auto;
-}
-
-.sr-only {
-  position: absolute;
-  width: 1px;
-  height: 1px;
-  padding: 0;
-  margin: -1px;
-  overflow: hidden;
-  clip: rect(0, 0, 0, 0);
-  white-space: nowrap;
-  border: 0;
+  margin: 0 auto 0.75rem;
+  filter: drop-shadow(0 6px 14px rgba(43, 38, 32, 0.16));
 }
 
 .masthead h1 {
+  position: relative;
+  z-index: 1;
   font-size: clamp(2.6rem, 8vw, 4.25rem);
   letter-spacing: 0.01em;
 }
 
+.masthead .subline {
+  position: relative;
+  z-index: 1;
+  margin: 0.75rem 0 0;
+  font-size: 1.125rem;
+  letter-spacing: 0.02em;
+}
+
 .masthead .tagline {
+  position: relative;
+  z-index: 1;
   font-family: var(--font-display), Georgia, serif;
-  font-size: clamp(1.35rem, 3.4vw, 1.9rem);
+  font-style: italic;
+  font-size: clamp(1.3rem, 3.2vw, 1.85rem);
   color: var(--roast);
-  margin: 1rem 0 0;
+  margin: 1.1rem 0 0;
   line-height: 1.2;
 }
 
-.masthead .subline {
-  margin: 0.75rem 0 0;
-  font-size: 1.125rem;
+.glow-good {
+  font-style: normal;
+  text-transform: uppercase;
+  color: var(--cherry);
+  animation: pulse-good 2.8s ease-in-out infinite;
 }
 
-.masthead .glyph {
+.glow-good::before {
+  content: "\201C";
+}
+.glow-good::after {
+  content: "\201D";
+}
+
+@keyframes pulse-good {
+  0%,
+  100% {
+    text-shadow: 0 0 0 transparent;
+  }
+  50% {
+    text-shadow: 0 0 10px var(--glow), 0 0 26px rgba(232, 200, 120, 0.55);
+  }
+}
+
+.tagline-spark {
+  display: inline-block;
+  margin-left: 0.35rem;
+  color: var(--glow);
+  animation: spark-twinkle 3.4s ease-in-out infinite;
+}
+
+@keyframes spark-twinkle {
+  0%,
+  100% {
+    opacity: 0.35;
+    transform: scale(0.85) rotate(0deg);
+  }
+  50% {
+    opacity: 1;
+    transform: scale(1.15) rotate(18deg);
+  }
+}
+
+/* ambient drifting beans: autonomous float (.mf-bean-anim) nested inside a
+   pointer-parallax layer (.mf-item, translated via JS) so the two motions
+   never fight over the same transform */
+.masthead-float {
+  position: absolute;
+  inset: 0;
+  z-index: 0;
+  pointer-events: none;
+}
+
+.mf-item {
+  position: absolute;
+  will-change: transform;
+}
+
+.mf-bean-anim {
   display: block;
-  margin: 0 auto 1rem;
-  width: 56px;
-  height: 56px;
+  animation: mf-float 8s ease-in-out infinite;
+}
+
+.mf-bean {
+  width: 100%;
+  height: 100%;
   color: var(--roast);
+  opacity: 0.3;
+}
+
+@keyframes mf-float {
+  0%,
+  100% {
+    transform: translateY(0) rotate(-4deg);
+  }
+  50% {
+    transform: translateY(-14px) rotate(5deg);
+  }
 }
 
 /* ---------- section headings ---------- */
@@ -145,6 +231,10 @@ button {
 }
 
 .plate-card {
+  --rx: 0deg;
+  --ry: 0deg;
+  --mx: 50%;
+  --my: 50%;
   position: relative;
   border: var(--rule);
   outline: 1px solid var(--ink);
@@ -154,12 +244,36 @@ button {
   display: flex;
   flex-direction: column;
   gap: 0.6rem;
-  transition: box-shadow 150ms ease, filter 150ms ease;
+  transform: perspective(1000px) rotateX(var(--rx)) rotateY(var(--ry)) translateY(18px);
+  opacity: 0;
+  transform-style: preserve-3d;
+  transition: transform 220ms ease, box-shadow 220ms ease, filter 150ms ease,
+    opacity 650ms cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.plate-card.reveal-visible {
+  opacity: 1;
+  transform: perspective(1000px) rotateX(var(--rx)) rotateY(var(--ry)) translateY(0);
+}
+
+.plate-card::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: radial-gradient(circle at var(--mx) var(--my), rgba(232, 200, 120, 0.32), transparent 55%);
+  opacity: 0;
+  mix-blend-mode: soft-light;
+  transition: opacity 220ms ease;
+  pointer-events: none;
 }
 
 .plate-card:hover {
   filter: saturate(1.12);
   box-shadow: 0 0 0 3px rgba(232, 200, 120, 0.35), 0 0 22px rgba(232, 200, 120, 0.3);
+}
+
+.plate-card:hover::before {
+  opacity: 1;
 }
 
 .plate-card.cold-brew {
@@ -250,11 +364,17 @@ button {
   border: 1px solid var(--ink);
   padding: 0.5rem 1rem;
   cursor: pointer;
-  transition: background 150ms ease;
+  transition: background 150ms ease, transform 200ms cubic-bezier(0.34, 1.56, 0.64, 1), box-shadow 150ms ease;
 }
 
 .order-btn:hover {
   background: #8f3227;
+  box-shadow: 0 0 0 3px rgba(232, 200, 120, 0.3), 0 4px 16px rgba(43, 38, 32, 0.25);
+}
+
+.order-btn:active:not(:disabled) {
+  transform: scale(0.96) !important;
+  transition-duration: 80ms;
 }
 
 .order-btn:disabled {
@@ -684,6 +804,21 @@ body.hg-revealing main > *:not(.masthead):not(.opener) {
   body.hg-revealing main > *:not(.masthead):not(.opener) {
     animation: none;
   }
+  .mf-bean-anim,
+  .glow-good,
+  .tagline-spark {
+    animation: none;
+  }
+  .reveal,
+  .plate-card {
+    transition: none;
+    opacity: 1;
+    transform: none;
+  }
+  .order-btn,
+  .go-there {
+    transition: background 150ms ease;
+  }
 }
 
 /* ---------- origin journey (Go there) ---------- */
@@ -700,6 +835,7 @@ body.hg-revealing main > *:not(.masthead):not(.opener) {
   letter-spacing: 0.04em;
   color: var(--cherry);
   border-bottom: 1px dashed var(--cherry);
+  transition: color 150ms ease, border-color 150ms ease, transform 200ms cubic-bezier(0.34, 1.56, 0.64, 1);
 }
 
 .go-there:hover {
@@ -734,12 +870,22 @@ body.hg-revealing main > *:not(.masthead):not(.opener) {
   bottom: 1.75rem;
   z-index: 61;
   max-width: 22rem;
+  max-height: calc(100vh - 3.5rem);
+  overflow-y: auto;
   background: var(--paper);
   border: var(--rule);
   outline: 1px solid var(--ink);
   outline-offset: 3px;
   padding: 1rem 1.15rem;
   box-shadow: 0 2px 14px rgba(43, 38, 32, 0.18);
+}
+
+.journey-header {
+  display: block;
+  width: 100%;
+  height: auto;
+  margin: -1rem -1.15rem 0.75rem;
+  border-bottom: var(--rule);
 }
 
 .journey-caption h3 {
@@ -751,11 +897,16 @@ body.hg-revealing main > *:not(.masthead):not(.opener) {
   font-size: 0.95rem;
 }
 
-.journey-route {
+.journey-route,
+.journey-label {
   font-family: var(--font-mono), monospace;
   font-size: 0.75rem;
   letter-spacing: 0.06em;
   color: var(--roast);
+}
+
+.journey-label {
+  margin: 0.75rem 0 0.15rem;
 }
 
 .journey-actions {

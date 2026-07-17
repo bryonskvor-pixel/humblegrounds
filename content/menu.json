@@ -13,11 +13,13 @@
       "variety": "",
       "process": "",
       "processNote": "Grown on the flanks of a cloud-forest national park in central Honduras. Details from the farm are coming; the coffee got here first.",
-      "notes": ["notes to come"],
+      "notes": ["rich", "bold", "buttery"],
       "roastLevel": 3,
       "price": null,
       "soldOut": false,
       "plate": "",
+      "header": "/assets/headers/comayagua-honduras.jpg",
+      "aboutFarm": "Finca Santa Lucia sits outside the village of Tres Pinos, two and a half hours from the nearest city of any size. Raul Rodriguez runs it now, third generation, living there with his wife and three dogs. He inherited the farm from his father, Don Ermenegildo Rodriguez, who was one of the real innovators of his era and introduced growers in the region to varietals like Yellow Bourbon, Typica, and Caturra back when almost nobody local was thinking that way about specialty coffee. The farm itself sits inside Montaña de La Choca, a national mountain reserve, wrapped in cloud forest thick enough that you half expect something to be watching you from it. The seasons here are sharply defined, which turns out to matter more than people think: the rains build the cherry, and the long dry stretch afterward gives the Rodriguez family the clear weather they need to sun-dry it properly.",
       "journey": {
         "label": "Montaña de La Choca · Comayagua, Honduras",
         "lngLat": [-87.5162, 14.5816],
@@ -36,11 +38,13 @@
       "variety": "Red Bourbon",
       "process": "Anaerobic natural",
       "processNote": "Whole cherries sealed in tanks with no oxygen, then dried in the sun with the fruit still on. That is where the fizz and the stone fruit come from. It is supposed to taste like that.",
-      "notes": ["citrus", "stone fruit", "effervescent", "sweet"],
+      "notes": ["fruity", "sweet", "silky"],
       "roastLevel": 2.5,
       "price": null,
       "soldOut": false,
       "plate": "",
+      "header": "/assets/headers/kayanza-burundi.jpg",
+      "aboutFarm": "The Masha washing station buys cherry from over 2,500 farmers in its community, which sounds like an enormous number until you understand why. More than 80% of coffee farmers in Burundi are smallholders, meaning most of them are tending a couple hundred trees, producing less than a single pallet of specialty grade coffee each season. That's not enough for any buyer to build a relationship around on its own. So stations like Masha do the work of gathering all those small harvests, sorting them, and blending them into lots big enough to actually export and build a flavor profile around. Every bag of this is really thousands of tiny harvests standing on each other's shoulders.",
       "journey": {
         "label": "Masha Station · Kayanza, Burundi",
         "lngLat": [29.65, -2.96],
@@ -59,11 +63,13 @@
       "variety": "Caturra · Garnica",
       "process": "",
       "processNote": "Shade-grown under the cloud forest canopy on a farm the Sampieri family has worked since 1920.",
-      "notes": ["notes to come"],
+      "notes": ["full-bodied", "balanced", "creamy"],
       "roastLevel": 3,
       "price": null,
       "soldOut": false,
       "plate": "",
+      "header": "/assets/headers/veracruz-mexico.jpg",
+      "aboutFarm": "Finca La Laja sits in the La Laja community in Tlaltetela, up in the central mountains of Veracruz, somewhere between 1,130 and 1,250 meters. The whole area is fed by small tributary rivers running down into the Rio La Antigua, and the vegetation shifts as you climb: cloud forest of pine and oak higher up, giving way to tropical deciduous forest lower down. You can taste some of that range in the cup. It opens with a gentle citrus brightness and a little sweetness up front, then settles into a full, creamy body with a buttery finish that lingers without ever turning heavy. Brown sugar, toffee, cashew butter, a little lemon meringue, and underneath all of it a floral note that never quite steps forward enough to name.",
       "journey": {
         "label": "Finca La Laja · Veracruz, Mexico",
         "lngLat": [-96.93, 19.3],
@@ -77,9 +83,11 @@
   "coldBrew": {
     "slug": "cold-brew",
     "name": "One Batch Cold Brew",
-    "notes": ["cocoa", "soft", "quantity limited"],
+    "notes": ["rich", "smooth", "bold"],
     "price": null,
     "soldOut": false,
-    "plate": ""
+    "plate": "",
+    "header": "/assets/headers/cold-brew.jpg",
+    "aboutFarm": "Origin TBD, but it'll be something worth the wait. Steeped 18 to 24 hours, half a gallon of water to 220 grams of grounds, a ratio strong enough that you're meant to dilute it rather than wonder where the flavor went. What comes out the other end is thick and dark, closer to a concentrate than a coffee, even though nobody around here calls it that.\n\nCut it with cream and a splash of water if you want it easy. A touch of sweetener if that's your thing, no judgment. Or pour it straight over ice, no water, no cream, and let it hit the way it's supposed to. That's how I drink the first glass of every batch, standing at the counter, deciding if this one's a keeper.\n\nBrewed once, one batch, by the half gallon. When it's gone, it's gone until the next one."
   }
 }
