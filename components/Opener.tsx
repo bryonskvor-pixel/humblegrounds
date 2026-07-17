@@ -10,11 +10,16 @@ import { openerConfig } from "@/lib/openerConfig";
 // on the split bean with light pouring from the seam. We continue that light:
 // a gold bloom floods the viewport over the final frame, the video drops away
 // at full flood, and the bloom fades to reveal the page — masthead first.
+//
+// Sound: the opener plays with audio, no mute control. Browsers refuse
+// unmuted autoplay without a user gesture, so we try it, and when refused we
+// hold on the poster with a "press to open" gate; the tap starts video+sound.
 export default function Opener() {
-  const [phase, setPhase] = useState<"init" | "video" | "bloom" | "doors" | "opening" | "done">("init");
+  const [phase, setPhase] = useState<"init" | "gate" | "video" | "bloom" | "doors" | "opening" | "done">("init");
   const [showSkip, setShowSkip] = useState(false);
   const videoRef = useRef<HTMLVideoElement>(null);
   const revealed = useRef(false);
+  const started = useRef(false);
 
   useEffect(() => {
     if (openerConfig.mode === "open") {
@@ -35,9 +40,31 @@ export default function Opener() {
     return () => clearTimeout(t);
   }, []);
 
+  // attempt unmuted autoplay; when the browser refuses, fall back to the gate
+  useEffect(() => {
+    if (phase !== "video" || started.current) return;
+    const v = videoRef.current;
+    if (!v) return;
+    started.current = true;
+    v.muted = false;
+    v.play().catch(() => setPhase("gate"));
+  }, [phase]);
+
   useEffect(() => {
     return () => document.body.classList.remove("hg-revealing");
   }, []);
+
+  function openWithSound() {
+    const v = videoRef.current;
+    setPhase("video");
+    if (v) {
+      v.muted = false;
+      v.play().catch(() => {
+        // a tap is a gesture; if playback still fails, let the page through
+        beginReveal();
+      });
+    }
+  }
 
   function beginReveal() {
     if (revealed.current) return;
@@ -69,8 +96,8 @@ export default function Opener() {
 
   function skip() {
     const v = videoRef.current;
-    if (v && Number.isFinite(v.duration)) {
-      v.currentTime = v.duration;
+    if (v) {
+      v.pause();
     }
     beginReveal();
   }
@@ -89,12 +116,10 @@ export default function Opener() {
       style={phase === "opening" && bloomMode ? { background: "transparent" } : undefined}
       aria-hidden="true"
     >
-      {(phase === "video" || phase === "bloom") && (
+      {(phase === "video" || phase === "gate" || phase === "bloom") && (
         <video
           ref={videoRef}
-          muted
           playsInline
-          autoPlay
           preload="auto"
           poster={openerConfig.poster}
           onEnded={beginReveal}
@@ -104,6 +129,11 @@ export default function Opener() {
           <source src={openerConfig.videoSrc} type="video/mp4" />
         </video>
       )}
+      {phase === "gate" && (
+        <button className="gate-btn" onClick={openWithSound}>
+          press to open
+        </button>
+      )}
       {bloomMode && (phase === "bloom" || phase === "opening") && <div className="bloom" />}
       {(phase === "doors" || phase === "opening") && !bloomMode && !fadeMode && (
         <>
@@ -112,7 +142,7 @@ export default function Opener() {
           <div className="glow-wash" />
         </>
       )}
-      {phase === "video" && showSkip && (
+      {(phase === "video" || phase === "gate") && showSkip && (
         <button className="skip-btn" onClick={skip}>
           skip →
         </button>
