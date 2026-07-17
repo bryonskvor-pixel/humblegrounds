@@ -320,6 +320,46 @@
       }
     },
     {
+      "id": "river-labels",
+      "type": "symbol",
+      "source": "composite",
+      "source-layer": "natural_label",
+      "minzoom": 9,
+      "filter": [
+        "match",
+        [
+          "get",
+          "class"
+        ],
+        [
+          "river",
+          "canal"
+        ],
+        true,
+        false
+      ],
+      "layout": {
+        "text-field": [
+          "get",
+          "name"
+        ],
+        "text-font": [
+          "PT Serif Italic",
+          "Arial Unicode MS Regular"
+        ],
+        "text-size": 12,
+        "symbol-placement": "line",
+        "text-letter-spacing": 0.08,
+        "text-max-angle": 30
+      },
+      "paint": {
+        "text-color": "#6b4a32",
+        "text-opacity": 0.85,
+        "text-halo-color": "#f7e7cc",
+        "text-halo-width": 1.2
+      }
+    },
+    {
       "id": "ocean-labels",
       "type": "symbol",
       "source": "composite",
