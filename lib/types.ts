@@ -1,3 +1,12 @@
+export type Journey = {
+  label: string;
+  lngLat: [number, number];
+  zoom?: number;
+  pitch?: number;
+  bearing?: number;
+  story?: string;
+};
+
 export type Coffee = {
   slug: string;
   name: string;
@@ -12,6 +21,7 @@ export type Coffee = {
   price: number | null;
   soldOut: boolean;
   plate: string;
+  journey?: Journey;
 };
 
 export type ColdBrew = {

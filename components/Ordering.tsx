@@ -1,8 +1,12 @@
 "use client";
 
 import { useState } from "react";
+import dynamic from "next/dynamic";
 import type { Coffee, ColdBrew, Menu, OrderItem } from "@/lib/types";
 import { BeanGlyph, JarGlyph } from "./Glyphs";
+
+// mapbox-gl only downloads when someone actually taps "Go there"
+const JourneyMap = dynamic(() => import("./JourneyMap"), { ssr: false });
 
 function priceLabel(price: number | null) {
   return price === null ? "$—" : `$${price.toFixed(2)}`;
@@ -22,7 +26,15 @@ function RoastRow({ level }: { level: number }) {
   );
 }
 
-function CoffeeCard({ coffee, onOrder }: { coffee: Coffee; onOrder: (slug: string, name: string) => void }) {
+function CoffeeCard({
+  coffee,
+  onOrder,
+  onGoThere,
+}: {
+  coffee: Coffee;
+  onOrder: (slug: string, name: string) => void;
+  onGoThere: (coffee: Coffee) => void;
+}) {
   return (
     <article className="plate-card">
       {coffee.soldOut && <span className="spoken-for">SPOKEN FOR</span>}
@@ -38,6 +50,11 @@ function CoffeeCard({ coffee, onOrder }: { coffee: Coffee; onOrder: (slug: strin
       <p className="origin-line">
         {[coffee.origin, coffee.station, coffee.elevation].filter(Boolean).join(" · ")}
       </p>
+      {coffee.journey && (
+        <button className="go-there" onClick={() => onGoThere(coffee)}>
+          Go there →
+        </button>
+      )}
       {coffee.processNote && <p className="process-note">{coffee.processNote}</p>}
       <p className="tasting-notes">{coffee.notes.join(" · ")}</p>
       <RoastRow level={coffee.roastLevel} />
@@ -93,6 +110,7 @@ export default function Ordering({ menu }: { menu: Menu }) {
   const [payment, setPayment] = useState<"venmo" | "cash">("venmo");
   const [status, setStatus] = useState<"idle" | "sending" | "sent" | "error">("idle");
   const [error, setError] = useState("");
+  const [journeyCoffee, setJourneyCoffee] = useState<Coffee | null>(null);
 
   function addItem(slug: string, itemName: string) {
     setItems((prev) => {
@@ -156,12 +174,14 @@ export default function Ordering({ menu }: { menu: Menu }) {
           <h2>This Month</h2>
           <div className="plate-grid">
             {menu.coffees.map((coffee) => (
-              <CoffeeCard key={coffee.slug} coffee={coffee} onOrder={addItem} />
+              <CoffeeCard key={coffee.slug} coffee={coffee} onOrder={addItem} onGoThere={setJourneyCoffee} />
             ))}
             <ColdBrewCard coldBrew={menu.coldBrew} onOrder={addItem} />
           </div>
         </div>
       </section>
+
+      {journeyCoffee && <JourneyMap coffee={journeyCoffee} onClose={() => setJourneyCoffee(null)} />}
 
       {!slipOpen && itemCount > 0 && (
         <button className="slip-fab" onClick={() => setSlipOpen(true)}>

@@ -4,7 +4,8 @@ import Ordering from "@/components/Ordering";
 import Opener from "@/components/Opener";
 import { GroundStrip, MapPinGlyph, ParcelGlyph } from "@/components/Glyphs";
 
-const menu = menuData as Menu;
+// unknown hop: JSON imports type tuple fields ([lng, lat]) as number[]
+const menu = menuData as unknown as Menu;
 
 export default function Home() {
   return (
