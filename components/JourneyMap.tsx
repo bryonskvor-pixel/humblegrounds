@@ -105,6 +105,49 @@ export default function JourneyMap({ coffee, onClose }: { coffee: Coffee; onClos
       // same code works with the repo JSON or a Studio-hosted style URL
       // (Studio uploads refuse geojson sources).
       const labelAnchor = map.getLayer("ocean-labels") ? "ocean-labels" : undefined;
+
+      // At flight altitude the globe must read against the page: deeper
+      // parchment space and a gold horizon rim, whatever the style shipped.
+      map.setFog({
+        color: "#f7e7cc",
+        "high-color": "#e8c878",
+        "space-color": "#e9d5ac",
+        "horizon-blend": 0.08,
+        "star-intensity": 0,
+      });
+
+      // If the style still has the launch-era paper-tan ocean, nudge it to the
+      // agreed wash blue; a deliberate Studio recolor wins over this.
+      if (map.getLayer("water") && String(map.getPaintProperty("water", "fill-color")) === "#d9d3b4") {
+        map.setPaintProperty("water", "fill-color", "#c3d3d1");
+      }
+
+      // Engraved-relief shading so the arrival mountains have form, not just
+      // contour lines. Separate DEM source: sharing one with terrain is
+      // discouraged by GL JS.
+      if (!map.getSource("hillshade-dem")) {
+        map.addSource("hillshade-dem", {
+          type: "raster-dem",
+          url: "mapbox://mapbox.mapbox-terrain-dem-v1",
+          tileSize: 512,
+          maxzoom: 14,
+        });
+        map.addLayer(
+          {
+            id: "relief-shading",
+            type: "hillshade",
+            source: "hillshade-dem",
+            minzoom: 7,
+            paint: {
+              "hillshade-exaggeration": 0.35,
+              "hillshade-shadow-color": "#5f5240",
+              "hillshade-highlight-color": "#fdf3da",
+              "hillshade-accent-color": "#6b4a32",
+            },
+          },
+          map.getLayer("contours-engraved") ? "contours-engraved" : labelAnchor
+        );
+      }
       if (!map.getSource("route")) {
         map.addSource("route", {
           type: "geojson",
@@ -161,6 +204,9 @@ export default function JourneyMap({ coffee, onClose }: { coffee: Coffee; onClos
           bearing: journey.bearing ?? 0,
           duration: FLIGHT_MS,
           curve: 1.6,
+          // Cap the flight ceiling: below this the globe shrinks to a dot and
+          // the whole screen is atmosphere — the "blank page" effect.
+          minZoom: 2.2,
         });
 
         const start = performance.now();
