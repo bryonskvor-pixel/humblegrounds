@@ -3,12 +3,18 @@
 import { useEffect, useRef, useState } from "react";
 import { openerConfig } from "@/lib/openerConfig";
 
-// The door mechanic (§4.4). Site content is always rendered underneath;
-// this component only lays the opener on top and gets out of the way.
+// The opener (§4.4, light-bloom variant). Site content is always rendered
+// underneath; this component only lays the opener on top and gets out of the way.
+//
+// video-bloom sequence: video plays through the bean's metamorphosis and ends
+// on the split bean with light pouring from the seam. We continue that light:
+// a gold bloom floods the viewport over the final frame, the video drops away
+// at full flood, and the bloom fades to reveal the page — masthead first.
 export default function Opener() {
-  const [phase, setPhase] = useState<"init" | "video" | "doors" | "opening" | "done">("init");
+  const [phase, setPhase] = useState<"init" | "video" | "bloom" | "doors" | "opening" | "done">("init");
   const [showSkip, setShowSkip] = useState(false);
   const videoRef = useRef<HTMLVideoElement>(null);
+  const revealed = useRef(false);
 
   useEffect(() => {
     if (openerConfig.mode === "open") {
@@ -29,8 +35,28 @@ export default function Opener() {
     return () => clearTimeout(t);
   }, []);
 
+  useEffect(() => {
+    return () => document.body.classList.remove("hg-revealing");
+  }, []);
+
   function beginReveal() {
+    if (revealed.current) return;
+    revealed.current = true;
     sessionStorage.setItem("hg_opened", "1");
+
+    if (openerConfig.mode === "video-bloom") {
+      // 1) bloom floods the viewport over the video's final frame
+      setPhase("bloom");
+      setTimeout(() => {
+        // 2) at full flood, drop the video and let the light fade over the
+        //    page; the masthead settles in first, the rest follows
+        document.body.classList.add("hg-revealing");
+        setPhase("opening");
+        setTimeout(() => setPhase("done"), 1300);
+      }, 750);
+      return;
+    }
+
     if (openerConfig.mode === "video-doors") {
       // swap video for door panels wearing P6's halves, then slide
       setPhase("doors");
@@ -51,11 +77,19 @@ export default function Opener() {
 
   if (phase === "done" || phase === "init") return null;
 
+  const bloomMode = openerConfig.mode === "video-bloom";
   const fadeMode = openerConfig.mode === "video-fade";
 
+  const stateClass =
+    phase === "bloom" ? "blooming" : phase === "opening" ? (bloomMode || fadeMode ? "fading" : "opening") : "";
+
   return (
-    <div className={`opener ${phase === "opening" ? (fadeMode ? "fading" : "opening") : ""}`} aria-hidden="true">
-      {phase === "video" && (
+    <div
+      className={`opener ${stateClass}`}
+      style={phase === "opening" && bloomMode ? { background: "transparent" } : undefined}
+      aria-hidden="true"
+    >
+      {(phase === "video" || phase === "bloom") && (
         <video
           ref={videoRef}
           muted
@@ -70,7 +104,8 @@ export default function Opener() {
           <source src={openerConfig.videoSrc} type="video/mp4" />
         </video>
       )}
-      {(phase === "doors" || phase === "opening") && !fadeMode && (
+      {bloomMode && (phase === "bloom" || phase === "opening") && <div className="bloom" />}
+      {(phase === "doors" || phase === "opening") && !bloomMode && !fadeMode && (
         <>
           <div className="door door-left" style={{ backgroundImage: `url(${openerConfig.doorLeft})` }} />
           <div className="door door-right" style={{ backgroundImage: `url(${openerConfig.doorRight})` }} />

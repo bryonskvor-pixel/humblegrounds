@@ -12,7 +12,7 @@ export default function Home() {
       <Opener />
 
       <header className="masthead">
-        <h1 className="sr-only">Humble Grounds. Small-batch coffee, roasted in Oberlin, Ohio.</h1>
+        <h1 className="sr-only">Humble Grounds. So much good in a cup. Small-batch coffee, roasted in Oberlin, Ohio.</h1>
         {/* eslint-disable-next-line @next/next/no-img-element */}
         <img
           className="masthead-logo"
@@ -22,6 +22,7 @@ export default function Home() {
           height={525}
           fetchPriority="high"
         />
+        <p className="tagline">So Much Good in a Cup</p>
       </header>
 
       <Ordering menu={menu} />

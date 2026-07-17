@@ -96,6 +96,14 @@ button {
   letter-spacing: 0.01em;
 }
 
+.masthead .tagline {
+  font-family: var(--font-display), Georgia, serif;
+  font-size: clamp(1.35rem, 3.4vw, 1.9rem);
+  color: var(--roast);
+  margin: 1rem 0 0;
+  line-height: 1.2;
+}
+
 .masthead .subline {
   margin: 0.75rem 0 0;
   font-size: 1.125rem;
@@ -520,7 +528,8 @@ button {
   width: 100%;
   height: 100%;
   object-fit: contain;
-  background: var(--paper);
+  /* sampled from the video's own aged-paper edges so letterbox bars vanish */
+  background: #ad9770;
 }
 
 .opener .door {
@@ -566,6 +575,60 @@ button {
 .opener.fading {
   transition: opacity 1.2s ease;
   opacity: 0;
+  pointer-events: none;
+}
+
+/* ---------- light-bloom reveal (video-bloom mode) ---------- */
+
+/* The gold light from the bean's seam continues outward until it floods the
+   viewport, then fades to reveal the page beneath. */
+.opener .bloom {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  background: radial-gradient(circle at 50% 47%, #fff6da 0%, #f3ddA4 45%, #e8c878 100%);
+  opacity: 0;
+  animation: bloom-flood 750ms ease-in both;
+}
+
+@keyframes bloom-flood {
+  from {
+    opacity: 0;
+    transform: scale(0.55);
+  }
+  to {
+    opacity: 1;
+    transform: scale(1.12);
+  }
+}
+
+/* masthead settles in first as the light fades, the rest of the page follows */
+body.hg-revealing .masthead {
+  animation: hg-settle 700ms cubic-bezier(0.22, 1, 0.36, 1) both;
+}
+
+body.hg-revealing main > *:not(.masthead):not(.opener) {
+  animation: hg-fadein 600ms ease 350ms both;
+}
+
+@keyframes hg-settle {
+  from {
+    opacity: 0;
+    transform: translateY(10px);
+  }
+  to {
+    opacity: 1;
+    transform: none;
+  }
+}
+
+@keyframes hg-fadein {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
 }
 
 .skip-btn {
@@ -592,5 +655,10 @@ button {
   .opener .door,
   .opener .glow-wash {
     transition: none;
+  }
+  .opener .bloom,
+  body.hg-revealing .masthead,
+  body.hg-revealing main > *:not(.masthead):not(.opener) {
+    animation: none;
   }
 }
