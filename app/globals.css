@@ -124,10 +124,13 @@ button {
 }
 
 .glow-good {
+  display: inline-block;
   font-style: normal;
+  font-weight: 700;
   text-transform: uppercase;
   color: var(--cherry);
-  animation: pulse-good 2.8s ease-in-out infinite;
+  transform-origin: center;
+  animation: pulse-good 2.2s ease-in-out infinite;
 }
 
 .glow-good::before {
@@ -140,10 +143,14 @@ button {
 @keyframes pulse-good {
   0%,
   100% {
+    color: var(--cherry);
     text-shadow: 0 0 0 transparent;
+    transform: scale(1);
   }
   50% {
-    text-shadow: 0 0 10px var(--glow), 0 0 26px rgba(232, 200, 120, 0.55);
+    color: #c2452f;
+    text-shadow: 0 0 8px var(--glow), 0 0 22px var(--glow), 0 0 44px rgba(232, 200, 120, 0.85);
+    transform: scale(1.08);
   }
 }
 
