@@ -64,25 +64,50 @@ https://api.mapbox.com/styles/v1/photi/<style-id>?access_token=<token>`,
 edit the JSON (strip the response's read-only fields — `created`, `modified`,
 `id`, `owner`, `visibility`, `protected`, `draft` — before sending it back),
 then `PATCH` the same URL with the edited body. Revoke the token when done;
-it never needs to be `NEXT_PUBLIC_` or committed.
+it never needs to be `NEXT_PUBLIC_` or committed. Caveat learned the hard
+way: the *management* API (this GET/PATCH) and the URL mapbox-gl-js actually
+loads at runtime can disagree for several minutes after an edit — Studio's
+"restore an earlier version" control appears to touch the draft without
+necessarily re-publishing, so don't trust a clean `GET` alone as proof the
+live site is clean. Verify against the running site.
 
-**Elevation tint** (added after launch): a hypsometric color wash on the
-terrain, decoded straight from the same DEM tiles that power the 3D terrain.
-Needs a *second* source declaration for the same tileset — a `raster`-typed
-source can't attach to a `raster-dem` source, Mapbox validates that at
-publish time:
+**Elevation tint**: a hypsometric color wash on the terrain, decoded
+straight from the same DEM tiles that power the 3D terrain. Lives entirely
+in `components/JourneyMap.tsx`, added at runtime — **not** baked into the
+Studio style. First attempt did bake it into the style (always-on from
+`minzoom: 5`), and it tore the terrain mesh mid-flight: a third concurrent
+consumer of the same DEM tileset, fighting the actual 3D terrain and the
+hillshade layer for tiles throughout the whole ~11s `flyTo`. The fix is to
+add it only once `arrive()` runs — the camera is static by then, so it's
+one more tile fetch at one fixed zoom instead of continuous fetches across
+a fast-changing zoom range. `arrive()` also defensively removes any
+`elevation-tint`/`terrain-rgb` that might already be sitting in the loaded
+style JSON before adding its own — published Studio styles can lag behind
+edits (see caveat above), so a stale always-on copy could otherwise still
+be live from departure.
+
+Gotcha within the gotcha: **route every flight-completion path through the
+same `arrive()` function.** The natural (un-skipped) flight used to set
+`setPhase("arrived")` directly instead of calling `arrive()`, duplicating
+half its logic inline. That's an easy thing to miss testing with the "Skip
+ahead" button, since skip *does* call `arrive()` — the bug only shows up on
+a full, un-skipped flight, which is exactly the path a real visitor takes.
+
+A `raster`-typed source can't attach to a `raster-dem` source (Mapbox
+validates that at publish/load time), so the tint needs its own second
+source declaration for the same tileset:
 ```json
 "terrain-rgb": { "type": "raster", "url": "mapbox://mapbox.mapbox-terrain-dem-v1", "tileSize": 512, "maxzoom": 14 }
 ```
-and a `raster` layer named `elevation-tint` reading it, using
+paired with a `raster` layer named `elevation-tint`, using
 `raster-color-mix: [6553.6, 25.6, 0.1, -10000]` to decode Mapbox's
 terrain-RGB encoding into meters, then a `raster-color` ramp on
 `["raster-value"]` (green low → ochre mid → pale cream at the peaks, tokens
-matching `--celadon`/`--roast`/`--paper`). It sits right above `paper` and
-below `national-park-wash`/`water` in the layer stack — any higher and it
+matching `--celadon`/`--roast`/`--paper`). Inserted with `beforeId:
+"national-park-wash"` so it sits below the water fill — any higher and it
 tints the ocean too, since the DEM covers seafloor elevation and only the
-opaque water fill masks that out. Full layer JSON is in
-`assets/map/humble-grounds-field-guide.json` if Studio ever needs re-syncing.
+opaque water fill masks that out. Fades in via `raster-opacity-transition`
+on the first `idle` event rather than popping in.
 
 ## Hard-won gotchas (each of these cost real debugging time)
 

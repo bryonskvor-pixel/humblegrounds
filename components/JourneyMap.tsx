@@ -94,13 +94,74 @@ export default function JourneyMap({ coffee, onClose }: { coffee: Coffee; onClos
     });
     mapRef.current = map;
 
+    // Hypsometric color tint. Deliberately NOT baked into the style (tried
+    // once — it loaded from departure and tore the terrain mesh mid-flight,
+    // a third concurrent consumer of the same DEM tileset fighting the 3D
+    // terrain + hillshade for tiles during the flyTo; see assets/map/README.md).
+    // Strip any stale copy that might already be sitting in the style JSON
+    // (published styles can lag behind edits by minutes on Mapbox's CDN) so
+    // it's never live during the flight, then add our own fresh, gated to
+    // only appear once the camera is static.
+    const stripStaleTint = () => {
+      if (map.getLayer("elevation-tint")) map.removeLayer("elevation-tint");
+      if (map.getSource("terrain-rgb")) map.removeSource("terrain-rgb");
+    };
+
     const arrive = () => {
       const src = map.getSource("route") as mapboxgl.GeoJSONSource | undefined;
       src?.setData(routeFeature(line));
       setPhase("arrived");
+
+      try {
+        stripStaleTint();
+        map.addSource("terrain-rgb", {
+          type: "raster",
+          url: "mapbox://mapbox.mapbox-terrain-dem-v1",
+          tileSize: 512,
+          maxzoom: 14,
+        });
+        map.addLayer(
+          {
+            id: "elevation-tint",
+            type: "raster",
+            source: "terrain-rgb",
+            paint: {
+              "raster-color-mix": [6553.6, 25.6, 0.1, -10000],
+              "raster-color-range": [0, 3200],
+              "raster-color": [
+                "interpolate",
+                ["linear"],
+                ["raster-value"],
+                0, "#8fa07a",
+                600, "#a3a56f",
+                1400, "#c2a15f",
+                2200, "#8f6a46",
+                3200, "#f2e6d3",
+              ],
+              "raster-opacity": 0,
+              "raster-opacity-transition": { duration: 700 },
+            },
+          },
+          map.getLayer("national-park-wash") ? "national-park-wash" : undefined
+        );
+        // fade in rather than pop, once the layer's own tiles are in
+        map.once("idle", () => {
+          if (map.getLayer("elevation-tint")) {
+            map.setPaintProperty("elevation-tint", "raster-opacity", 0.55);
+          }
+        });
+      } catch {
+        // decorative only — a GPU/driver combo that chokes on raster-color-mix
+        // should never take down the rest of the map with it
+      }
     };
 
     map.on("load", () => {
+      // Do this before anything else: a stale published style could still
+      // have the old always-on tint baked in, and it must never render
+      // during the upcoming flight.
+      stripStaleTint();
+
       // The route and waypoints ride on top of the style at runtime, so the
       // same code works with the repo JSON or a Studio-hosted style URL
       // (Studio uploads refuse geojson sources).
@@ -220,7 +281,7 @@ export default function JourneyMap({ coffee, onClose }: { coffee: Coffee; onClos
           if (f < 1) {
             rafRef.current = requestAnimationFrame(draw);
           } else {
-            setPhase("arrived");
+            arrive();
           }
         };
         rafRef.current = requestAnimationFrame(draw);
