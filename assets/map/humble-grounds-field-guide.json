@@ -56,6 +56,12 @@
       "url": "mapbox://mapbox.mapbox-terrain-dem-v1",
       "tileSize": 512,
       "maxzoom": 14
+    },
+    "terrain-rgb": {
+      "type": "raster",
+      "url": "mapbox://mapbox.mapbox-terrain-dem-v1",
+      "tileSize": 512,
+      "maxzoom": 14
     }
   },
   "layers": [
@@ -64,6 +70,40 @@
       "type": "background",
       "paint": {
         "background-color": "#f7e7cc"
+      }
+    },
+    {
+      "id": "elevation-tint",
+      "type": "raster",
+      "source": "terrain-rgb",
+      "minzoom": 5,
+      "paint": {
+        "raster-color-mix": [6553.6, 25.6, 0.1, -10000],
+        "raster-color-range": [0, 3200],
+        "raster-color": [
+          "interpolate",
+          ["linear"],
+          ["raster-value"],
+          0,
+          "#8fa07a",
+          600,
+          "#a3a56f",
+          1400,
+          "#c2a15f",
+          2200,
+          "#8f6a46",
+          3200,
+          "#f2e6d3"
+        ],
+        "raster-opacity": [
+          "interpolate",
+          ["linear"],
+          ["zoom"],
+          5,
+          0,
+          8,
+          0.55
+        ]
       }
     },
     {

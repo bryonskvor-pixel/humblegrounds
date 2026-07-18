@@ -56,6 +56,34 @@ Edit → **Publish** (top right). Unpublished drafts do nothing on the site.
 Rules that keep it on-DNA: land stays paper, linework stays ink, water stays a
 muted wash, nothing saturated, labels stay in the published serif.
 
+Style edits can also be pushed via the Mapbox Styles API instead of Studio's
+UI (useful for expression-heavy properties Studio's sliders don't expose,
+like `raster-color-mix`). Recipe: mint a token scoped to `styles:read` +
+`styles:write` only (account → Access tokens → Create token), `GET
+https://api.mapbox.com/styles/v1/photi/<style-id>?access_token=<token>`,
+edit the JSON (strip the response's read-only fields — `created`, `modified`,
+`id`, `owner`, `visibility`, `protected`, `draft` — before sending it back),
+then `PATCH` the same URL with the edited body. Revoke the token when done;
+it never needs to be `NEXT_PUBLIC_` or committed.
+
+**Elevation tint** (added after launch): a hypsometric color wash on the
+terrain, decoded straight from the same DEM tiles that power the 3D terrain.
+Needs a *second* source declaration for the same tileset — a `raster`-typed
+source can't attach to a `raster-dem` source, Mapbox validates that at
+publish time:
+```json
+"terrain-rgb": { "type": "raster", "url": "mapbox://mapbox.mapbox-terrain-dem-v1", "tileSize": 512, "maxzoom": 14 }
+```
+and a `raster` layer named `elevation-tint` reading it, using
+`raster-color-mix: [6553.6, 25.6, 0.1, -10000]` to decode Mapbox's
+terrain-RGB encoding into meters, then a `raster-color` ramp on
+`["raster-value"]` (green low → ochre mid → pale cream at the peaks, tokens
+matching `--celadon`/`--roast`/`--paper`). It sits right above `paper` and
+below `national-park-wash`/`water` in the layer stack — any higher and it
+tints the ocean too, since the DEM covers seafloor elevation and only the
+opaque water fill masks that out. Full layer JSON is in
+`assets/map/humble-grounds-field-guide.json` if Studio ever needs re-syncing.
+
 ## Hard-won gotchas (each of these cost real debugging time)
 
 1. **Studio uploads reject `geojson` sources.** The style must stay tile-only;
