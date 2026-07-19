@@ -1,5 +1,67 @@
 # Session Notes
 
+## 2026-07-19 — Emails, pricing, and Street View "Look around"
+
+### Accomplished
+- **Opener swapped** to the new video (better crack hit at the end). Gotcha: the file dropped
+  into `public/assets/opener/` was a 2-byte placeholder; the real one was `~/Downloads/New opener.mp4`.
+  Re-encoded webm WITH audio (opener plays with sound), pulled a poster frame. Config in
+  `lib/openerConfig.ts` points at `new-opener.*`; old opener files still on disk, unreferenced.
+- **Resend emails live.** Order slip now requires the customer's email; `/api/order` sends
+  Bryon the order (reply-to customer) AND a confirmation to the customer from
+  `Humble Grounds <bryon@humblegrounds.coffee>` ("Bryon will be in touch soon to let you know
+  the arrival"). Confirmation failure never fails the order. New `/api/contact` +
+  `components/ContactForm.tsx` power the "Ask Bryon" section above the footer; footer's
+  CONTACT_EMAIL placeholder replaced with the real address.
+- **Honduras coffee fixed**: renamed "Honduras Comayagua Santa Lucia Reserve Organic",
+  station Finca Santa Lucia · Tres Pinos, process "Washed · sun-dried · certified organic",
+  full two-paragraph farm story (Raul Rodriguez, Don Ermenegildo, Ovata/Pacamara, toucans,
+  75 pickers/15 families, school rebuild). JourneyMap now splits aboutFarm on \n\n.
+- **Pricing shipped**: 16 oz bags, $20 local / $26 shipped (`bagSize`/`bagPriceLocal`/
+  `bagPriceShip` in menu.json). Cards show both prices; slip totals by delivery method;
+  `/api/order` recomputes the total SERVER-SIDE from the menu (never trusts the client) and
+  puts it in both emails. Cold brew: "price coming soon", orderable, flagged price-TBD.
+- **Venmo real**: @Bryon-Skvor. **Delivery day**: deliberately blank ("fluid") — copy reads
+  naturally without it; setting `deliveryDay` re-inserts the day in all three spots.
+- **"Go there" doubled** (1.625rem, 2px dashed underline) so the journey isn't missed.
+- **Street View "Look around" shipped** — the big one. After the flyover lands, the arrival
+  card shows one button per spot (`journey.lookArounds[]` in menu.json, rendered by
+  `components/LookAround.tsx`): Veracruz = downtown walk + El Tajín (official walkable
+  imagery, heading 315 → pyramid); Honduras = Comayagua plaza (2022 contributed 360,
+  cathedral at golden hour, heading 40); Burundi = Bujumbura lakeshore market (PINNED pano,
+  see below) + Gitega National Museum. Maps JS API loads only on click.
+
+### Context / gotchas a fresh agent needs
+- Google Maps key: `NEXT_PUBLIC_GOOGLE_MAPS_KEY` in `.env.local` AND Vercel. Key is
+  website-restricted (localhost:3000 + humblegrounds.vercel.app + humblegrounds.coffee).
+  Watch out: Google's UI silently accepts comma-separated patterns in ONE row — they must
+  be separate rows or nothing matches (cost an hour of RefererNotAllowedMapError).
+- With `loading=async`, `google.maps.importLibrary` appears AFTER script onload — the
+  loader in LookAround.tsx polls for it. Don't "simplify" that away.
+- Metadata/getPanorama passes referer checks that PANORAMA RENDERING enforces — a spot can
+  "find" imagery but render black if the referer isn't allowlisted, and heavy testing gets
+  tile 429s that also render black (panorama binds, attribution shows, tiles never paint).
+  Prod has its own quota context; don't panic over local black frames.
+- Burundi has near-zero coverage: no Kibira, no Gishora, no real beach pano that renders.
+  BEST-preference radius search FLAPS between panos there, hence `pano:` pinning in the
+  LookAroundSpot type (radius search stays as self-heal fallback). Scouted candidates and
+  pano ids are in this session's scratchpad scripts (gone now) — re-scout via
+  StreetViewService in a puppeteer page if needed.
+- Puppeteer verify recipe still: install in scratchpad, swiftshader flags, drive prod/local,
+  read screenshots. React owns <html>/<body> (App Router), so DOM injected by tests gets
+  eaten by hydration — drive the real UI instead.
+- Order flow has ZERO placeholders left. Resend domain assumed verified (user said set up);
+  customer copy untested against a real inbox — worth one live test order.
+
+### Next steps
+- Test a real order end-to-end (does the confirmation land in a real inbox?).
+- Cold brew pricing; Bryon's idea: sell a home cold-brew SYSTEM once + mail coffee packets
+  for it (cheaper to ship than liquid) — see memory `cold-brew-system-idea`.
+- Mexico tasting notes once cupped; Mexico `process` string still empty.
+- Plate illustrations for the three coffees + cold brew (asset backlog).
+- humblegrounds.coffee domain: when connected, it's already in the Google key allowlist;
+  Resend from-address already matches.
+
 ## 2026-07-17 — Origin journeys shipped
 
 ### Accomplished
