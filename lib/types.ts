@@ -5,6 +5,22 @@ export type Journey = {
   pitch?: number;
   bearing?: number;
   story?: string;
+  lookAround?: LookAroundSpot;
+};
+
+// A real Street View spot near the origin — the "step out of the plane"
+// moment. lngLat is [longitude, latitude], same as everywhere else here.
+export type LookAroundSpot = {
+  label: string;
+  lngLat: [number, number];
+  heading?: number;
+  pitch?: number;
+  radius?: number;
+  // true → only Google's own linked outdoor imagery (walkable, arrow to
+  // arrow); false/absent → any 360, including one-off user photospheres,
+  // which is all that exists in Comayagua and Kayanza.
+  outdoorOnly?: boolean;
+  note?: string;
 };
 
 export type Coffee = {

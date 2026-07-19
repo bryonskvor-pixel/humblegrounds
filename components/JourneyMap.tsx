@@ -5,6 +5,7 @@ import mapboxgl from "mapbox-gl";
 import type { FeatureCollection } from "geojson";
 import "mapbox-gl/dist/mapbox-gl.css";
 import type { Coffee } from "@/lib/types";
+import LookAround from "./LookAround";
 import fieldGuideStyle from "@/assets/map/humble-grounds-field-guide.json";
 
 const HOME: [number, number] = [-82.2174, 41.293];
@@ -67,6 +68,7 @@ export default function JourneyMap({ coffee, onClose }: { coffee: Coffee; onClos
   const timerRef = useRef<ReturnType<typeof setTimeout> | null>(null);
   const skipRef = useRef<() => void>(() => {});
   const [phase, setPhase] = useState<Phase>("depart");
+  const [looking, setLooking] = useState(false);
   const phaseRef = useRef<Phase>("depart");
   phaseRef.current = phase;
 
@@ -363,12 +365,20 @@ export default function JourneyMap({ coffee, onClose }: { coffee: Coffee; onClos
                   Skip ahead →
                 </button>
               )}
+              {phase === "arrived" && journey.lookAround && process.env.NEXT_PUBLIC_GOOGLE_MAPS_KEY && (
+                <button className="close-btn look-btn" onClick={() => setLooking(true)}>
+                  {journey.lookAround.label} →
+                </button>
+              )}
               <button className="close-btn" onClick={onClose}>
                 Back to the menu
               </button>
             </div>
           </div>
         </>
+      )}
+      {looking && journey.lookAround && (
+        <LookAround spot={journey.lookAround} onClose={() => setLooking(false)} />
       )}
     </div>
   );
