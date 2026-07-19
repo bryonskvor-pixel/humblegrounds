@@ -350,7 +350,9 @@ export default function JourneyMap({ coffee, onClose }: { coffee: Coffee; onClos
                 {coffee.aboutFarm && (
                   <>
                     <p className="journey-label">ABOUT THE FARM</p>
-                    <p>{coffee.aboutFarm}</p>
+                    {coffee.aboutFarm.split("\n\n").map((para, i) => (
+                      <p key={i}>{para}</p>
+                    ))}
                   </>
                 )}
               </>

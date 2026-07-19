@@ -10,9 +10,9 @@
 //   "video-fade"  plain crossfade from the video's last frame to the site
 export const openerConfig = {
   mode: "video-bloom" as "open" | "video-bloom" | "video-doors" | "video-fade",
-  videoSrc: "/assets/opener/opener.mp4",
-  videoSrcWebm: "/assets/opener/opener.webm",
-  poster: "/assets/opener/opener-poster.jpg",
+  videoSrc: "/assets/opener/new-opener.mp4",
+  videoSrcWebm: "/assets/opener/new-opener.webm",
+  poster: "/assets/opener/new-opener-poster.jpg",
   doorLeft: "/assets/opener/door-left.jpg",
   doorRight: "/assets/opener/door-right.jpg",
 };

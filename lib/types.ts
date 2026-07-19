@@ -55,7 +55,14 @@ export type OrderItem = {
 export type OrderPayload = {
   items: OrderItem[];
   name: string;
+  email: string;
   delivery: "local" | "ship";
   address: string;
   payment: "venmo" | "cash";
+};
+
+export type ContactPayload = {
+  name: string;
+  email: string;
+  message: string;
 };

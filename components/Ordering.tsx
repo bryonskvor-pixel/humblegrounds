@@ -156,6 +156,7 @@ export default function Ordering({ menu }: { menu: Menu }) {
   const [items, setItems] = useState<OrderItem[]>([]);
   const [slipOpen, setSlipOpen] = useState(false);
   const [name, setName] = useState("");
+  const [email, setEmail] = useState("");
   const [delivery, setDelivery] = useState<"local" | "ship">("local");
   const [address, setAddress] = useState("");
   const [payment, setPayment] = useState<"venmo" | "cash">("venmo");
@@ -193,6 +194,10 @@ export default function Ordering({ menu }: { menu: Menu }) {
       setError("A name, so the right person gets the right coffee.");
       return;
     }
+    if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email.trim())) {
+      setError("An email, so the order confirmation has somewhere to land.");
+      return;
+    }
     if (!address.trim()) {
       setError(delivery === "local" ? "Drop instructions or an address, please." : "A shipping address, please.");
       return;
@@ -202,7 +207,7 @@ export default function Ordering({ menu }: { menu: Menu }) {
       const res = await fetch("/api/order", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({ items, name: name.trim(), delivery, address: address.trim(), payment }),
+        body: JSON.stringify({ items, name: name.trim(), email: email.trim(), delivery, address: address.trim(), payment }),
       });
       if (!res.ok) throw new Error(`order endpoint returned ${res.status}`);
       setStatus("sent");
@@ -255,7 +260,8 @@ export default function Ordering({ menu }: { menu: Menu }) {
                 <h2>Got it.</h2>
                 <p>
                   Venmo @{menu.venmo} when you&apos;re ready
-                  {delivery === "local" ? `, or have cash at the door ${menu.deliveryDay}.` : "."}
+                  {delivery === "local" ? `, or have cash at the door ${menu.deliveryDay}.` : "."}{" "}
+                  A confirmation is on its way to your inbox.
                 </p>
                 <a className="venmo-link" href={`https://venmo.com/u/${menu.venmo}`}>
                   Open Venmo
@@ -294,6 +300,9 @@ export default function Ordering({ menu }: { menu: Menu }) {
 
                 <label htmlFor="slip-name">NAME</label>
                 <input id="slip-name" type="text" value={name} onChange={(e) => setName(e.target.value)} autoComplete="name" />
+
+                <label htmlFor="slip-email">EMAIL</label>
+                <input id="slip-email" type="email" value={email} onChange={(e) => setEmail(e.target.value)} autoComplete="email" />
 
                 <label>GETTING IT</label>
                 <div className="radio-row">

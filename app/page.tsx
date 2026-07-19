@@ -4,6 +4,7 @@ import Ordering from "@/components/Ordering";
 import Opener from "@/components/Opener";
 import Reveal from "@/components/Reveal";
 import AmbientFloat from "@/components/AmbientFloat";
+import ContactForm from "@/components/ContactForm";
 import { GroundStrip, MapPinGlyph, ParcelGlyph } from "@/components/Glyphs";
 
 // unknown hop: JSON imports type tuple fields ([lng, lat]) as number[]
@@ -63,11 +64,27 @@ export default function Home() {
         </div>
       </section>
 
+      <section className="section" id="questions">
+        <div className="wrap">
+          <p className="eyebrow">QUESTIONS</p>
+          <h2>Ask Bryon</h2>
+          <Reveal>
+            <p className="contact-lede">
+              If you have any questions, you can email Bryon at{" "}
+              <a href="mailto:bryon@humblegrounds.coffee">bryon@humblegrounds.coffee</a> or fill out this
+              short form and he will be in touch.
+            </p>
+            <ContactForm />
+          </Reveal>
+        </div>
+      </section>
+
       <footer className="footer">
         <Reveal className="wrap">
           <p>Roasted by Bryon in Oberlin, Ohio.</p>
           <p className="fine">
-            Venmo <a href={`https://venmo.com/u/${menu.venmo}`}>@{menu.venmo}</a> · CONTACT_EMAIL
+            Venmo <a href={`https://venmo.com/u/${menu.venmo}`}>@{menu.venmo}</a> ·{" "}
+            <a href="mailto:bryon@humblegrounds.coffee">bryon@humblegrounds.coffee</a>
           </p>
         </Reveal>
         <GroundStrip className="ground-strip" />

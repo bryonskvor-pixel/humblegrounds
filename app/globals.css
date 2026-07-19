@@ -527,6 +527,7 @@ button {
 }
 
 .order-slip input[type="text"],
+.order-slip input[type="email"],
 .order-slip textarea {
   width: 100%;
   background: transparent;
@@ -581,6 +582,43 @@ button {
   color: var(--cherry);
   font-size: 0.875rem;
   margin: 0.75rem 0 0;
+}
+
+/* Questions / contact form */
+.contact-lede {
+  max-width: 34rem;
+}
+
+.contact-form {
+  max-width: 30rem;
+  margin-top: 1rem;
+}
+
+.contact-form label {
+  display: block;
+  font-family: var(--font-mono), monospace;
+  font-size: 0.8125rem;
+  margin: 0.8rem 0 0.25rem;
+}
+
+.contact-form input[type="text"],
+.contact-form input[type="email"],
+.contact-form textarea {
+  width: 100%;
+  background: transparent;
+  border: var(--rule);
+  padding: 0.5rem 0.6rem;
+  font: inherit;
+  font-size: 0.95rem;
+  color: var(--ink);
+}
+
+.contact-form .order-btn {
+  margin-top: 1rem;
+}
+
+.contact-sent p {
+  font-style: italic;
 }
 
 .slip-confirm p {
