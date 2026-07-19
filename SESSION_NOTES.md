@@ -1,5 +1,42 @@
 # Session Notes
 
+## 2026-07-19 (later) — Tasting Key, About Bryon, FAQ
+
+### Accomplished
+- **"Taste along" / Tasting Key shipped** on all three coffee cards. Bryon's HTML prototype
+  (deconstructed flavor wheel) ported to `components/TastingKey.tsx` — full-screen overlay,
+  z-index 80, opens per-coffee so the coffee name rides along with the submission. Dynamic
+  import (JourneyMap pattern): the flavor tree only downloads on tap. Submissions POST to
+  new `app/api/tasting/route.ts` (same Resend shape as /api/order; logs to console when
+  keys are absent; payload types in `lib/types.ts`). Prototype's fake-success fallback
+  removed — a failed send now shows a real error. Verified end-to-end headlessly:
+  clicked Fruity → A berry → Blueberry → chips → add → share → send; server received it.
+- **About Bryon section** (`#about`, between How to get it and Ask Bryon): never the same
+  coffee twice, 20 years roasting, not pretentious, and pointers to Go there / Taste along
+  styled like the actual buttons. Closer line italic in roast-brown.
+- **FAQ section** (`#faq`, "GOOD TO KNOW / Common questions", after About): 7 native
+  `<details>` accordions, no JS — brew ratios (1:16 lead), washed vs natural, honey
+  process, anaerobic fermentation, roast levels/first crack, storage, why coffee changes
+  over the first weeks. Sourced from Bryon's Coffee_Education_Guide.md.
+
+### Context / gotchas a fresh agent needs
+- **JSX whitespace bug in this Next (16.2.10/Turbopack)**: a literal space between an
+  inline closing tag (`</strong>`) and following text sometimes compiles away, running
+  words together ("Taste alongopens"). Trigger is unpredictable (identical-looking lines
+  differ). Fix: explicit `{" "}` after the tag. After editing prose with inline tags,
+  verify with: `curl -s localhost:3111/ | grep -oE "</strong>[a-zA-Z][a-z]*"` (empty = good).
+- Tasting emails go to ORDER_EMAIL_TO with subject "Tasting notes: <name> — <coffee>".
+  First real production submission still unverified against a real inbox (same as orders).
+- Education guide §6 (interactive roasting simulator) deliberately NOT built — banked as a
+  possible future toy alongside Go there / Taste along.
+- Puppeteer verify recipe unchanged (scratchpad install, swiftshader); remember the opener:
+  click "press to open", wait ~2.5s, then "skip" — or screenshots show only the door.
+
+### Next steps
+- Test a real order AND a real tasting submission end-to-end in production.
+- Cold brew pricing / system idea; Mexico tasting notes + process string; plate
+  illustrations (unchanged backlog).
+
 ## 2026-07-19 — Emails, pricing, and Street View "Look around"
 
 ### Accomplished

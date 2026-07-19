@@ -9,6 +9,8 @@ import { useMagnetic } from "@/lib/useMagnetic";
 
 // mapbox-gl only downloads when someone actually taps "Go there"
 const JourneyMap = dynamic(() => import("./JourneyMap"), { ssr: false });
+// the flavor tree only downloads when someone actually taps "Taste along"
+const TastingKey = dynamic(() => import("./TastingKey"), { ssr: false });
 
 function RoastRow({ level }: { level: number }) {
   return (
@@ -30,12 +32,14 @@ function CoffeeCard({
   menu,
   onOrder,
   onGoThere,
+  onTasteAlong,
 }: {
   coffee: Coffee;
   index: number;
   menu: Menu;
   onOrder: (slug: string, name: string) => void;
   onGoThere: (coffee: Coffee) => void;
+  onTasteAlong: (coffee: Coffee) => void;
 }) {
   const { ref, visible, onPointerMove, onPointerLeave } = useCardFx<HTMLElement>();
   const goThereRef = useMagnetic<HTMLButtonElement>(10);
@@ -72,6 +76,9 @@ function CoffeeCard({
       )}
       {coffee.processNote && <p className="process-note">{coffee.processNote}</p>}
       <p className="tasting-notes">{coffee.notes.join(" · ")}</p>
+      <button className="taste-along" onClick={() => onTasteAlong(coffee)}>
+        Taste along — key out this cup&apos;s flavors
+      </button>
       <RoastRow level={coffee.roastLevel} />
       <div className="plate-foot">
         <div className="price">
@@ -168,6 +175,7 @@ export default function Ordering({ menu }: { menu: Menu }) {
   const [status, setStatus] = useState<"idle" | "sending" | "sent" | "error">("idle");
   const [error, setError] = useState("");
   const [journeyCoffee, setJourneyCoffee] = useState<Coffee | null>(null);
+  const [tastingCoffee, setTastingCoffee] = useState<Coffee | null>(null);
 
   function addItem(slug: string, itemName: string) {
     setItems((prev) => {
@@ -246,6 +254,7 @@ export default function Ordering({ menu }: { menu: Menu }) {
                 menu={menu}
                 onOrder={addItem}
                 onGoThere={setJourneyCoffee}
+                onTasteAlong={setTastingCoffee}
               />
             ))}
             <ColdBrewCard coldBrew={menu.coldBrew} index={menu.coffees.length} onOrder={addItem} />
@@ -254,6 +263,8 @@ export default function Ordering({ menu }: { menu: Menu }) {
       </section>
 
       {journeyCoffee && <JourneyMap coffee={journeyCoffee} onClose={() => setJourneyCoffee(null)} />}
+
+      {tastingCoffee && <TastingKey coffee={tastingCoffee} onClose={() => setTastingCoffee(null)} />}
 
       {!slipOpen && itemCount > 0 && (
         <button className="slip-fab" onClick={() => setSlipOpen(true)}>

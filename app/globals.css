@@ -1047,3 +1047,517 @@ body.hg-revealing main > *:not(.masthead):not(.opener) {
     bottom: 1.25rem;
   }
 }
+
+/* ---------- about the roaster ---------- */
+
+.about-copy p {
+  max-width: 42rem;
+  margin: 0 0 1rem;
+}
+
+.about-copy strong {
+  font-family: var(--font-mono), monospace;
+  font-weight: 400;
+  font-size: 0.95em;
+  letter-spacing: 0.03em;
+  color: var(--cherry);
+  border-bottom: 1px dashed var(--cherry);
+}
+
+.about-closer {
+  font-style: italic;
+  color: var(--roast);
+}
+
+/* ---------- FAQ (Good to know) ---------- */
+
+.faq-list {
+  max-width: 46rem;
+}
+
+.faq-item {
+  border: var(--rule);
+  margin-bottom: 0.75rem;
+  background: rgba(255, 255, 255, 0.14);
+}
+
+.faq-item summary {
+  cursor: pointer;
+  list-style: none;
+  padding: 0.85rem 1rem;
+  font-family: var(--font-display), Georgia, serif;
+  font-size: 1.2rem;
+  color: var(--roast);
+  display: flex;
+  align-items: baseline;
+  gap: 0.7rem;
+  transition: color 150ms ease;
+}
+
+.faq-item summary::-webkit-details-marker {
+  display: none;
+}
+
+.faq-item summary::before {
+  content: "+";
+  font-family: var(--font-mono), monospace;
+  font-size: 1rem;
+  color: var(--cherry);
+  flex: 0 0 auto;
+}
+
+.faq-item[open] summary::before {
+  content: "−";
+}
+
+.faq-item summary:hover {
+  color: var(--cherry);
+}
+
+.faq-item[open] summary {
+  border-bottom: 1px dashed rgba(43, 38, 32, 0.4);
+}
+
+.faq-item p {
+  margin: 0.85rem 1rem;
+  font-size: 0.98rem;
+}
+
+.faq-item strong {
+  font-weight: 600;
+  color: var(--roast);
+}
+
+/* ---------- tasting key (Taste along) ---------- */
+
+.taste-along {
+  display: inline-block;
+  background: none;
+  border: none;
+  padding: 0;
+  margin: 0.15rem 0 0.4rem;
+  cursor: pointer;
+  text-align: left;
+  font-family: var(--font-mono), monospace;
+  font-size: 0.875rem;
+  letter-spacing: 0.04em;
+  color: var(--cherry);
+  border-bottom: 1px dashed var(--cherry);
+  transition: color 150ms ease, border-color 150ms ease;
+}
+
+.taste-along:hover {
+  color: var(--ink);
+  border-bottom-color: var(--ink);
+}
+
+.tk-overlay {
+  position: fixed;
+  inset: 0;
+  z-index: 80;
+  overflow-y: auto;
+  background-color: var(--paper);
+  background-image: radial-gradient(rgba(43, 38, 32, 0.035) 1px, transparent 1px),
+    radial-gradient(rgba(43, 38, 32, 0.02) 1px, transparent 1px);
+  background-size: 7px 7px, 11px 11px;
+  background-position: 0 0, 3px 5px;
+  padding: 2rem 1.25rem 3rem;
+}
+
+.tk-plate {
+  position: relative;
+  max-width: 60rem;
+  margin: 0 auto;
+  border: var(--rule);
+  outline: 1px solid var(--ink);
+  outline-offset: 4px;
+  padding: 2rem 1.75rem 1.75rem;
+}
+
+.tk-close {
+  position: absolute;
+  top: 0.9rem;
+  right: 0.9rem;
+  background: none;
+  border: 1px solid var(--ink);
+  padding: 0.45rem 0.8rem;
+  cursor: pointer;
+  font-family: var(--font-mono), monospace;
+  font-size: 0.8125rem;
+  color: var(--ink);
+}
+
+.tk-title {
+  font-size: 2.4rem;
+  margin: 0;
+}
+
+.tk-coffee-line {
+  font-family: var(--font-mono), monospace;
+  font-size: 0.8125rem;
+  letter-spacing: 0.06em;
+  color: var(--cherry);
+  margin: 0.3rem 0 0;
+}
+
+.tk-lede {
+  max-width: 42rem;
+  margin: 1rem 0 1.4rem;
+  font-size: 1.1rem;
+}
+
+.tk-reassure {
+  font-style: italic;
+  color: var(--roast);
+  margin: 0 0 1.4rem;
+}
+
+.tk-start {
+  padding: 0.8rem 1.5rem;
+}
+
+.tk-grid {
+  display: grid;
+  grid-template-columns: 1.55fr 1fr;
+  gap: 1.75rem;
+  margin-top: 1.5rem;
+}
+
+@media (max-width: 44rem) {
+  .tk-grid {
+    grid-template-columns: 1fr;
+  }
+}
+
+.tk-crumbs {
+  font-family: var(--font-mono), monospace;
+  font-size: 0.72rem;
+  letter-spacing: 0.03em;
+  color: var(--roast);
+  margin: 0 0 0.7rem;
+  min-height: 1em;
+}
+
+.tk-prompt {
+  font-family: var(--font-display), Georgia, serif;
+  font-size: 1.55rem;
+  color: var(--roast);
+  line-height: 1.2;
+  margin: 0 0 1.1rem;
+}
+
+.tk-added {
+  font-style: italic;
+  color: #5f7049;
+  margin: 0 0 1rem;
+}
+
+.tk-choices {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(9.5rem, 1fr));
+  gap: 0.75rem;
+}
+
+.tk-choice {
+  display: flex;
+  align-items: center;
+  gap: 0.7rem;
+  text-align: left;
+  cursor: pointer;
+  background: transparent;
+  border: var(--rule);
+  padding: 0.75rem 0.85rem;
+  font: inherit;
+  color: var(--ink);
+  transition: box-shadow 150ms ease, filter 150ms ease;
+}
+
+.tk-choice:hover {
+  filter: saturate(1.1);
+  box-shadow: 0 0 0 3px rgba(232, 200, 120, 0.35), 0 0 20px rgba(232, 200, 120, 0.3);
+}
+
+.tk-choice svg {
+  flex: 0 0 26px;
+  width: 26px;
+  height: 26px;
+  color: var(--roast);
+}
+
+.tk-lab {
+  display: block;
+  font-family: var(--font-display), Georgia, serif;
+  font-size: 1.15rem;
+  line-height: 1.05;
+}
+
+.tk-hint {
+  display: block;
+  font-size: 0.8rem;
+  color: var(--roast);
+  margin-top: 0.15rem;
+  font-style: italic;
+}
+
+.tk-gut {
+  font-style: italic;
+  color: var(--roast);
+  font-size: 0.9rem;
+  margin: 1rem 0 0;
+}
+
+.tk-nav {
+  display: flex;
+  gap: 0.75rem;
+  margin-top: 1.25rem;
+  flex-wrap: wrap;
+}
+
+.tk-ghost {
+  background: none;
+  border: var(--rule);
+  padding: 0.5rem 0.95rem;
+  cursor: pointer;
+  font-family: var(--font-mono), monospace;
+  font-size: 0.8125rem;
+  color: var(--ink);
+}
+
+.tk-ghost:disabled {
+  opacity: 0.35;
+  cursor: not-allowed;
+}
+
+.tk-add {
+  background: var(--celadon);
+  color: var(--ink);
+  border: 1px solid var(--ink);
+  padding: 0.5rem 1rem;
+  cursor: pointer;
+  font-family: var(--font-mono), monospace;
+  font-size: 0.8125rem;
+}
+
+.tk-add:hover {
+  filter: brightness(1.05);
+}
+
+.tk-found {
+  font-family: var(--font-mono), monospace;
+  font-size: 0.75rem;
+  letter-spacing: 0.06em;
+  color: var(--roast);
+  margin: 0 0 0.1rem;
+}
+
+.tk-name {
+  font-family: var(--font-display), Georgia, serif;
+  font-size: 2.2rem;
+  color: var(--cherry);
+  margin: 0 0 1rem;
+  line-height: 1.05;
+}
+
+.tk-row {
+  border-top: 1px dashed rgba(43, 38, 32, 0.4);
+  padding: 0.85rem 0;
+}
+
+.tk-k {
+  font-family: var(--font-mono), monospace;
+  font-size: 0.7rem;
+  letter-spacing: 0.06em;
+  color: var(--roast);
+  display: block;
+  margin-bottom: 0.15rem;
+}
+
+.tk-v {
+  margin: 0;
+}
+
+.tk-chips {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+  margin-top: 0.4rem;
+}
+
+.tk-chip {
+  background: transparent;
+  border: 1px solid var(--ink);
+  padding: 0.3rem 0.7rem;
+  cursor: pointer;
+  font-family: var(--font-mono), monospace;
+  font-size: 0.75rem;
+  color: var(--ink);
+}
+
+.tk-chip.on {
+  background: var(--cherry);
+  color: var(--paper);
+}
+
+.tk-cool-note {
+  font-size: 0.85rem;
+  font-style: italic;
+  color: var(--roast);
+  margin: 0.5rem 0 0;
+}
+
+.tk-slip {
+  border: var(--rule);
+  padding: 1.1rem 1.1rem 1.25rem;
+  background: rgba(255, 255, 255, 0.18);
+  align-self: start;
+}
+
+.tk-slip h3 {
+  font-family: var(--font-display), Georgia, serif;
+  font-weight: 400;
+  font-size: 1.25rem;
+  color: var(--roast);
+  margin: 0 0 0.3rem;
+}
+
+.tk-date {
+  font-family: var(--font-mono), monospace;
+  font-size: 0.7rem;
+  color: var(--roast);
+  border-bottom: var(--rule);
+  padding-bottom: 0.6rem;
+  margin-bottom: 0.6rem;
+}
+
+.tk-cup {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  font-family: var(--font-mono), monospace;
+  font-size: 0.82rem;
+}
+
+.tk-cup li {
+  padding: 0.4rem 0;
+  border-bottom: 1px dashed rgba(43, 38, 32, 0.35);
+}
+
+.tk-fl {
+  color: var(--cherry);
+}
+
+.tk-tm {
+  display: block;
+  color: var(--roast);
+  font-size: 0.72rem;
+}
+
+.tk-empty {
+  font-style: italic;
+  color: var(--roast);
+  font-size: 0.9rem;
+}
+
+.tk-closer {
+  margin-top: 1rem;
+  border-top: var(--rule);
+  padding-top: 0.85rem;
+  font-size: 0.85rem;
+  font-style: italic;
+  color: var(--roast);
+}
+
+.tk-share-btn {
+  margin-top: 1rem;
+  width: 100%;
+  font-family: var(--font-mono), monospace;
+  font-size: 0.85rem;
+  color: var(--paper);
+  background: var(--cherry);
+  border: 1px solid var(--ink);
+  padding: 0.6rem 1rem;
+  cursor: pointer;
+}
+
+.tk-share-btn:hover {
+  background: #8f3227;
+}
+
+.tk-linkish {
+  background: none;
+  border: none;
+  padding: 0;
+  margin-top: 0.6rem;
+  cursor: pointer;
+  font-family: var(--font-mono), monospace;
+  font-size: 0.78rem;
+  color: var(--cherry);
+  border-bottom: 1px dashed var(--cherry);
+}
+
+.tk-share-form label {
+  display: block;
+  font-family: var(--font-mono), monospace;
+  font-size: 0.72rem;
+  letter-spacing: 0.04em;
+  color: var(--roast);
+  margin: 0.7rem 0 0.2rem;
+}
+
+.tk-share-form input,
+.tk-share-form textarea {
+  width: 100%;
+  background: transparent;
+  border: var(--rule);
+  padding: 0.45rem 0.55rem;
+  font: inherit;
+  font-size: 0.9rem;
+  color: var(--ink);
+}
+
+.tk-share-actions {
+  display: flex;
+  gap: 0.6rem;
+  margin-top: 1rem;
+}
+
+.tk-send {
+  flex: 1;
+  font-family: var(--font-mono), monospace;
+  font-size: 0.85rem;
+  color: var(--paper);
+  background: var(--cherry);
+  border: 1px solid var(--ink);
+  padding: 0.55rem 1rem;
+  cursor: pointer;
+}
+
+.tk-send:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+}
+
+.tk-err {
+  color: var(--cherry);
+  font-size: 0.82rem;
+  margin: 0.6rem 0 0;
+}
+
+.tk-mini {
+  font-size: 0.78rem;
+  font-style: italic;
+  color: var(--roast);
+  margin: 0.7rem 0 0;
+}
+
+@media (max-width: 480px) {
+  .tk-overlay {
+    padding: 1rem 0.75rem 2rem;
+  }
+  .tk-plate {
+    padding: 1.4rem 1rem 1.25rem;
+  }
+  .tk-title {
+    font-size: 1.9rem;
+  }
+}

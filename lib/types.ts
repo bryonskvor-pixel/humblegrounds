@@ -85,6 +85,20 @@ export type OrderPayload = {
   payment: "venmo" | "cash";
 };
 
+export type TastingNote = {
+  flavor: string;
+  when?: string;
+  temperature?: string;
+};
+
+export type TastingPayload = {
+  submittedAt?: string;
+  coffee?: string;
+  taster?: string;
+  comment?: string;
+  notes: TastingNote[];
+};
+
 export type ContactPayload = {
   name: string;
   email: string;
