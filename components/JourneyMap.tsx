@@ -68,7 +68,7 @@ export default function JourneyMap({ coffee, onClose }: { coffee: Coffee; onClos
   const timerRef = useRef<ReturnType<typeof setTimeout> | null>(null);
   const skipRef = useRef<() => void>(() => {});
   const [phase, setPhase] = useState<Phase>("depart");
-  const [looking, setLooking] = useState(false);
+  const [looking, setLooking] = useState<number | null>(null);
   const phaseRef = useRef<Phase>("depart");
   phaseRef.current = phase;
 
@@ -365,11 +365,13 @@ export default function JourneyMap({ coffee, onClose }: { coffee: Coffee; onClos
                   Skip ahead →
                 </button>
               )}
-              {phase === "arrived" && journey.lookAround && process.env.NEXT_PUBLIC_GOOGLE_MAPS_KEY && (
-                <button className="close-btn look-btn" onClick={() => setLooking(true)}>
-                  {journey.lookAround.label} →
-                </button>
-              )}
+              {phase === "arrived" &&
+                process.env.NEXT_PUBLIC_GOOGLE_MAPS_KEY &&
+                journey.lookArounds?.map((spot, i) => (
+                  <button key={i} className="close-btn look-btn" onClick={() => setLooking(i)}>
+                    {spot.label} →
+                  </button>
+                ))}
               <button className="close-btn" onClick={onClose}>
                 Back to the menu
               </button>
@@ -377,8 +379,8 @@ export default function JourneyMap({ coffee, onClose }: { coffee: Coffee; onClos
           </div>
         </>
       )}
-      {looking && journey.lookAround && (
-        <LookAround spot={journey.lookAround} onClose={() => setLooking(false)} />
+      {looking !== null && journey.lookArounds?.[looking] && (
+        <LookAround spot={journey.lookArounds[looking]} onClose={() => setLooking(null)} />
       )}
     </div>
   );

@@ -30,12 +30,14 @@
         "pitch": 62,
         "bearing": 150,
         "story": "This bean grew at about 1,700 meters on the slopes of Montaña de Comayagua, a cloud-forest national park in central Honduras. Comayagua is one of the six coffee regions IHCAFE recognizes, and the forest above these farms is where the water comes from.",
-        "lookAround": {
-          "label": "Walk the plaza in Comayagua",
-          "lngLat": [-87.6383, 14.4605],
-          "heading": 40,
-          "note": "Comayagua is the city Raul's coffee rides down to — the old colonial capital, whose cathedral clock is said to be the oldest working one in the Americas. Drag to look around; the arrows walk the streets."
-        }
+        "lookArounds": [
+          {
+            "label": "Walk the plaza in Comayagua",
+            "lngLat": [-87.6383, 14.4605],
+            "heading": 40,
+            "note": "Comayagua is the city Raul's coffee rides down to — the old colonial capital, whose cathedral clock is said to be the oldest working one in the Americas. Drag to look around; the arrows walk the streets."
+          }
+        ]
       }
     },
     {
@@ -61,12 +63,22 @@
         "pitch": 60,
         "bearing": 30,
         "story": "Masha is a collection station in the hills of Gatara commune, Kayanza, in northern Burundi near the Rwandan border. Thousands of smallholder farmers each bring cherry from a small plot of red bourbon trees. At 1,672 meters, this is some of the highest coffee country in East Africa.",
-        "lookAround": {
-          "label": "Stand in Kayanza town",
-          "lngLat": [29.8179, -2.915],
-          "radius": 3000,
-          "note": "Kayanza town, the provincial capital the Masha station's coffee moves through. Street cameras have barely reached rural Burundi, so this one 360 — shot by a local — is a rare window. Drag to look around."
-        }
+        "lookArounds": [
+          {
+            "label": "Walk Bujumbura's lakeshore",
+            "lngLat": [29.3669, -3.3611],
+            "pano": "CAoSFkNJSE0wb2dLRUlDQWdJRHFyZDZ1VVE.",
+            "heading": 20,
+            "radius": 800,
+            "note": "A market street by the shore of Lake Tanganyika in Bujumbura — the port capital where Burundi's coffee ships out across the second-deepest lake on Earth. Drag to look around; there are a few linked shots along the road."
+          },
+          {
+            "label": "Visit Gitega's museum",
+            "lngLat": [29.9085, -3.4183],
+            "radius": 1000,
+            "note": "The National Museum in Gitega, Burundi's capital and cultural heart — home of the sacred royal drums, whose drummers are famous the world over. One local-shot 360; street cameras have barely reached Burundi."
+          }
+        ]
       }
     },
     {
@@ -92,13 +104,22 @@
         "pitch": 62,
         "bearing": 230,
         "story": "La Laja sits in the cloud forests of central Veracruz, in the mountains above Huatusco, watered by small rivers that feed the Río La Antigua. The Sampieri family has grown coffee on these slopes since 1920. On a clear day, Pico de Orizaba stands on the horizon.",
-        "lookAround": {
-          "label": "Walk around El Tajín",
-          "lngLat": [-97.3785, 20.4482],
-          "heading": 315,
-          "outdoorOnly": true,
-          "note": "El Tajín, a UNESCO World Heritage city of the ancient Totonac, stands a couple of hours north of the farm — the Pyramid of the Niches has 365 of them, one for each day. Drag to look around; the arrows walk the site."
-        }
+        "lookArounds": [
+          {
+            "label": "Walk downtown Veracruz",
+            "lngLat": [-96.1366, 19.1999],
+            "radius": 400,
+            "outdoorOnly": true,
+            "note": "Downtown Veracruz, a block off the zócalo — Mexico's oldest port city, where coffee from these mountains has shipped out for two centuries. Drag to look around; the arrows walk the streets."
+          },
+          {
+            "label": "Walk around El Tajín",
+            "lngLat": [-97.3785, 20.4482],
+            "heading": 315,
+            "outdoorOnly": true,
+            "note": "El Tajín, a UNESCO World Heritage city of the ancient Totonac, stands a couple of hours north of the farm — the Pyramid of the Niches has 365 of them, one for each day. Drag to look around; the arrows walk the site."
+          }
+        ]
       }
     }
   ],

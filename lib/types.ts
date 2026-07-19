@@ -5,7 +5,7 @@ export type Journey = {
   pitch?: number;
   bearing?: number;
   story?: string;
-  lookAround?: LookAroundSpot;
+  lookArounds?: LookAroundSpot[];
 };
 
 // A real Street View spot near the origin — the "step out of the plane"
@@ -13,6 +13,11 @@ export type Journey = {
 export type LookAroundSpot = {
   label: string;
   lngLat: [number, number];
+  // Pin an exact panorama instead of radius-searching near lngLat. Use for
+  // sparse-coverage places (Burundi) where BEST-preference search flaps
+  // between panos of mixed quality. If Google retires the pano, the radius
+  // search below is still the fallback.
+  pano?: string;
   heading?: number;
   pitch?: number;
   radius?: number;

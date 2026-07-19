@@ -60,22 +60,34 @@ export default function LookAround({ spot, onClose }: { spot: LookAroundSpot; on
           "streetView"
         )) as google.maps.StreetViewLibrary;
         const [lng, lat] = spot.lngLat;
-        // Radius search instead of a hardcoded pano id: Google retires and
-        // re-shoots panoramas, and this always lands on the freshest one.
-        // No source restriction — Comayagua's plaza and Kayanza town are
-        // user-contributed 360s, not Google car imagery.
-        const { data } = await new StreetViewService().getPanorama({
-          location: { lat, lng },
-          radius: spot.radius ?? 1500,
-          preference: google.maps.StreetViewPreference.BEST,
-          ...(spot.outdoorOnly ? { sources: [google.maps.StreetViewSource.OUTDOOR] } : {}),
-        });
-        if (cancelled || !panoRef.current || !data.location?.pano) {
+        const svc = new StreetViewService();
+        // A pinned pano id wins; otherwise radius-search near lngLat so a
+        // retired pano self-heals to the freshest neighbor. No source
+        // restriction unless asked — the Burundi 360s are user-contributed.
+        let panoId: string | undefined;
+        if (spot.pano) {
+          try {
+            const { data } = await svc.getPanorama({ pano: spot.pano });
+            panoId = data.location?.pano;
+          } catch {
+            // pinned pano retired — fall through to the radius search
+          }
+        }
+        if (!panoId) {
+          const { data } = await svc.getPanorama({
+            location: { lat, lng },
+            radius: spot.radius ?? 1500,
+            preference: google.maps.StreetViewPreference.BEST,
+            ...(spot.outdoorOnly ? { sources: [google.maps.StreetViewSource.OUTDOOR] } : {}),
+          });
+          panoId = data.location?.pano;
+        }
+        if (cancelled || !panoRef.current || !panoId) {
           if (!cancelled) setState("failed");
           return;
         }
         new StreetViewPanorama(panoRef.current, {
-          pano: data.location.pano,
+          pano: panoId,
           pov: { heading: spot.heading ?? 0, pitch: spot.pitch ?? 0 },
           zoom: 0,
           addressControl: false,
