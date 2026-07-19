@@ -10,10 +10,6 @@ import { useMagnetic } from "@/lib/useMagnetic";
 // mapbox-gl only downloads when someone actually taps "Go there"
 const JourneyMap = dynamic(() => import("./JourneyMap"), { ssr: false });
 
-function priceLabel(price: number | null) {
-  return price === null ? "$—" : `$${price.toFixed(2)}`;
-}
-
 function RoastRow({ level }: { level: number }) {
   return (
     <div className="roast-row" aria-label={`Roast level ${level} of 5`}>
@@ -31,11 +27,13 @@ function RoastRow({ level }: { level: number }) {
 function CoffeeCard({
   coffee,
   index,
+  menu,
   onOrder,
   onGoThere,
 }: {
   coffee: Coffee;
   index: number;
+  menu: Menu;
   onOrder: (slug: string, name: string) => void;
   onGoThere: (coffee: Coffee) => void;
 }) {
@@ -76,7 +74,12 @@ function CoffeeCard({
       <p className="tasting-notes">{coffee.notes.join(" · ")}</p>
       <RoastRow level={coffee.roastLevel} />
       <div className="plate-foot">
-        <span className="price">{priceLabel(coffee.price)}</span>
+        <div className="price">
+          <span>
+            ${menu.bagPriceLocal} local · ${menu.bagPriceShip} shipped
+          </span>
+          <span className="price-size">{menu.bagSize} bag</span>
+        </div>
         <button
           ref={orderRef}
           className="order-btn"
@@ -138,7 +141,9 @@ function ColdBrewCard({
             <p className="process-note">Brewed once, in one batch. When it is gone it is gone until next time.</p>
           )}
       <div className="plate-foot">
-        <span className="price">{priceLabel(coldBrew.price)}</span>
+        <span className="price price-tbd">
+          {coldBrew.price === null ? "price coming soon" : `$${coldBrew.price.toFixed(2)}`}
+        </span>
         <button
           ref={orderRef}
           className="order-btn"
@@ -219,6 +224,10 @@ export default function Ordering({ menu }: { menu: Menu }) {
 
   const cashAllowed = delivery === "local";
   const itemCount = items.reduce((n, i) => n + i.qty, 0);
+  const bagCount = items.filter((i) => i.slug !== menu.coldBrew.slug).reduce((n, i) => n + i.qty, 0);
+  const hasColdBrew = items.some((i) => i.slug === menu.coldBrew.slug);
+  const perBag = delivery === "local" ? menu.bagPriceLocal : menu.bagPriceShip;
+  const total = bagCount * perBag;
 
   return (
     <>
@@ -234,6 +243,7 @@ export default function Ordering({ menu }: { menu: Menu }) {
                 key={coffee.slug}
                 coffee={coffee}
                 index={index}
+                menu={menu}
                 onOrder={addItem}
                 onGoThere={setJourneyCoffee}
               />
@@ -259,7 +269,8 @@ export default function Ordering({ menu }: { menu: Menu }) {
               <div className="slip-confirm">
                 <h2>Got it.</h2>
                 <p>
-                  Venmo @{menu.venmo} when you&apos;re ready
+                  Venmo @{menu.venmo}
+                  {total > 0 ? ` $${total}` : ""} when you&apos;re ready
                   {delivery === "local" ? `, or have cash at the door ${menu.deliveryDay}.` : "."}{" "}
                   A confirmation is on its way to your inbox.
                 </p>
@@ -297,6 +308,14 @@ export default function Ordering({ menu }: { menu: Menu }) {
                     </li>
                   ))}
                 </ul>
+
+                {bagCount > 0 && (
+                  <p className="slip-total">
+                    {bagCount} {bagCount === 1 ? "bag" : "bags"} × ${perBag}{" "}
+                    {delivery === "local" ? "local" : "shipped"} · <strong>${total}</strong>
+                    {hasColdBrew && " — cold brew priced soon, Bryon will confirm"}
+                  </p>
+                )}
 
                 <label htmlFor="slip-name">NAME</label>
                 <input id="slip-name" type="text" value={name} onChange={(e) => setName(e.target.value)} autoComplete="name" />

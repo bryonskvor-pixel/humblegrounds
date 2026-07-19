@@ -1,5 +1,8 @@
 import { NextResponse } from "next/server";
-import type { OrderPayload } from "@/lib/types";
+import menuData from "@/content/menu.json";
+import type { Menu, OrderPayload } from "@/lib/types";
+
+const menu = menuData as unknown as Menu;
 
 // One endpoint, no database (§5.3). Sends the order to Bryon via Resend when
 // RESEND_API_KEY + ORDER_EMAIL_TO are configured; otherwise logs it so v1
@@ -39,11 +42,25 @@ export async function POST(request: Request) {
   }
 
   const email = order.email.trim();
+
+  // Price from the menu, not the client: every coffee is one 16 oz bag at
+  // the delivery-dependent price; cold brew is unpriced until Bryon sets it.
+  const perBag = order.delivery === "local" ? menu.bagPriceLocal : menu.bagPriceShip;
+  const bagCount = order.items
+    .filter((i) => i.slug !== menu.coldBrew.slug)
+    .reduce((n, i) => n + i.qty, 0);
+  const hasColdBrew = order.items.some((i) => i.slug === menu.coldBrew.slug);
+  const total = bagCount * perBag;
+  const totalLine =
+    `Total: $${total} (${bagCount} x $${perBag} ${order.delivery === "local" ? "local" : "shipped"})` +
+    (hasColdBrew ? " + cold brew, price TBD" : "");
+
   const lines = [
     `New Humble Grounds order from ${order.name.trim()}`,
     "",
     ...order.items.map((i) => `  ${i.qty} x ${i.name}`),
     "",
+    totalLine,
     `Email: ${email}`,
     `Delivery: ${order.delivery === "local" ? "local doorstep" : "ship"}`,
     `Address / instructions: ${order.address.trim()}`,
@@ -94,6 +111,8 @@ export async function POST(request: Request) {
           "",
           "Your order:",
           ...order.items.map((i) => `  ${i.qty} x ${i.name}`),
+          "",
+          totalLine,
           "",
           "If anything changes or you have a question, just reply to this email.",
           "",

@@ -42,6 +42,9 @@ export type Menu = {
   monthLabel: string;
   deliveryDay: string;
   venmo: string;
+  bagSize: string;
+  bagPriceLocal: number;
+  bagPriceShip: number;
   coffees: Coffee[];
   coldBrew: ColdBrew;
 };

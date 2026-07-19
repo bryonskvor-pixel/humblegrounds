@@ -362,6 +362,25 @@ button {
   font-size: 1rem;
 }
 
+.price-size {
+  display: block;
+  font-size: 0.75rem;
+  opacity: 0.65;
+  margin-top: 0.15rem;
+}
+
+.price-tbd {
+  font-size: 0.875rem;
+  font-style: italic;
+  opacity: 0.75;
+}
+
+.slip-total {
+  font-family: var(--font-mono), monospace;
+  font-size: 0.875rem;
+  margin: 0 0 0.5rem;
+}
+
 .order-btn {
   font-family: var(--font-mono), monospace;
   font-size: 0.875rem;

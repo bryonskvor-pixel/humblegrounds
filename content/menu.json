@@ -3,6 +3,9 @@
   "monthLabel": "JULY 2026",
   "deliveryDay": "DELIVERY_DAY",
   "venmo": "VENMO_HANDLE",
+  "bagSize": "16 oz",
+  "bagPriceLocal": 20,
+  "bagPriceShip": 26,
   "coffees": [
     {
       "slug": "montana-de-la-choca",
