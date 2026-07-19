@@ -48,8 +48,9 @@ export default function Home() {
               <div>
                 <h3>Local</h3>
                 <p>
-                  Doorstep delivery within 15 minutes of Oberlin, every {menu.deliveryDay}. Free, and I mean the
-                  doorstep: leave a note on the slip if the coffee should go somewhere specific.
+                  Doorstep delivery within 15 minutes of Oberlin{menu.deliveryDay ? `, every ${menu.deliveryDay}` : ""}.
+                  Free, and I mean the doorstep: leave a note on the slip if the coffee should go somewhere
+                  specific. Bryon will let you know when it&apos;s on the way.
                 </p>
               </div>
             </Reveal>

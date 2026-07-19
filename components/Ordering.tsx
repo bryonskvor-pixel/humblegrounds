@@ -271,7 +271,9 @@ export default function Ordering({ menu }: { menu: Menu }) {
                 <p>
                   Venmo @{menu.venmo}
                   {total > 0 ? ` $${total}` : ""} when you&apos;re ready
-                  {delivery === "local" ? `, or have cash at the door ${menu.deliveryDay}.` : "."}{" "}
+                  {delivery === "local"
+                    ? `, or have cash at the door${menu.deliveryDay ? ` ${menu.deliveryDay}` : ""}.`
+                    : "."}{" "}
                   A confirmation is on its way to your inbox.
                 </p>
                 <a className="venmo-link" href={`https://venmo.com/u/${menu.venmo}`}>
@@ -332,7 +334,7 @@ export default function Ordering({ menu }: { menu: Menu }) {
                       checked={delivery === "local"}
                       onChange={() => setDelivery("local")}
                     />
-                    Doorstep, {menu.deliveryDay} (near Oberlin)
+                    Doorstep{menu.deliveryDay ? `, ${menu.deliveryDay}` : ""} (near Oberlin)
                   </label>
                   <label>
                     <input
