@@ -95,7 +95,7 @@
         "lookAround": {
           "label": "Walk around El Tajín",
           "lngLat": [-97.3785, 20.4482],
-          "heading": 0,
+          "heading": 315,
           "outdoorOnly": true,
           "note": "El Tajín, a UNESCO World Heritage city of the ancient Totonac, stands a couple of hours north of the farm — the Pyramid of the Niches has 365 of them, one for each day. Drag to look around; the arrows walk the site."
         }
