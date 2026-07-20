@@ -32,8 +32,26 @@
 - Puppeteer verify recipe unchanged (scratchpad install, swiftshader); remember the opener:
   click "press to open", wait ~2.5s, then "skip" — or screenshots show only the door.
 
+### Email pipeline — diagnosed and VERIFIED in production (same session, later)
+- Orders weren't landing because the Vercel project was missing ORDER_EMAIL_TO
+  (RESEND_API_KEY was present). The route's console.log fallback made it look like
+  success. Bryon added ORDER_EMAIL_TO in Vercel = bryon@humblegrounds.coffee.
+- humblegrounds.coffee MX → Google; that address is an ALIAS of bryonskvor@gmail.com.
+  Gotcha: mail from your own alias gets NO Gmail notification and files with a "Sent"
+  label — it arrives silently. Recommended a Gmail filter (from:bryon@humblegrounds.coffee
+  → never spam, mark important, label "Coffee orders").
+- Verified live: contact form, tasting notes, and a test order ("TEST ORDER (Claude
+  diagnostic)") all delivered to the inbox. Customer confirmation: Resend says delivered,
+  but Gmail hides self-addressed copies — still worth one test order from a NON-Bryon
+  address (kskvor2714@gmail.com has emailed the alias; good candidate).
+- The humblegrounds Vercel project is in a DIFFERENT account than the Claude Vercel
+  connector (which has remodel-guide etc.). Bryon planned to disconnect/reconnect the
+  claude.ai connector to the account that owns humblegrounds — after that, the connector
+  will see humblegrounds but NOT the other projects.
+
 ### Next steps
-- Test a real order AND a real tasting submission end-to-end in production.
+- One test order from a non-Bryon email address to see the customer confirmation land.
+- Gmail filter for from:bryon@humblegrounds.coffee (alerts are silent without it).
 - Cold brew pricing / system idea; Mexico tasting notes + process string; plate
   illustrations (unchanged backlog).
 
