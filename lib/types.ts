@@ -83,6 +83,8 @@ export type OrderPayload = {
   delivery: "local" | "ship";
   address: string;
   payment: "venmo" | "cash";
+  // honeypot: real visitors never see or fill this field
+  company?: string;
 };
 
 export type TastingNote = {
@@ -97,10 +99,14 @@ export type TastingPayload = {
   taster?: string;
   comment?: string;
   notes: TastingNote[];
+  // honeypot: real visitors never see or fill this field
+  company?: string;
 };
 
 export type ContactPayload = {
   name: string;
   email: string;
   message: string;
+  // honeypot: real visitors never see or fill this field
+  company?: string;
 };

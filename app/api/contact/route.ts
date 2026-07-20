@@ -16,11 +16,19 @@ export async function POST(request: Request) {
     return NextResponse.json({ error: "bad json" }, { status: 400 });
   }
 
+  // Honeypot: a field real visitors never see or fill. Bots that fill every
+  // input trip it; report success without sending so they don't retry.
+  if (typeof msg.company === "string" && msg.company.trim()) {
+    return NextResponse.json({ ok: true });
+  }
+
   if (
     typeof msg.name !== "string" ||
     !msg.name.trim() ||
+    msg.name.length > 200 ||
     typeof msg.email !== "string" ||
     !looksLikeEmail(msg.email.trim()) ||
+    msg.email.length > 320 ||
     typeof msg.message !== "string" ||
     !msg.message.trim() ||
     msg.message.length > 5000

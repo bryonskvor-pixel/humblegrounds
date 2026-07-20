@@ -172,6 +172,7 @@ export default function Ordering({ menu }: { menu: Menu }) {
   const [delivery, setDelivery] = useState<"local" | "ship">("local");
   const [address, setAddress] = useState("");
   const [payment, setPayment] = useState<"venmo" | "cash">("venmo");
+  const [company, setCompany] = useState(""); // honeypot, left blank by real visitors
   const [status, setStatus] = useState<"idle" | "sending" | "sent" | "error">("idle");
   const [error, setError] = useState("");
   const [journeyCoffee, setJourneyCoffee] = useState<Coffee | null>(null);
@@ -220,7 +221,15 @@ export default function Ordering({ menu }: { menu: Menu }) {
       const res = await fetch("/api/order", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({ items, name: name.trim(), email: email.trim(), delivery, address: address.trim(), payment }),
+        body: JSON.stringify({
+          items,
+          name: name.trim(),
+          email: email.trim(),
+          delivery,
+          address: address.trim(),
+          payment,
+          company,
+        }),
       });
       if (!res.ok) throw new Error(`order endpoint returned ${res.status}`);
       setStatus("sent");
@@ -306,6 +315,16 @@ export default function Ordering({ menu }: { menu: Menu }) {
             ) : (
               <>
                 <h2>Order slip</h2>
+                <input
+                  type="text"
+                  name="company"
+                  value={company}
+                  onChange={(e) => setCompany(e.target.value)}
+                  className="hp-field"
+                  tabIndex={-1}
+                  autoComplete="off"
+                  aria-hidden="true"
+                />
                 <ul className="slip-items">
                   {items.length === 0 && <li>Nothing on the slip yet.</li>}
                   {items.map((item) => (

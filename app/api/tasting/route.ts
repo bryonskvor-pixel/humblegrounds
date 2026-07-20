@@ -17,8 +17,20 @@ export async function POST(request: Request) {
     return NextResponse.json({ error: "bad json" }, { status: 400 });
   }
 
+  // Honeypot: a field real visitors never see or fill. Bots that fill every
+  // input trip it; report success without sending so they don't retry.
+  if (typeof body.company === "string" && body.company.trim()) {
+    return NextResponse.json({ ok: true });
+  }
+
   const notes = Array.isArray(body.notes)
-    ? body.notes.filter((n) => n && typeof n.flavor === "string" && n.flavor.trim())
+    ? body.notes
+        .filter((n) => n && typeof n.flavor === "string" && n.flavor.trim() && n.flavor.length <= 200)
+        .map((n) => ({
+          flavor: n.flavor.trim(),
+          when: typeof n.when === "string" ? n.when.slice(0, 100) : undefined,
+          temperature: typeof n.temperature === "string" ? n.temperature.slice(0, 100) : undefined,
+        }))
     : [];
 
   if (notes.length === 0) {
@@ -29,9 +41,9 @@ export async function POST(request: Request) {
     return NextResponse.json({ error: "too many notes" }, { status: 400 });
   }
 
-  const taster = (body.taster ?? "").trim();
-  const coffee = (body.coffee ?? "").trim();
-  const comment = (body.comment ?? "").trim();
+  const taster = (typeof body.taster === "string" ? body.taster : "").trim().slice(0, 200);
+  const coffee = (typeof body.coffee === "string" ? body.coffee : "").trim().slice(0, 200);
+  const comment = (typeof body.comment === "string" ? body.comment : "").trim().slice(0, 2000);
 
   const lines = [
     `New tasting notes${taster ? ` from ${taster}` : " (no name given)"}`,

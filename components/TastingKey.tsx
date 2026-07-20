@@ -249,6 +249,7 @@ export default function TastingKey({ coffee, onClose }: { coffee: Coffee; onClos
   const [shareName, setShareName] = useState("");
   const [shareComment, setShareComment] = useState("");
   const [shareErr, setShareErr] = useState("");
+  const [company, setCompany] = useState(""); // honeypot, left blank by real visitors
 
   useEffect(() => {
     function onKey(e: KeyboardEvent) {
@@ -314,6 +315,7 @@ export default function TastingKey({ coffee, onClose }: { coffee: Coffee; onClos
           taster: shareName.trim(),
           comment: shareComment.trim(),
           notes,
+          company,
         }),
       });
       if (!res.ok) throw new Error(`tasting endpoint returned ${res.status}`);
@@ -463,6 +465,16 @@ export default function TastingKey({ coffee, onClose }: { coffee: Coffee; onClos
                 </div>
               ) : shareOpen ? (
                 <div className="tk-share-form">
+                  <input
+                    type="text"
+                    name="company"
+                    value={company}
+                    onChange={(e) => setCompany(e.target.value)}
+                    className="hp-field"
+                    tabIndex={-1}
+                    autoComplete="off"
+                    aria-hidden="true"
+                  />
                   <p className="tk-v" style={{ fontSize: "0.9rem" }}>
                     Sending {found.length} note{found.length === 1 ? "" : "s"} on {coffee.name} to Bryon.
                     Every field is optional.

@@ -8,6 +8,7 @@ export default function ContactForm() {
   const [name, setName] = useState("");
   const [email, setEmail] = useState("");
   const [message, setMessage] = useState("");
+  const [company, setCompany] = useState(""); // honeypot, left blank by real visitors
   const [status, setStatus] = useState<"idle" | "sending" | "sent">("idle");
   const [error, setError] = useState("");
 
@@ -31,7 +32,7 @@ export default function ContactForm() {
       const res = await fetch("/api/contact", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({ name: name.trim(), email: email.trim(), message: message.trim() }),
+        body: JSON.stringify({ name: name.trim(), email: email.trim(), message: message.trim(), company }),
       });
       if (!res.ok) throw new Error(`contact endpoint returned ${res.status}`);
       setStatus("sent");
@@ -51,6 +52,17 @@ export default function ContactForm() {
 
   return (
     <form className="contact-form" onSubmit={submit}>
+      <input
+        type="text"
+        name="company"
+        value={company}
+        onChange={(e) => setCompany(e.target.value)}
+        className="hp-field"
+        tabIndex={-1}
+        autoComplete="off"
+        aria-hidden="true"
+      />
+
       <label htmlFor="contact-name">NAME</label>
       <input id="contact-name" type="text" value={name} onChange={(e) => setName(e.target.value)} autoComplete="name" />
 

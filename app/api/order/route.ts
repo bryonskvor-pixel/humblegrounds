@@ -23,15 +23,40 @@ export async function POST(request: Request) {
     return NextResponse.json({ error: "bad json" }, { status: 400 });
   }
 
+  // Honeypot: a field real visitors never see or fill. Bots that fill every
+  // input trip it; report success without sending so they don't retry.
+  if (typeof order.company === "string" && order.company.trim()) {
+    return NextResponse.json({ ok: true });
+  }
+
+  const validSlugs = new Set([...menu.coffees.map((c) => c.slug), menu.coldBrew.slug]);
+  const itemsValid =
+    Array.isArray(order.items) &&
+    order.items.length > 0 &&
+    order.items.length <= 20 &&
+    order.items.every(
+      (i) =>
+        i &&
+        typeof i.slug === "string" &&
+        validSlugs.has(i.slug) &&
+        typeof i.name === "string" &&
+        i.name.length <= 200 &&
+        Number.isInteger(i.qty) &&
+        i.qty > 0 &&
+        i.qty <= 99
+    );
+
   if (
-    !Array.isArray(order.items) ||
-    order.items.length === 0 ||
+    !itemsValid ||
     typeof order.name !== "string" ||
     !order.name.trim() ||
+    order.name.length > 200 ||
     typeof order.email !== "string" ||
     !looksLikeEmail(order.email.trim()) ||
+    order.email.length > 320 ||
     typeof order.address !== "string" ||
     !order.address.trim() ||
+    order.address.length > 1000 ||
     !["local", "ship"].includes(order.delivery) ||
     !["venmo", "cash"].includes(order.payment)
   ) {

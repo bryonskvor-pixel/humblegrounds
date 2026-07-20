@@ -1,3 +1,4 @@
+import Link from "next/link";
 import menuData from "@/content/menu.json";
 import type { Menu } from "@/lib/types";
 import Ordering from "@/components/Ordering";
@@ -211,6 +212,9 @@ export default function Home() {
           <p className="fine">
             Venmo <a href={`https://venmo.com/u/${menu.venmo}`}>@{menu.venmo}</a> ·{" "}
             <a href="mailto:bryon@humblegrounds.coffee">bryon@humblegrounds.coffee</a>
+          </p>
+          <p className="fine">
+            <Link href="/privacy">Privacy</Link> · <Link href="/terms">Terms</Link>
           </p>
         </Reveal>
         <GroundStrip className="ground-strip" />
