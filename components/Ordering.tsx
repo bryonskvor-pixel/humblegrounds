@@ -1,6 +1,6 @@
 "use client";
 
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import dynamic from "next/dynamic";
 import type { Coffee, ColdBrew, Menu, OrderItem } from "@/lib/types";
 import { BeanGlyph, JarGlyph } from "./Glyphs";
@@ -177,6 +177,15 @@ export default function Ordering({ menu }: { menu: Menu }) {
   const [error, setError] = useState("");
   const [journeyCoffee, setJourneyCoffee] = useState<Coffee | null>(null);
   const [tastingCoffee, setTastingCoffee] = useState<Coffee | null>(null);
+
+  // The order confirmation email links back to `/?taste=<slug>` so the
+  // Tasting Key reopens for the exact coffee someone bought.
+  useEffect(() => {
+    const slug = new URLSearchParams(window.location.search).get("taste");
+    if (!slug) return;
+    const coffee = menu.coffees.find((c) => c.slug === slug);
+    if (coffee) setTastingCoffee(coffee);
+  }, [menu.coffees]);
 
   function addItem(slug: string, itemName: string) {
     setItems((prev) => {

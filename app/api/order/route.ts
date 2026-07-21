@@ -11,6 +11,11 @@ const menu = menuData as unknown as Menu;
 
 const CONFIRM_FROM = "Humble Grounds <bryon@humblegrounds.coffee>";
 
+// Falls back to the current Vercel URL until humblegrounds.coffee is pointed
+// at the deployment (see SESSION_NOTES.md); nothing else here needs to change
+// when that switch happens.
+const SITE_URL = process.env.NEXT_PUBLIC_SITE_URL ?? "https://humblegrounds.vercel.app";
+
 function looksLikeEmail(s: string) {
   return /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(s);
 }
@@ -96,6 +101,13 @@ export async function POST(request: Request) {
   const apiKey = process.env.RESEND_API_KEY;
   const to = process.env.ORDER_EMAIL_TO;
 
+  // One Tasting Key link per distinct coffee ordered (cold brew has no
+  // tasting key), so someone who bought two coffees gets both links.
+  const tastingLinks = Array.from(new Set(order.items.map((i) => i.slug)))
+    .map((slug) => menu.coffees.find((c) => c.slug === slug))
+    .filter((c): c is Menu["coffees"][number] => Boolean(c))
+    .map((c) => `  ${c.name} — ${SITE_URL}/?taste=${c.slug}#this-month`);
+
   if (apiKey && to) {
     const res = await fetch("https://api.resend.com/emails", {
       method: "POST",
@@ -138,6 +150,14 @@ export async function POST(request: Request) {
           ...order.items.map((i) => `  ${i.qty} x ${i.name}`),
           "",
           totalLine,
+          ...(tastingLinks.length > 0
+            ? [
+                "",
+                "In case you missed it: you can elevate your coffee experience by using the Tasting Key while you drink it. It walks you through the flavors one easy question at a time.",
+                "",
+                ...tastingLinks,
+              ]
+            : []),
           "",
           "If anything changes or you have a question, just reply to this email.",
           "",
