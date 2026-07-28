@@ -87,21 +87,135 @@ button {
   padding: 3rem 1rem 2rem;
 }
 
-.masthead-glyph {
+.masthead-logo {
   position: relative;
   z-index: 1;
-  width: min(9rem, 32vw);
-  height: auto;
-  display: block;
-  margin: 0 auto 0.75rem;
-  filter: drop-shadow(0 6px 14px rgba(43, 38, 32, 0.16));
+  width: min(46rem, 94vw);
+  margin: 0 auto;
 }
 
-.masthead h1 {
-  position: relative;
+.masthead-logo img {
+  width: 100%;
+  height: auto;
+  display: block;
+  /* feather the artwork's paper into the page paper (near-identical creams) */
+  -webkit-mask-image: linear-gradient(to right, transparent 0, #000 3%, #000 97.5%, transparent 100%),
+    linear-gradient(to bottom, transparent 0, #000 4%, #000 96%, transparent 100%);
+  mask-image: linear-gradient(to right, transparent 0, #000 3%, #000 97.5%, transparent 100%),
+    linear-gradient(to bottom, transparent 0, #000 4%, #000 96%, transparent 100%);
+  -webkit-mask-composite: source-in;
+  mask-composite: intersect;
+}
+
+.sr-only {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip-path: inset(50%);
+  white-space: nowrap;
+  border: 0;
+}
+
+/* rising smoke over the bean's crack (art's drawn wisps sit under this) */
+.logo-smoke {
+  position: absolute;
+  /* the img's mask creates a stacking context that would otherwise paint over this */
   z-index: 1;
-  font-size: clamp(2.6rem, 8vw, 4.25rem);
-  letter-spacing: 0.01em;
+  left: 45.5%;
+  top: 0;
+  width: 9%;
+  height: 34%;
+  pointer-events: none;
+}
+
+.smoke-wisp {
+  position: absolute;
+  bottom: 0;
+  width: 1.7rem;
+  height: 3.8rem;
+  border-radius: 50%;
+  background: radial-gradient(closest-side, rgba(104, 92, 80, 0.95), rgba(104, 92, 80, 0) 78%);
+  filter: blur(3px);
+  opacity: 0;
+  transform-origin: 50% 100%;
+  animation: smoke-rise var(--rise-time, 4.6s) ease-out infinite;
+  animation-delay: var(--rise-delay, 0s);
+}
+
+.smoke-w1 {
+  left: 28%;
+  --sway: -0.9rem;
+}
+
+.smoke-w2 {
+  left: 48%;
+  --rise-time: 5.4s;
+  --rise-delay: 1.7s;
+  --sway: 0.8rem;
+  width: 1.4rem;
+}
+
+.smoke-w3 {
+  left: 38%;
+  --rise-time: 6.1s;
+  --rise-delay: 3.1s;
+  --sway: -0.3rem;
+  height: 4.4rem;
+}
+
+@keyframes smoke-rise {
+  0% {
+    opacity: 0;
+    transform: translate(0, 0) scale(0.55);
+  }
+  18% {
+    opacity: 0.85;
+  }
+  60% {
+    opacity: 0.5;
+  }
+  100% {
+    opacity: 0;
+    transform: translate(var(--sway, 0rem), -6.5rem) scale(1.9);
+  }
+}
+
+@media (max-width: 640px) {
+  .smoke-wisp {
+    width: 1.05rem;
+    height: 2.3rem;
+  }
+  .smoke-w2 {
+    width: 0.85rem;
+  }
+  .smoke-w3 {
+    height: 2.6rem;
+  }
+  @keyframes smoke-rise {
+    0% {
+      opacity: 0;
+      transform: translate(0, 0) scale(0.55);
+    }
+    18% {
+      opacity: 0.7;
+    }
+    60% {
+      opacity: 0.4;
+    }
+    100% {
+      opacity: 0;
+      transform: translate(var(--sway, 0rem), -3.4rem) scale(1.7);
+    }
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .smoke-wisp {
+    animation: none;
+  }
 }
 
 .masthead .subline {

@@ -18,16 +18,22 @@ export default function Home() {
 
       <header className="masthead">
         <AmbientFloat />
-        {/* eslint-disable-next-line @next/next/no-img-element */}
-        <img
-          className="masthead-glyph"
-          src="/assets/brand/mark-square.png"
-          alt=""
-          width={1200}
-          height={1200}
-          fetchPriority="high"
-        />
-        <h1>Humble Grounds</h1>
+        <div className="masthead-logo">
+          <span className="logo-smoke" aria-hidden="true">
+            <i className="smoke-wisp smoke-w1" />
+            <i className="smoke-wisp smoke-w2" />
+            <i className="smoke-wisp smoke-w3" />
+          </span>
+          {/* eslint-disable-next-line @next/next/no-img-element */}
+          <img
+            src="/assets/brand/logo-lockup.webp"
+            alt="Humble Grounds"
+            width={1600}
+            height={893}
+            fetchPriority="high"
+          />
+        </div>
+        <h1 className="sr-only">Humble Grounds</h1>
         <p className="subline">Small-batch coffee &middot; Oberlin, Ohio</p>
         <p className="tagline">
           so much <em className="glow-good">good</em> in a cup
