@@ -81,10 +81,11 @@
           },
           {
             "label": "Stand at Laguna Verde",
-            "lngLat": [-89.7862, 13.8684],
-            "pano": "CAoSF0NJSE0wb2dLRUlDQWdJRDM4TzJPbHdF",
-            "radius": 1500,
-            "note": "A crater lagoon in the hills above Apaneca, cousin to the frog lagoon that gives the farm its name. One local-shot 360 from the shore."
+            "lngLat": [-89.788, 13.8932],
+            "pano": "CAoSFkNJSE0wb2dLRUlDQWdJREUxODd1WHc.",
+            "heading": 0,
+            "radius": 400,
+            "note": "Down on the floor of Laguna Verde, a reed-filled crater lagoon in the cloud forest above Apaneca, cousin to the frog lagoon that gives the farm its name. One local-shot 360 from inside the crater."
           }
         ]
       }
