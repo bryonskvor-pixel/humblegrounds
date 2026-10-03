@@ -1,6 +1,6 @@
 {
-  "month": "2026-09",
-  "monthLabel": "SEPTEMBER 2026",
+  "month": "2026-10",
+  "monthLabel": "OCTOBER 2026",
   "deliveryDay": "",
   "venmo": "Bryon-Skvor",
   "bagSize": "16 oz",
@@ -8,125 +8,124 @@
   "bagPriceShip": 26,
   "coffees": [
     {
-      "slug": "gedeb-banko-chelchele",
-      "name": "Ethiopia Yirgacheffe Banko Chelchele Supernatural",
-      "origin": "Gedeb, Yirgacheffe, Ethiopia",
-      "station": "Banko Chelchele station · EDN Ethiopian Coffee",
-      "elevation": "1,900–2,000 masl",
-      "variety": "Heirloom landraces",
-      "process": "Supernatural · anaerobic natural",
-      "processNote": "Whole cherries are sorted for ripeness, sealed in a tank for about a day with no oxygen, then sun-dried on raised beds for two to four weeks with the fruit still on. EDN calls it Supernatural. That pre-drying ferment is where the blueberry and the white-wine lift come from, and the cup stays clean rather than boozy.",
-      "notes": ["blueberry", "rose", "milk chocolate"],
+      "slug": "law-wu-natural",
+      "name": "Thailand Lanna Law Wu Natural",
+      "origin": "Law Wu village, Chiang Mai highlands, Thailand",
+      "station": "Law Wu village · Lanna Coffee & ITDF co-op",
+      "elevation": "1,700 masl",
+      "variety": "Catimor",
+      "process": "Natural · shade-grown",
+      "processNote": "Whole cherries are dried in the sun with the fruit still on the bean, so the seed soaks in its own fruit sugar for weeks. That is where the ripe red fruit and the melon sweetness come from. The village's consistent shade slows ripening at 1,700 meters, which keeps the cup clean instead of wild.",
+      "notes": ["ripe red fruit", "melon", "cocoa"],
       "roastLevel": 2.5,
       "price": null,
       "soldOut": false,
       "plate": "",
-      "header": "/assets/headers/gedeb-ethiopia.jpg",
-      "aboutFarm": "Coffee was born in these highlands, and this is about as close to the source as it gets. Gedeb sits in the far southeastern corner of the Gedeo Zone, officially Yirgacheffe but closer to Guji than the rest of it, and its coffees are some of the most explosive cups anywhere in Ethiopia: heady, perfume-like aromatics over a candy-sweet structure. A few hundred smallholders, each farming a hectare or two of diversified, largely organic land between 1,900 and 2,000 meters, bring ripe cherry to the Banko Chelchele station, run by EDN Ethiopian Coffee. During harvest the station employs over 200 people just to keep the drying cherry turning.\n\nThere is no single varietal to name here, and that is the point. This lot is built from heirloom landraces, the regionally adapted varieties that have grown in Ethiopia's highlands for generations, prized for their aromatic complexity and delicate florals. They are the source of the perfume that defines great Yirgacheffe. And in Ethiopia coffee is never just a drink: it is a ceremony. Beans roasted over coals in front of the guests, ground fresh, brewed in a clay jebena, and poured in rounds while the incense burns. This cup has been an occasion for a thousand years.",
+      "header": "/assets/headers/law-wu-thailand.jpg",
+      "aboutFarm": "Thailand is not where most people think their coffee comes from, and that is exactly why this cup is worth your attention. Law Wu is a village of the Lahu tribe, an indigenous people who came south out of China generations ago, perched at 1,700 meters in the mountains above Chiang Mai. Coffee has only grown here about fifteen years, but the cool air, constant shade, and strange beautiful terrain turn out to be nearly perfect for it. The partnership started in 2017 with four farmers. Their work was so consistent that five more joined, and today nine families grow some of the most interesting microlots in Southeast Asia.\n\nLanna Coffee exists to serve the hill tribes of Northern Thailand, communities of refugees who fled upheaval in China and Southeast Asia and have lived stateless and poor for over a century. Working with the Integrated Tribal Development Foundation, they helped build Thailand's first certified fair trade coffee co-op, now over 40 villages strong, with more than 400 coffee farms that are 100 percent farmer owned, growing single-source, pesticide-free coffee. Every bag helps another farmer convert to a crop that pays a stable living. A better life through a cup of coffee is a slow thing, but it is real.",
       "journey": {
-        "label": "Banko Chelchele · Gedeb, Ethiopia",
-        "lngLat": [38.25, 5.9167],
-        "zoom": 10.4,
+        "label": "Law Wu · Chiang Mai highlands, Thailand",
+        "lngLat": [98.93, 19.33],
+        "zoom": 10.6,
+        "pitch": 62,
+        "bearing": 330,
+        "story": "Most coffee maps skip Thailand entirely. Up here in the mountains north of Chiang Mai, the Lahu village of Law Wu is quietly correcting that, nine farm families growing shade-slowed coffee at 1,700 meters on slopes where opium poppies grew a generation ago. To the northwest the limestone wall of Doi Luang Chiang Dao climbs out of the forest.",
+        "lookArounds": [
+          {
+            "label": "Walk old Chiang Mai",
+            "lngLat": [98.9933, 18.7879],
+            "radius": 400,
+            "outdoorOnly": true,
+            "note": "Tha Phae Gate and the brick walls of old Chiang Mai, the northern capital this coffee comes down the mountain to. The moat around the old city is 700 years old. Drag to look around; the arrows walk the streets."
+          },
+          {
+            "label": "Stand at Doi Suthep",
+            "lngLat": [98.9217, 18.8048],
+            "pano": "CAoSF0NJSE0wb2dLRUlDQWdJRDRodnpYMFFF",
+            "radius": 400,
+            "note": "Wat Phra That Doi Suthep, the golden temple on the mountain above Chiang Mai. Legend says a white elephant carrying a relic of the Buddha climbed up here, trumpeted three times, and chose this spot. One local-shot 360 from the terrace."
+          }
+        ]
+      }
+    },
+    {
+      "slug": "musasa-dukunde-kawa",
+      "name": "Rwanda Dukunde Kawa Mbilima Organic",
+      "origin": "Gakenke district, Northern Province, Rwanda",
+      "station": "Musasa mill · Dukunde Kawa Cooperative",
+      "elevation": "1,800–2,100 masl",
+      "variety": "Red Bourbon",
+      "process": "Washed · certified organic",
+      "processNote": "Cherries are pulped the day they are picked, fermented in water, washed clean, and dried slowly on raised beds at the Musasa mill. The washed process strips the fruit away early, so what you taste is the bean itself and the high hills it grew on: clean, chocolaty, with fruit riding over the top.",
+      "notes": ["chocolate", "fruit tones", "full-bodied"],
+      "roastLevel": 3.5,
+      "price": null,
+      "soldOut": false,
+      "plate": "",
+      "header": "/assets/headers/musasa-rwanda.jpg",
+      "aboutFarm": "This coffee comes from family farms gathered around the Musasa mill in the Gakenke district of Rwanda's Northern Province, up near a mountain gorilla habitat. The farm plots are so small that nobody measures them in acres; they are measured by the number of trees. Each family brings its cherry down the hill to the cooperative's wet mill, where it is sorted, washed, and dried with the kind of care you can only give coffee when you know every tree personally.\n\nThe farmers are members of the Dukunde Kawa Cooperative, a name that means roughly 'let's love coffee' in Kinyarwanda. They started in 2000 with just enough money to build one wet mill. Today they run four wet mills and their own dry mill, and more than 80 percent of the cooperative's workforce is women. Earnings have gone into livestock, healthcare, and programs to protect the land, which is to say the coffee is improving the hills it grows on.",
+      "journey": {
+        "label": "Musasa mill · Gakenke, Rwanda",
+        "lngLat": [29.8, -1.81],
+        "zoom": 11.2,
         "pitch": 62,
         "bearing": 315,
-        "story": "Arabica coffee was born in these highlands and still grows half wild under the shade trees. Gedeb hangs on the southern rim of the Gedeo Zone at nearly 2,000 meters, where a few hundred smallholder families carry cherry down the ridges to the Banko Chelchele station. West of here the land falls away toward the floor of the Great Rift Valley.",
+        "story": "Rwanda is called the land of a thousand hills and this is deep in them. Around the Musasa mill in Gakenke district the farm plots are so small they are counted in trees, not acres, and most of the hands working the cooperative belong to women. Northwest along the horizon stand the Virunga volcanoes, the last home of the mountain gorillas.",
         "lookArounds": [
           {
-            "label": "Stand in Meskel Square, Addis Ababa",
-            "lngLat": [38.7613, 9.0107],
-            "pano": "CAoSF0NJSE0wb2dLRUlDQWdJRFc3SVdYb3dF",
-            "radius": 800,
-            "note": "Meskel Square in Addis Ababa, the capital this coffee trucks down to for milling and export, and the highest capital city in Africa. One local-shot 360; street cameras have barely reached Ethiopia."
+            "label": "Enter the gorilla park",
+            "lngLat": [29.4985, -1.46066],
+            "pano": "CAoSF0NJSE0wb2dLRUlDQWdJQzR6WXpqcUFF",
+            "radius": 4000,
+            "note": "The lower slopes of Mount Bisoke in Volcanoes National Park, a couple hours northwest of the mill. The bamboo and hagenia forests up here are home to the mountain gorillas, and this is where the treks to find them begin. One local-shot 360 from the mountain."
           },
           {
-            "label": "Visit Lalibela's rock churches",
-            "lngLat": [39.0411, 12.0316],
-            "pano": "CAoSF0NJSE0wb2dLRUlDQWdJRDQ0cnFwdEFF",
-            "radius": 1000,
-            "note": "Lalibela, in the northern highlands, where eleven churches were carved straight down into the living rock 800 years ago and are still in use today. A local-shot 360 from the site."
+            "label": "Climb to Karisoke",
+            "lngLat": [29.46315, -1.49447],
+            "pano": "CAoSF0NJSE0wb2dLRUlDQWdJQ2N0X3ZCNndF",
+            "radius": 4000,
+            "note": "The high saddle between Mount Karisimbi and Mount Bisoke, where Dian Fossey built the Karisoke research camp in 1967 and spent 18 years living among the gorillas. She is buried up here beside them. One local-shot 360 from the trail."
           }
         ]
       }
     },
     {
-      "slug": "cerro-las-ranas-honey",
-      "name": "El Salvador Cerro Las Ranas Honey",
-      "origin": "Apaneca, Ahuachapán, El Salvador",
-      "station": "Finca Cerro Las Ranas · JASAL",
-      "elevation": "1,450–1,780 masl",
-      "variety": "Bourbon · Pacamara · Pacas · Catuai · Caturra",
-      "process": "Honey · dried on clay patios",
-      "processNote": "Ripe cherries are pulped, then the beans dry on clay patios still coated in their sticky fruit mucilage, turned constantly so they dry evenly. Honey process, no bees involved. It keeps some of a natural's sweetness and red fruit while staying more consistent cup to cup.",
-      "notes": ["red fruit", "nutty", "chocolate"],
+      "slug": "pena-redonda-pacamara",
+      "name": "El Salvador Peña Redonda Pacamara",
+      "origin": "La Palma, Chalatenango, El Salvador",
+      "station": "Finca Peña Redonda · Lemus family",
+      "elevation": "1,450–1,500 masl",
+      "variety": "Pacamara",
+      "process": "Washed · selective harvest",
+      "processNote": "Pacamara is El Salvador's own giant-bean variety, a cross of Pacas and Maragogipe, and the Lemus family handles it the traditional way: picked selectively at full ripeness, fully washed, and sun-dried during the dry season that conveniently arrives right at harvest. Stony soil and sweetgum shade slow the ripening, which is where the depth comes from.",
+      "notes": ["chocolate", "orange", "peach"],
       "roastLevel": 3,
       "price": null,
       "soldOut": false,
       "plate": "",
-      "header": "/assets/headers/apaneca-el-salvador.jpg",
-      "aboutFarm": "Cerro Las Ranas means the Hill of Frogs, and the name is literal: the farm wraps around a lagoon populated by thousands of them. It sits above Apaneca in the department of Ahuachapán, along the volcanic ridge Salvadorans know as the Ruta de las Flores, with parcels climbing from 1,450 to 1,780 meters, about as high as coffee grows anywhere in the country. That altitude is what gives a honey-processed coffee this much sweetness while keeping the cup crisp.\n\nThe farm is run by JASAL, a family operation where Jose Antonio Salaverria and his sons handle everything themselves, from year-round farm management to quality control in their own cupping lab. They were honey processing this coffee years before it became one of specialty coffee's hottest trends, back when drying pulped beans in their own fruit sugar was considered a strange thing to do on purpose. The frogs, presumably, approved all along.",
+      "header": "/assets/headers/chalatenango-el-salvador.jpg",
+      "aboutFarm": "Peña Redonda is named for the enormous round rock that dominates the farm, high above La Palma in Chalatenango. Carlos Mauricio Lemus Landaverde took the farm over after the death of his father, José María Lemus, and kept the family habits that built its reputation: clean processing and picking only what is ripe. The trees grow between 1,450 and 1,500 meters in stony soil under sweetgum shade, and the results speak at the national level. Their lots have placed at the Cup of Excellence four times, including 7th in the whole country in 2019, with an award profile of Swiss chocolate, orange, and peach.\n\nChalatenango, the 'valley of water and sand,' holds the highest ground in El Salvador, topping out at Cerro El Pital at 2,730 meters. For decades the famous Salvadoran coffees came from the west, until a La Palma farm took 1st place at the 2007 Cup of Excellence and put this region on the map for good. El Salvador is the birthplace of the Pacas and Pacamara varieties, and up here, where cool microclimates ripen the cherry slowly, Pacamara shows what it was born to do.",
       "journey": {
-        "label": "Cerro Las Ranas · Apaneca, El Salvador",
-        "lngLat": [-89.79, 13.865],
+        "label": "Peña Redonda · La Palma, El Salvador",
+        "lngLat": [-89.165, 14.325],
         "zoom": 11.5,
         "pitch": 62,
-        "bearing": 95,
-        "story": "The Hill of Frogs sits in the Apaneca Ilamatepec range of western El Salvador, volcano country strung with crater lakes and coffee towns. The farm is named for its lagoon and the thousands of frogs that live in it. East along this ridge the land rises to the Santa Ana volcano, the highest in the country.",
+        "bearing": 30,
+        "story": "La Palma hangs in the mountains of Chalatenango near the Honduran border, in what Salvadorans call the valley of water and sand. Peña Redonda is named for the great round rock on the property, where Pacamara ripens slowly in stony soil under sweetgum shade. Northeast of here the ridge climbs to Cerro El Pital, the highest point in the country.",
         "lookArounds": [
           {
-            "label": "Walk the streets of Apaneca",
-            "lngLat": [-89.8016, 13.8591],
+            "label": "Walk the murals of La Palma",
+            "lngLat": [-89.1692, 14.31891],
+            "pano": "CAoSF0NJSE0wb2dLRUlDQWdJQ0VpLXFkaEFF",
             "radius": 400,
-            "outdoorOnly": true,
-            "note": "Apaneca, the little cobblestone town the farm looks down on, and one of the highest towns in El Salvador. This is the heart of the Ruta de las Flores. Drag to look around."
+            "note": "La Palma, the mountain town below the farm, famous across El Salvador for the bright painted murals in the style of Fernando Llort that cover its walls. One local-shot 360 from the middle of town."
           },
           {
-            "label": "Stand at Laguna Verde",
-            "lngLat": [-89.788, 13.8932],
-            "pano": "CAoSFkNJSE0wb2dLRUlDQWdJREUxODd1WHc.",
-            "heading": 0,
-            "radius": 400,
-            "note": "Down on the floor of Laguna Verde, a reed-filled crater lagoon in the cloud forest above Apaneca, cousin to the frog lagoon that gives the farm its name. One local-shot 360 from inside the crater."
-          }
-        ]
-      }
-    },
-    {
-      "slug": "veracruz-finca-la-laja",
-      "name": "Veracruz Finca La Laja",
-      "origin": "Veracruz, Mexico",
-      "station": "Finca La Laja · Tlaltetela, Huatusco highlands",
-      "elevation": "1,130–1,250 masl",
-      "variety": "Caturra · Garnica",
-      "process": "",
-      "processNote": "Shade-grown under the cloud forest canopy on a farm the Sampieri family has worked since 1920.",
-      "notes": ["full-bodied", "balanced", "creamy"],
-      "roastLevel": 3,
-      "price": null,
-      "soldOut": false,
-      "plate": "",
-      "header": "/assets/headers/veracruz-mexico.jpg",
-      "aboutFarm": "Finca La Laja sits in the La Laja community in Tlaltetela, up in the central mountains of Veracruz, somewhere between 1,130 and 1,250 meters. The whole area is fed by small tributary rivers running down into the Rio La Antigua, and the vegetation shifts as you climb: cloud forest of pine and oak higher up, giving way to tropical deciduous forest lower down. You can taste some of that range in the cup. It opens with a gentle citrus brightness and a little sweetness up front, then settles into a full, creamy body with a buttery finish that lingers without ever turning heavy. Brown sugar, toffee, cashew butter, a little lemon meringue, and underneath all of it a floral note that never quite steps forward enough to name.",
-      "journey": {
-        "label": "Finca La Laja · Veracruz, Mexico",
-        "lngLat": [-96.93, 19.3],
-        "zoom": 11.5,
-        "pitch": 62,
-        "bearing": 230,
-        "story": "La Laja sits in the cloud forests of central Veracruz, in the mountains above Huatusco, watered by small rivers that feed the Río La Antigua. The Sampieri family has grown coffee on these slopes since 1920. On a clear day, Pico de Orizaba stands on the horizon.",
-        "lookArounds": [
-          {
-            "label": "Walk downtown Veracruz",
-            "lngLat": [-96.1366, 19.1999],
-            "radius": 400,
-            "outdoorOnly": true,
-            "note": "Downtown Veracruz, a block off the zócalo — Mexico's oldest port city, where coffee from these mountains has shipped out for two centuries. Drag to look around; the arrows walk the streets."
-          },
-          {
-            "label": "Walk around El Tajín",
-            "lngLat": [-97.3785, 20.4482],
-            "heading": 315,
-            "outdoorOnly": true,
-            "note": "El Tajín, a UNESCO World Heritage city of the ancient Totonac, stands a couple of hours north of the farm — the Pyramid of the Niches has 365 of them, one for each day. Drag to look around; the arrows walk the site."
+            "label": "Stand on Cerro El Pital",
+            "lngLat": [-89.12496, 14.39134],
+            "pano": "CAoSF0NJSE0wb2dLRUlDQWdJQ0VpOXJ3bEFF",
+            "radius": 1500,
+            "note": "Cerro El Pital, the highest point in El Salvador at 2,730 meters, on the Honduran border just past the farm. Up here the cloud forest drips with fog most mornings. One local-shot 360 near the summit."
           }
         ]
       }
