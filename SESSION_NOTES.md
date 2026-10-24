@@ -27,11 +27,11 @@
   Guatemala "south, 1,900". Honest to the line on the map.
 
 ### Still open from this session
-- **Header art not in yet.** Bryon's "coffee art" folder lives in his Downloads, which a cloud
-  session can't see. All three `header` fields are `""` (cards fall back to the bean glyph, the
-  arrival card simply shows no image). When the files arrive, compress like last month's
-  (progressive JPEG, ~2000 px wide) into `public/assets/headers/` as `ximeng-china.jpg`,
-  `nyeri-kenya.jpg`, `huehuetenango-guatemala.jpg` and set the three `header` paths.
+- **Header art is in.** Bryon uploaded three paintings through the chat (Downloads is invisible to
+  a cloud session). Cropped to the card's 4:3 frame with PIL and saved as progressive JPEG q82:
+  `ximeng-china.jpg` (black sheep on the Great Wall, centered on the sheep), `nyeri-kenya.jpg`
+  (mountain to the drying beds), `huehuetenango-guatemala.jpg` (volcanoes to the coatis). Crops
+  were chosen by hand; the uncropped originals are not in the repo.
 - **No pano pins this month.** Scouting panos needs the Google Maps key, and this session could
   not reach the production site, Vercel env vars (403), or Street View metadata with a key. All
   six look-arounds use radius search with BEST preference. Mutianyu, Kunming, Mara, Point Lenana,
