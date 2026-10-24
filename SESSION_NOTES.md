@@ -1,5 +1,50 @@
 # Session Notes
 
+## 2026-10-24 — November lineup: China, Kenya, Guatemala
+
+### Accomplished
+- **`content/menu.json` rotated to NOVEMBER 2026** (month `2026-11`). Briefings rewritten in
+  Bryon's voice from the supplier copy in the "Untitled document" Google Doc (Burman/Torch
+  product text) plus web research for the farm stories:
+  - `black-sheep-ximeng` — China Yunnan Black Sheep Double Anaerobic. Ximeng (Wa autonomous
+    county, Pu'er), 1,400–1,600 masl, Catimor, Torch Coffee. Roast 2.5 (briefing says light to
+    medium; lighter = wilder). Journey lands on Ximeng facing the Myanmar border hills.
+    Look-arounds: Great Wall at Mutianyu, downtown Kunming (Jinma Biji archways).
+  - `rui-ruiru-anaerobic` — Kenya Nyeri Rui Ruiru Anaerobic Natural. Mathira, 1,800–2,000 masl,
+    SL28/SL34/Ruiru 11, six-day sealed ferment + ~30 days raised-bed drying, factory revived in
+    2020 with Crowd Farm Africa. Roast 3. Journey aims bearing 40 at Mount Kenya.
+    Look-arounds: Maasai Mara (Keekorok, 8 km radius, Google drove it in 2019), Point Lenana on
+    Mount Kenya, Nairobi National Park.
+  - `finca-vista-hermosa` — Guatemala Huehuetenango Finca Vista Hermosa. Agua Dulce / San Pedro
+    Necta, 1,600–1,800 masl, Bourbon + Caturra, washed 24–36 h, patio dried, Martinez family
+    (sources disagree on the grandfather's first name, so the copy says "Edwin's grandfather").
+    Roast 3. Journey aims northeast at the Cuchumatanes. Look-around: Tikal (Gran Plaza).
+- **Travel caption is now computed** (`routeFacts()` in `components/JourneyMap.tsx`). It used to
+  be hardcoded "Traveling south. The dashed line is roughly 2,100 miles." for every coffee,
+  which has been wrong since the first non-Central-American origin. Now: great-circle miles
+  rounded to the nearest hundred and an 8-point heading from the initial bearing. Yunnan reads
+  "north, 8,000 miles" because the drawn route goes over the Arctic; Kenya "east, 7,700";
+  Guatemala "south, 1,900". Honest to the line on the map.
+
+### Still open from this session
+- **Header art not in yet.** Bryon's "coffee art" folder lives in his Downloads, which a cloud
+  session can't see. All three `header` fields are `""` (cards fall back to the bean glyph, the
+  arrival card simply shows no image). When the files arrive, compress like last month's
+  (progressive JPEG, ~2000 px wide) into `public/assets/headers/` as `ximeng-china.jpg`,
+  `nyeri-kenya.jpg`, `huehuetenango-guatemala.jpg` and set the three `header` paths.
+- **No pano pins this month.** Scouting panos needs the Google Maps key, and this session could
+  not reach the production site, Vercel env vars (403), or Street View metadata with a key. All
+  six look-arounds use radius search with BEST preference. Mutianyu, Kunming, Mara, Point Lenana,
+  Nairobi NP, and Tikal all have plenty of 360s, but radius search can flap between panos of
+  mixed quality (see the Burundi note below). Next local session: open the live site, Look
+  around at each spot, and pin the best `pano:` ids the way Rwanda/El Salvador are pinned.
+- Headless verification this session was local only (`next build` + `next start` + Playwright
+  screenshots of the cards). Mapbox and Google tiles were unreachable from the container, so
+  the flyover and Street View were NOT exercised. First deploy deserves a click through all
+  three journeys and all six look-arounds on humblegrounds.coffee.
+- Roast levels (2.5 / 3 / 3) are my read of the supplier roast advice, not Bryon's cupping.
+  Cold brew untouched.
+
 ## 2026-07-19 (later) — Tasting Key, About Bryon, FAQ
 
 ### Accomplished

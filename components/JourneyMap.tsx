@@ -13,20 +13,46 @@ const HOME_LABEL = "Oberlin, Ohio";
 const FLIGHT_MS = 11000;
 const HOLD_MS = 1200;
 
-/* Great-circle interpolation so the route arcs the way a drawn voyage line should. */
-function greatCircle(a: [number, number], b: [number, number], steps = 128): [number, number][] {
-  const toRad = (d: number) => (d * Math.PI) / 180;
-  const toDeg = (r: number) => (r * 180) / Math.PI;
+const toRad = (d: number) => (d * Math.PI) / 180;
+const toDeg = (r: number) => (r * 180) / Math.PI;
+
+/* Central angle between two points, in radians (haversine). */
+function angularDistance(a: [number, number], b: [number, number]): number {
   const [lon1, lat1] = a.map(toRad) as [number, number];
   const [lon2, lat2] = b.map(toRad) as [number, number];
-  const d =
+  return (
     2 *
     Math.asin(
       Math.sqrt(
         Math.sin((lat2 - lat1) / 2) ** 2 +
           Math.cos(lat1) * Math.cos(lat2) * Math.sin((lon2 - lon1) / 2) ** 2
       )
-    );
+    )
+  );
+}
+
+/* The travel caption: how far the dashed line really is, and which way it
+   sets out from Oberlin. Follows the great circle, so Yunnan reads "north"
+   (the drawn route goes up over the Arctic) and that is the honest answer. */
+function routeFacts(a: [number, number], b: [number, number]): { miles: string; heading: string } {
+  const miles = angularDistance(a, b) * 3958.8;
+  const [lon1, lat1] = a.map(toRad) as [number, number];
+  const [lon2, lat2] = b.map(toRad) as [number, number];
+  const y = Math.sin(lon2 - lon1) * Math.cos(lat2);
+  const x = Math.cos(lat1) * Math.sin(lat2) - Math.sin(lat1) * Math.cos(lat2) * Math.cos(lon2 - lon1);
+  const bearing = (toDeg(Math.atan2(y, x)) + 360) % 360;
+  const points = ["north", "northeast", "east", "southeast", "south", "southwest", "west", "northwest"];
+  return {
+    miles: (Math.round(miles / 100) * 100).toLocaleString("en-US"),
+    heading: points[Math.round(bearing / 45) % 8],
+  };
+}
+
+/* Great-circle interpolation so the route arcs the way a drawn voyage line should. */
+function greatCircle(a: [number, number], b: [number, number], steps = 128): [number, number][] {
+  const [lon1, lat1] = a.map(toRad) as [number, number];
+  const [lon2, lat2] = b.map(toRad) as [number, number];
+  const d = angularDistance(a, b);
   if (d === 0) return [a, b];
   const line: [number, number][] = [];
   for (let i = 0; i <= steps; i++) {
@@ -74,6 +100,7 @@ export default function JourneyMap({ coffee, onClose }: { coffee: Coffee; onClos
 
   const journey = coffee.journey;
   const token = process.env.NEXT_PUBLIC_MAPBOX_TOKEN;
+  const route = routeFacts(HOME, journey?.lngLat ?? HOME);
 
   useEffect(() => {
     if (!journey || !token || !containerRef.current) return;
@@ -340,7 +367,11 @@ export default function JourneyMap({ coffee, onClose }: { coffee: Coffee; onClos
               {HOME_LABEL} → {journey.label}
             </p>
             {phase === "depart" && <p>Leaving the roastery.</p>}
-            {phase === "travel" && <p>Traveling south. The dashed line is roughly 2,100 miles.</p>}
+            {phase === "travel" && (
+              <p>
+                Traveling {route.heading}. The dashed line is roughly {route.miles} miles.
+              </p>
+            )}
             {phase === "arrived" && (
               <>
                 {coffee.header && (

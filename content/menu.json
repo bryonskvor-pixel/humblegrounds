@@ -1,6 +1,6 @@
 {
-  "month": "2026-10",
-  "monthLabel": "OCTOBER 2026",
+  "month": "2026-11",
+  "monthLabel": "NOVEMBER 2026",
   "deliveryDay": "",
   "venmo": "Bryon-Skvor",
   "bagSize": "16 oz",
@@ -8,124 +8,159 @@
   "bagPriceShip": 26,
   "coffees": [
     {
-      "slug": "law-wu-natural",
-      "name": "Thailand Lanna Law Wu Natural",
-      "origin": "Law Wu village, Chiang Mai highlands, Thailand",
-      "station": "Law Wu village · Lanna Coffee & ITDF co-op",
-      "elevation": "1,700 masl",
+      "slug": "black-sheep-ximeng",
+      "name": "China Yunnan Black Sheep Double Anaerobic",
+      "origin": "Ximeng county, Pu'er, Yunnan, China",
+      "station": "Wa hill farms · Torch Coffee",
+      "elevation": "1,400–1,600 masl",
       "variety": "Catimor",
-      "process": "Natural · shade-grown",
-      "processNote": "Whole cherries are dried in the sun with the fruit still on the bean, so the seed soaks in its own fruit sugar for weeks. That is where the ripe red fruit and the melon sweetness come from. The village's consistent shade slows ripening at 1,700 meters, which keeps the cup clean instead of wild.",
-      "notes": ["ripe red fruit", "melon", "cocoa"],
+      "process": "Double anaerobic natural · 30-day cycle",
+      "processNote": "This one is the odd sheep of the month, and the name is honest about it. The cherries are dried partway, then sealed whole into tanks with the oxygen shut out for about three weeks, then dried again to finish. Two rounds of fermentation is where the booze and the spice come from, and it is a lot. Roast it light and the cup goes wild and fruity. Push it to a strong medium and it turns toward rum, oak, and cocoa. Either way, strong fermentation is not for everyone, and I would rather tell you that now than have you wonder what happened to your mug.",
+      "notes": [
+        "red fruit",
+        "boozy spice",
+        "oak",
+        "cocoa"
+      ],
       "roastLevel": 2.5,
       "price": null,
       "soldOut": false,
       "plate": "",
-      "header": "/assets/headers/law-wu-thailand.jpg",
-      "aboutFarm": "Thailand is not where most people think their coffee comes from, and that is exactly why this cup is worth your attention. Law Wu is a village of the Lahu tribe, an indigenous people who came south out of China generations ago, perched at 1,700 meters in the mountains above Chiang Mai. Coffee has only grown here about fifteen years, but the cool air, constant shade, and strange beautiful terrain turn out to be nearly perfect for it. The partnership started in 2017 with four farmers. Their work was so consistent that five more joined, and today nine families grow some of the most interesting microlots in Southeast Asia.\n\nLanna Coffee exists to serve the hill tribes of Northern Thailand, communities of refugees who fled upheaval in China and Southeast Asia and have lived stateless and poor for over a century. Working with the Integrated Tribal Development Foundation, they helped build Thailand's first certified fair trade coffee co-op, now over 40 villages strong, with more than 400 coffee farms that are 100 percent farmer owned, growing single-source, pesticide-free coffee. Every bag helps another farmer convert to a crop that pays a stable living. A better life through a cup of coffee is a slow thing, but it is real.",
+      "header": "",
+      "aboutFarm": "Most people do not picture China when they picture coffee, but Yunnan has been growing it for over a century, since French missionaries planted the first trees in the 1890s, and today nearly all of China's coffee comes from these mountains. Ximeng is a Wa autonomous county in the far southwest of Pu'er, the prefecture better known the world over for its tea, hard against the border with Myanmar. The Wa farms here sit between 1,400 and 1,600 meters in steep, wet, forested hills, and the Catimor they grow was planted for its toughness against leaf rust, which is exactly why it needs processing this bold to show what it can do.\n\nTorch Coffee has worked out of Pu'er for over a decade, started by an American coffee educator named Marty Pollack and his partners, and it runs a roasting floor, a lab, and a training school that teaches the farmers around it to cup their own coffee. Their whole approach is crop to cup, which in Yunnan means fixing the part between the farm and the port that used to swallow all the quality. Black Sheep is their experiment lot, the one that breaks every rule the washed Yunnan coffees follow, and I brought it in because I have never tasted anything from China like it.",
       "journey": {
-        "label": "Law Wu · Chiang Mai highlands, Thailand",
-        "lngLat": [98.93, 19.33],
-        "zoom": 10.6,
+        "label": "Ximeng · Pu'er, Yunnan, China",
+        "lngLat": [
+          99.59,
+          22.64
+        ],
+        "zoom": 10.8,
         "pitch": 62,
-        "bearing": 330,
-        "story": "Most coffee maps skip Thailand entirely. Up here in the mountains north of Chiang Mai, the Lahu village of Law Wu is quietly correcting that, nine farm families growing shade-slowed coffee at 1,700 meters on slopes where opium poppies grew a generation ago. To the northwest the limestone wall of Doi Luang Chiang Dao climbs out of the forest.",
+        "bearing": 240,
+        "story": "This is about as far from Oberlin as coffee grows. Ximeng is Wa country, a county of forested ridges in the southwest corner of Yunnan where the hills run straight on into Myanmar's Shan State. The Wa farms sit between 1,400 and 1,600 meters, wet most of the year, and the coffee leaves through Pu'er, the city that gave its name to the famous aged tea. To the west the border hills climb toward the Awa Mountains.",
         "lookArounds": [
           {
-            "label": "Walk old Chiang Mai",
-            "lngLat": [98.9933, 18.7879],
-            "radius": 400,
-            "outdoorOnly": true,
-            "note": "Tha Phae Gate and the brick walls of old Chiang Mai, the northern capital this coffee comes down the mountain to. The moat around the old city is 700 years old. Drag to look around; the arrows walk the streets."
+            "label": "Walk the Great Wall",
+            "lngLat": [
+              116.5704,
+              40.4319
+            ],
+            "radius": 1500,
+            "note": "The Great Wall at Mutianyu, in the mountains about 70 kilometers northeast of Beijing. This stretch is Ming dynasty, built in the 1400s on an older foundation, with 22 watchtowers along a ridge of about two kilometers. It is a long way from the coffee, nearly the whole length of the country, but you cannot come to China and not walk it. Drag to look around; the arrows move you along the wall."
           },
           {
-            "label": "Stand at Doi Suthep",
-            "lngLat": [98.9217, 18.8048],
-            "pano": "CAoSF0NJSE0wb2dLRUlDQWdJRDRodnpYMFFF",
-            "radius": 400,
-            "note": "Wat Phra That Doi Suthep, the golden temple on the mountain above Chiang Mai. Legend says a white elephant carrying a relic of the Buddha climbed up here, trumpeted three times, and chose this spot. One local-shot 360 from the terrace."
+            "label": "Downtown Kunming",
+            "lngLat": [
+              102.7118,
+              25.0389
+            ],
+            "radius": 600,
+            "note": "Kunming, the capital of Yunnan, called the Spring City for weather that stays mild all year at 1,900 meters. These are the Golden Horse and Jade Rooster archways in the middle of downtown, where the streets fill up at night. Every coffee that leaves Yunnan by air comes through here."
           }
         ]
       }
     },
     {
-      "slug": "musasa-dukunde-kawa",
-      "name": "Rwanda Dukunde Kawa Mbilima Organic",
-      "origin": "Gakenke district, Northern Province, Rwanda",
-      "station": "Musasa mill · Dukunde Kawa Cooperative",
-      "elevation": "1,800–2,100 masl",
-      "variety": "Red Bourbon",
-      "process": "Washed · certified organic",
-      "processNote": "Cherries are pulped the day they are picked, fermented in water, washed clean, and dried slowly on raised beds at the Musasa mill. The washed process strips the fruit away early, so what you taste is the bean itself and the high hills it grew on: clean, chocolaty, with fruit riding over the top.",
-      "notes": ["chocolate", "fruit tones", "full-bodied"],
-      "roastLevel": 3.5,
-      "price": null,
-      "soldOut": false,
-      "plate": "",
-      "header": "/assets/headers/musasa-rwanda.jpg",
-      "aboutFarm": "This coffee comes from family farms gathered around the Musasa mill in the Gakenke district of Rwanda's Northern Province, up near a mountain gorilla habitat. The farm plots are so small that nobody measures them in acres; they are measured by the number of trees. Each family brings its cherry down the hill to the cooperative's wet mill, where it is sorted, washed, and dried with the kind of care you can only give coffee when you know every tree personally.\n\nThe farmers are members of the Dukunde Kawa Cooperative, a name that means roughly 'let's love coffee' in Kinyarwanda. They started in 2000 with just enough money to build one wet mill. Today they run four wet mills and their own dry mill, and more than 80 percent of the cooperative's workforce is women. Earnings have gone into livestock, healthcare, and programs to protect the land, which is to say the coffee is improving the hills it grows on.",
-      "journey": {
-        "label": "Musasa mill · Gakenke, Rwanda",
-        "lngLat": [29.8, -1.81],
-        "zoom": 11.2,
-        "pitch": 62,
-        "bearing": 315,
-        "story": "Rwanda is called the land of a thousand hills and this is deep in them. Around the Musasa mill in Gakenke district the farm plots are so small they are counted in trees, not acres, and most of the hands working the cooperative belong to women. Northwest along the horizon stand the Virunga volcanoes, the last home of the mountain gorillas.",
-        "lookArounds": [
-          {
-            "label": "Enter the gorilla park",
-            "lngLat": [29.4985, -1.46066],
-            "pano": "CAoSF0NJSE0wb2dLRUlDQWdJQzR6WXpqcUFF",
-            "radius": 4000,
-            "note": "The lower slopes of Mount Bisoke in Volcanoes National Park, a couple hours northwest of the mill. The bamboo and hagenia forests up here are home to the mountain gorillas, and this is where the treks to find them begin. One local-shot 360 from the mountain."
-          },
-          {
-            "label": "Climb to Karisoke",
-            "lngLat": [29.46315, -1.49447],
-            "pano": "CAoSF0NJSE0wb2dLRUlDQWdJQ2N0X3ZCNndF",
-            "radius": 4000,
-            "note": "The high saddle between Mount Karisimbi and Mount Bisoke, where Dian Fossey built the Karisoke research camp in 1967 and spent 18 years living among the gorillas. She is buried up here beside them. One local-shot 360 from the trail."
-          }
-        ]
-      }
-    },
-    {
-      "slug": "pena-redonda-pacamara",
-      "name": "El Salvador Peña Redonda Pacamara",
-      "origin": "La Palma, Chalatenango, El Salvador",
-      "station": "Finca Peña Redonda · Lemus family",
-      "elevation": "1,450–1,500 masl",
-      "variety": "Pacamara",
-      "process": "Washed · selective harvest",
-      "processNote": "Pacamara is El Salvador's own giant-bean variety, a cross of Pacas and Maragogipe, and the Lemus family handles it the traditional way: picked selectively at full ripeness, fully washed, and sun-dried during the dry season that conveniently arrives right at harvest. Stony soil and sweetgum shade slow the ripening, which is where the depth comes from.",
-      "notes": ["chocolate", "orange", "peach"],
+      "slug": "rui-ruiru-anaerobic",
+      "name": "Kenya Nyeri Rui Ruiru Anaerobic Natural",
+      "origin": "Mathira, Nyeri County, Kenya",
+      "station": "Rui Ruiru factory · Torch Coffee",
+      "elevation": "1,800–2,000 masl",
+      "variety": "SL28 · SL34 · Ruiru 11",
+      "process": "Anaerobic natural · raised-bed dried",
+      "processNote": "Kenya built its reputation on washed coffee, which uses a lot of water, and water is getting precious in the hills. This lot skips the washing entirely. The whole cherries go into sealed tanks with no oxygen for about six days, then onto raised beds where they dry in the fruit for close to a month. The fruit cooks the sugar into the seed, so what you get is red berry jam and bright orange instead of the blackcurrant you may expect from Kenya, with a dark chocolate base that gets deeper the further you take the roast.",
+      "notes": [
+        "red berry jam",
+        "bright orange",
+        "dark chocolate"
+      ],
       "roastLevel": 3,
       "price": null,
       "soldOut": false,
       "plate": "",
-      "header": "/assets/headers/chalatenango-el-salvador.jpg",
-      "aboutFarm": "Peña Redonda is named for the enormous round rock that dominates the farm, high above La Palma in Chalatenango. Carlos Mauricio Lemus Landaverde took the farm over after the death of his father, José María Lemus, and kept the family habits that built its reputation: clean processing and picking only what is ripe. The trees grow between 1,450 and 1,500 meters in stony soil under sweetgum shade, and the results speak at the national level. Their lots have placed at the Cup of Excellence four times, including 7th in the whole country in 2019, with an award profile of Swiss chocolate, orange, and peach.\n\nChalatenango, the 'valley of water and sand,' holds the highest ground in El Salvador, topping out at Cerro El Pital at 2,730 meters. For decades the famous Salvadoran coffees came from the west, until a La Palma farm took 1st place at the 2007 Cup of Excellence and put this region on the map for good. El Salvador is the birthplace of the Pacas and Pacamara varieties, and up here, where cool microclimates ripen the cherry slowly, Pacamara shows what it was born to do.",
+      "header": "",
+      "aboutFarm": "Nyeri sits in the high country between Mount Kenya and the Aberdare Range, on red volcanic soil that is about as good as coffee dirt gets. Rui Ruiru is a factory, which is what Kenyans call a washing station, in the Mathira area east of Nyeri town, taking cherry from a few hundred smallholders who each farm a small patch of trees between 1,800 and 2,000 meters. The varieties are the Kenyan classics, SL28 and SL34, the ones that give the country its bright, juicy reputation, plus Ruiru 11, bred locally for disease resistance.\n\nThe factory has a comeback story. The cooperative that ran it folded in 2014 and the place was left to fall apart for years. In 2020 the farmers around it, led by the village headman, got backing from the county and the Ministry of Agriculture and partnered with a group called Crowd Farm Africa to rebuild it and bring the cherry back. Torch Coffee, the same Yunnan outfit behind this month's China lot, has been working with them on these anaerobic naturals, which is how a tiny revived station in Nyeri ended up doing some of the most experimental processing in Kenya.",
       "journey": {
-        "label": "Peña Redonda · La Palma, El Salvador",
-        "lngLat": [-89.165, 14.325],
-        "zoom": 11.5,
+        "label": "Rui Ruiru · Mathira, Nyeri, Kenya",
+        "lngLat": [
+          37.1,
+          -0.4
+        ],
+        "zoom": 10.6,
         "pitch": 62,
-        "bearing": 30,
-        "story": "La Palma hangs in the mountains of Chalatenango near the Honduran border, in what Salvadorans call the valley of water and sand. Peña Redonda is named for the great round rock on the property, where Pacamara ripens slowly in stony soil under sweetgum shade. Northeast of here the ridge climbs to Cerro El Pital, the highest point in the country.",
+        "bearing": 40,
+        "story": "Nyeri is where Kenyan coffee started earning its name, in the saddle of high ground between Mount Kenya and the Aberdares, almost exactly on the equator. The Rui Ruiru factory sits in Mathira, where a few hundred smallholders bring cherry down from trees planted in red volcanic soil at close to 2,000 meters. Straight ahead, the glaciers of Mount Kenya climb past 5,000 meters.",
         "lookArounds": [
           {
-            "label": "Walk the murals of La Palma",
-            "lngLat": [-89.1692, 14.31891],
-            "pano": "CAoSF0NJSE0wb2dLRUlDQWdJQ0VpLXFkaEFF",
-            "radius": 400,
-            "note": "La Palma, the mountain town below the farm, famous across El Salvador for the bright painted murals in the style of Fernando Llort that cover its walls. One local-shot 360 from the middle of town."
+            "label": "Drive the Maasai Mara",
+            "lngLat": [
+              35.2473,
+              -1.5853
+            ],
+            "radius": 8000,
+            "note": "The Maasai Mara National Reserve, 1,500 square kilometers of open savanna in the southwest of the country that runs on into the Serengeti. Every year from about July to October more than a million wildebeest cross the Mara River here on the Great Migration, with the crocodiles waiting. Google drove the tracks of the reserve in 2019, so the arrows let you drive it too. Look for the lions."
           },
           {
-            "label": "Stand on Cerro El Pital",
-            "lngLat": [-89.12496, 14.39134],
-            "pano": "CAoSF0NJSE0wb2dLRUlDQWdJQ0VpOXJ3bEFF",
+            "label": "Stand on Mount Kenya",
+            "lngLat": [
+              37.3105,
+              -0.1521
+            ],
+            "radius": 3000,
+            "note": "Point Lenana, the trekking summit of Mount Kenya at 4,985 meters, with the twin rock peaks of Batian and Nelion above it. The Kikuyu call the mountain Kirinyaga and the coffee grows on its lower slopes, so this is the view from above the farms. One local-shot 360 from the top."
+          },
+          {
+            "label": "Nairobi, with the giraffes",
+            "lngLat": [
+              36.8583,
+              -1.3733
+            ],
+            "radius": 6000,
+            "note": "Nairobi National Park, the only national park on earth inside a capital city. Giraffes, rhinos, and lions graze with the downtown skyline on the horizon, a few minutes from the airport this coffee flew out of."
+          }
+        ]
+      }
+    },
+    {
+      "slug": "finca-vista-hermosa",
+      "name": "Guatemala Huehuetenango Finca Vista Hermosa",
+      "origin": "Agua Dulce, San Pedro Necta, Huehuetenango, Guatemala",
+      "station": "Finca Vista Hermosa · Martinez family",
+      "elevation": "1,600–1,800 masl",
+      "variety": "Bourbon · Caturra",
+      "process": "Washed · 24 to 36 hour ferment · patio dried",
+      "processNote": "The Martinez family runs their own wet mill on the farm, which is rarer than you would think and means nobody else touches the coffee between the tree and the bag. Cherries are picked by hand at full ripeness, pulped, fermented in tanks for a day to a day and a half to loosen the fruit, washed clean, and then sun-dried on patios. It is the classic Guatemalan way, done carefully, and it gives you a sweet, malty, balanced cup with a little winey edge, the kind of coffee you can drink all morning.",
+      "notes": [
+        "sweet",
+        "malty",
+        "winey",
+        "nutty"
+      ],
+      "roastLevel": 3,
+      "price": null,
+      "soldOut": false,
+      "plate": "",
+      "header": "",
+      "aboutFarm": "Finca Vista Hermosa, which means beautiful view farm, is about eight hours by car from Guatemala City in the mountains of Huehuetenango, up near the Mexican border. Edwin Martinez's grandfather started it in the 1950s, when the roads were barely roads, and Edwin, a third generation agronomist, now runs it with his father. The coffee grows on hillsides so steep they call it impossible terrain, up to 1,800 meters, and that steepness creates pockets of microclimate that slow the cherry down and make a denser, sweeter bean. This lot is Bourbon and Caturra, though the farm also grows Catuai and Pacamara because Edwin likes to see what the land can do.\n\nHuehuetenango is the highest and driest coffee country in Guatemala, under the Cuchumatanes, the tallest mountain range in Central America that is not a volcano. Warm dry wind blows up from the Tehuantepec plain in Mexico and keeps frost off the trees, so coffee here can grow higher than almost anywhere else in the country. The Martinez family has agronomists visit every month and opens those sessions up to their neighbors, most of them small Mayan farmers with their own little mills, which is part of why this corner of the mountains has become famous.",
+      "journey": {
+        "label": "Finca Vista Hermosa · Huehuetenango, Guatemala",
+        "lngLat": [
+          -91.76,
+          15.52
+        ],
+        "zoom": 11.2,
+        "pitch": 62,
+        "bearing": 45,
+        "story": "Huehuetenango is the far northwest corner of Guatemala, where the mountains pile up against the Mexican border. Finca Vista Hermosa clings to the slopes above the town of San Pedro Necta, on terrain the family calls impossible, and the coffee ripens slowly in the high dry air. To the northeast the Cuchumatanes rise to nearly 3,800 meters, the highest ground in Central America that is not a volcano.",
+        "lookArounds": [
+          {
+            "label": "Climb the temples of Tikal",
+            "lngLat": [
+              -89.6237,
+              17.222
+            ],
             "radius": 1500,
-            "note": "Cerro El Pital, the highest point in El Salvador at 2,730 meters, on the Honduran border just past the farm. Up here the cloud forest drips with fog most mornings. One local-shot 360 near the summit."
+            "note": "Tikal National Park, deep in the Petén rainforest in the north of the country. This was one of the great cities of the Maya, home to tens of thousands of people at its height around 1,300 years ago, and Temple IV here is the tallest thing they ever built, over 60 meters of stone rising out of the jungle canopy. Howler monkeys own the soundtrack. It is a full day's drive from the farm, but you did not come this far to skip it."
           }
         ]
       }
@@ -134,7 +169,11 @@
   "coldBrew": {
     "slug": "cold-brew",
     "name": "One Batch Cold Brew",
-    "notes": ["rich", "smooth", "bold"],
+    "notes": [
+      "rich",
+      "smooth",
+      "bold"
+    ],
     "price": null,
     "soldOut": false,
     "plate": "",
